@@ -6,9 +6,7 @@
 <title>John Nerzon Polintan — IT · Gaming Ops · Automation</title>
 <meta name="description" content="Portfolio of John Nerzon Polintan — Games & Config Specialist, IT operations and AI workflow automation. 12+ years across iGaming, enterprise IT, and support operations.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0c0e'/><circle cx='16' cy='16' r='6' fill='%23b8f04a'/></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="assets/fonts/fonts.css" rel="stylesheet">
 <style>
 /* ============ TOKENS ============ */
 :root{
@@ -72,6 +70,11 @@ nav.main a i{font-style:normal;color:var(--dim);margin-right:5px}
 nav.main a::after{content:'';position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--acc);transition:width .3s}
 nav.main a:hover,nav.main a.act{color:var(--txt)}
 nav.main a.act::after,nav.main a:hover::after{width:100%}
+.hd-actions{display:flex;align-items:center;gap:8px}
+.hd-action{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;padding:8px 10px;border:1px solid var(--line2);color:var(--mut);border-radius:2px;white-space:nowrap;transition:color .25s,border-color .25s,background .25s}
+.hd-action:hover{color:var(--acc);border-color:var(--acc)}
+.hd-action.primary{background:var(--acc);border-color:var(--acc);color:var(--acc-dk);font-weight:700}
+.hd-action.primary:hover{background:transparent;color:var(--acc)}
 .clocks{display:flex;gap:18px;font-family:var(--mono);font-size:11px;color:var(--mut);letter-spacing:.06em}
 .clocks b{color:var(--dim);font-weight:500;margin-right:5px}
 .clocks span{color:var(--txt);font-variant-numeric:tabular-nums}
@@ -100,6 +103,11 @@ nav.main a.act::after,nav.main a:hover::after{width:100%}
 }
 .hero::after{content:'';position:absolute;left:-10%;bottom:-30%;width:60%;height:80%;background:radial-gradient(circle,rgba(184,240,74,.07),transparent 65%);pointer-events:none}
 .hero-grid{display:grid;grid-template-columns:7fr 5fr;gap:56px;align-items:end;position:relative;flex:1;padding-bottom:56px}
+.hero-aside{display:grid;grid-template-columns:minmax(150px,.85fr) 1.35fr;align-items:stretch;gap:14px}
+.portrait-card{position:relative;overflow:hidden;min-height:390px;border:1px solid var(--line);border-radius:4px;background:var(--panel)}
+.portrait-card img{width:100%;height:100%;object-fit:cover;object-position:center 24%;filter:grayscale(1) contrast(1.05) brightness(.88);transition:filter .6s,transform .8s}
+.portrait-card:hover img{filter:grayscale(.15) contrast(1) brightness(.96);transform:scale(1.025)}
+.portrait-label{position:absolute;left:12px;bottom:12px;right:12px;padding:9px 10px;background:rgba(10,12,14,.82);border:1px solid var(--line2);backdrop-filter:blur(6px);font-family:var(--mono);font-size:9px;letter-spacing:.15em;color:var(--acc)}
 .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.22em;color:var(--acc);margin-bottom:28px;display:flex;align-items:center;gap:12px}
 .kicker::before{content:'';width:34px;height:1px;background:var(--acc)}
 h1.name{font-family:var(--disp);font-weight:700;font-size:clamp(46px,8.4vw,110px);line-height:.96;letter-spacing:-.03em;text-transform:uppercase}
@@ -128,6 +136,8 @@ h1.name .l2{color:transparent;-webkit-text-stroke:1.5px var(--txt)}
 .prow .v .warn{color:var(--amb)}
 .panel-foot{border-top:1px solid var(--line);padding:13px 20px;font-family:var(--mono);font-size:12px;color:var(--acc);letter-spacing:.04em;display:flex;align-items:center;gap:8px}
 .panel-foot .caret{width:8px;height:15px;background:var(--acc);animation:blink 1s steps(2) infinite}
+.personal-note{margin-top:14px;border:1px solid var(--line);background:rgba(184,240,74,.035);padding:14px 16px;border-radius:4px;font-family:var(--mono);font-size:10.5px;line-height:1.7;letter-spacing:.08em;color:var(--mut)}
+.personal-note b{color:var(--acc);font-weight:500}
 .hero-meta{position:relative;border-top:1px solid var(--line);padding:16px 0;display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--dim)}
 
 /* ============ TICKER ============ */
@@ -161,6 +171,7 @@ h2.title{font-family:var(--disp);font-weight:700;font-size:clamp(30px,4.6vw,56px
 .profile-text p+p{margin-top:22px}
 .profile-text strong{color:var(--txt);font-weight:600}
 .profile-text .hl-word{color:var(--acc);font-weight:600}
+.profile-statement{border-left:2px solid var(--acc);padding:18px 20px;background:linear-gradient(90deg,rgba(184,240,74,.06),transparent);font-family:var(--disp);font-size:clamp(18px,2vw,23px)!important;line-height:1.5!important;color:var(--txt)!important}
 .facts{margin-top:44px;border-top:1px solid var(--line)}
 .fact{display:grid;grid-template-columns:110px 1fr;gap:20px;padding:16px 0;border-bottom:1px solid var(--line);font-size:14.5px}
 .fact .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--dim);padding-top:4px}
@@ -255,6 +266,9 @@ h2.title{font-family:var(--disp);font-weight:700;font-size:clamp(30px,4.6vw,56px
 .hl:hover .hl-media img{filter:grayscale(0) contrast(1) brightness(.95)}
 @keyframes kenburns{from{transform:scale(1) translate(0,0)}to{transform:scale(1.12) translate(-2%,2%)}}
 .hl-media .chip-tag{position:absolute;top:14px;left:14px;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;background:rgba(10,12,14,.85);border:1px solid var(--line2);color:var(--acc);padding:6px 10px;border-radius:2px;backdrop-filter:blur(4px)}
+.hl-media.workflow img{object-fit:contain;background:#f4f5f7;animation:none;filter:saturate(.8) brightness(.88)}
+.hl-media.workflow::after{content:'WORKFLOW SAMPLE';position:absolute;right:0;bottom:0;width:29%;padding:11px 8px;background:#f4f5f7;border:1px solid #d5d8dc;color:#26313d;text-align:center;font-family:var(--mono);font-size:8px;letter-spacing:.12em}
+.hl-media.providers img{object-fit:cover;object-position:center;animation:none}
 .hl-body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:10px;flex:none}
 .hl-body h3{font-family:var(--disp);font-weight:700;font-size:20px;letter-spacing:-.01em;line-height:1.2}
 .hl-body p{font-size:13.8px;color:var(--mut);line-height:1.6}
@@ -290,6 +304,8 @@ h2.title{font-family:var(--disp);font-weight:700;font-size:clamp(30px,4.6vw,56px
 .edu-card .sub{color:var(--mut);margin-top:8px;font-size:14.5px}
 .edu-card .yr{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--dim);margin-top:16px}
 .ref-note{margin-top:22px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--dim);border:1px dashed var(--line2);padding:14px 16px;border-radius:3px}
+.interest-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.interest-list span{font-family:var(--mono);font-size:10px;letter-spacing:.11em;padding:7px 10px;border:1px solid var(--line2);color:var(--mut);border-radius:2px}
 
 /* ============ CONTACT ============ */
 #contact{padding:140px 0 120px;position:relative;overflow:hidden}
@@ -300,6 +316,7 @@ h2.title{font-family:var(--disp);font-weight:700;font-size:clamp(30px,4.6vw,56px
 .contact-big{font-family:var(--disp);font-weight:700;font-size:clamp(34px,5.6vw,72px);letter-spacing:-.02em;line-height:1.04;text-transform:uppercase;max-width:900px}
 .contact-big .out{color:transparent;-webkit-text-stroke:1.3px var(--txt)}
 .email-line{margin-top:48px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.contact-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
 .email-link{font-family:var(--mono);font-size:clamp(17px,2.6vw,28px);letter-spacing:.02em;color:var(--acc);position:relative;padding-bottom:6px}
 .email-link::after{content:'';position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.65,.2,1)}
 .email-link:hover::after{transform:scaleX(1)}
@@ -321,7 +338,9 @@ footer{border-top:1px solid var(--line);padding:26px 0}
 /* ============ RESPONSIVE ============ */
 @media(max-width:1060px){
   .hero-grid{grid-template-columns:1fr;gap:44px;align-items:start}
-  .panel{max-width:520px}
+  .hero-aside{max-width:720px}
+  .panel{max-width:none}
+  .clocks.hd-clocks{display:none}
   .split,.xp-grid,.cred-grid{grid-template-columns:1fr;gap:52px}
   .sticky{position:static}
   .pipe{grid-template-columns:repeat(3,1fr);gap:34px 14px}
@@ -334,7 +353,7 @@ footer{border-top:1px solid var(--line);padding:26px 0}
   .hl.tall .hl-media{aspect-ratio:16/9;min-height:0}
 }
 @media(max-width:760px){
-  nav.main,.clocks.hd-clocks{display:none}
+  nav.main,.clocks.hd-clocks,.hd-actions{display:none}
   .burger{display:flex}
   .sec{padding:84px 0}
   .hl,.hl.w8{grid-template-columns:1fr;grid-column:span 12}
@@ -344,6 +363,12 @@ footer{border-top:1px solid var(--line);padding:26px 0}
   .stats{grid-template-columns:1fr 1fr}
   .r-meta{text-align:left}
   .r-tags{justify-content:flex-start}
+  .hero-aside{grid-template-columns:1fr}
+  .portrait-card{min-height:420px}
+}
+@media(max-width:480px){
+  .portrait-card{min-height:360px}
+  .hero-meta{gap:12px;flex-direction:column}
 }
 
 /* ============ REDUCED MOTION ============ */
@@ -379,6 +404,10 @@ footer{border-top:1px solid var(--line);padding:26px 0}
       <div><b>MNL</b><span id="clk-mnl">--:--:--</span></div>
       <div><b>MLT</b><span id="clk-mlt">--:--:--</span></div>
     </div>
+    <div class="hd-actions">
+      <a class="hd-action primary" href="assets/documents/John-Nerzon-Polintan-CV-2026.pdf" download aria-label="Download John Nerzon Polintan's CV as PDF">CV ↓</a>
+      <a class="hd-action" href="#contact">CONTACT</a>
+    </div>
     <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
       <i></i><i></i><i></i>
     </button>
@@ -393,6 +422,7 @@ footer{border-top:1px solid var(--line);padding:26px 0}
   <a href="#skills"><i>04</i> Skills</a>
   <a href="#highlights"><i>05</i> Highlights</a>
   <a href="#credentials"><i>07</i> Credentials</a>
+  <a href="assets/documents/John-Nerzon-Polintan-CV-2026.pdf" download><i>↓</i> Download CV</a>
   <a href="#contact"><i>08</i> Contact</a>
 </div>
 
@@ -413,31 +443,40 @@ footer{border-top:1px solid var(--line);padding:26px 0}
         <span class="caret" aria-hidden="true"></span>
       </div>
       <p class="hero-copy">
-        I run the <strong>end-to-end game release pipeline</strong> at REEVO — from provider intake
-        to live deployment for global iGaming clients — backed by <strong>12+ years</strong> across
+        I run the <strong>end-to-end game release pipeline</strong> for a European iGaming platform — from provider intake
+        to live deployment for global clients — backed by <strong>12+ years</strong> across
         enterprise IT support, operations management, and AI-assisted workflow automation.
       </p>
       <div class="cta-row">
         <a class="btn fill" href="#experience">VIEW EXPERIENCE ↓</a>
+        <a class="btn" href="assets/documents/John-Nerzon-Polintan-CV-2026.pdf" download>DOWNLOAD CV ↓</a>
         <a class="btn" href="#contact">GET IN TOUCH ↗</a>
       </div>
     </div>
 
-    <aside class="panel rv" style="--d:.2s" aria-label="Status panel">
-      <div class="panel-head">
-        <span>SYSTEM STATUS</span>
-        <span class="live"><span class="dot" aria-hidden="true"></span>LIVE</span>
-      </div>
-      <div class="panel-rows">
-        <div class="prow"><span class="k">STATUS</span><span class="v"><span class="ok">ONLINE</span> — OPEN TO REMOTE ROLES</span></div>
-        <div class="prow"><span class="k">ROLE</span><span class="v">GAMES &amp; CONFIG SPECIALIST @ REEVO</span></div>
-        <div class="prow"><span class="k">BASE</span><span class="v">PHILIPPINES · GMT+8</span></div>
-        <div class="prow"><span class="k">SERVING</span><span class="v">GLOBAL IGAMING CLIENTS · MALTA HQ</span></div>
-        <div class="prow"><span class="k">UPTIME</span><span class="v">12+ YRS OPERATIONAL</span></div>
-        <div class="prow"><span class="k">TOOLKIT</span><span class="v">JIRA · AIRTABLE · SERVICENOW · AI OPS</span></div>
-      </div>
-      <div class="panel-foot">
-        <span>&gt; intake → configure → qa → deploy → live</span><span class="caret" aria-hidden="true"></span>
+    <aside class="hero-aside rv" style="--d:.2s" aria-label="Portrait and current status">
+      <figure class="portrait-card">
+        <img src="assets/images/john-nerzon-polintan-profile.png" alt="Professional portrait of John Nerzon Polintan">
+        <figcaption class="portrait-label">JOHN NERZON POLINTAN // REMOTE OPS</figcaption>
+      </figure>
+      <div>
+        <div class="panel" aria-label="Status panel">
+          <div class="panel-head">
+            <span>SYSTEM STATUS</span>
+            <span class="live"><span class="dot" aria-hidden="true"></span>LIVE</span>
+          </div>
+          <div class="panel-rows">
+            <div class="prow"><span class="k">STATUS</span><span class="v"><span class="ok">ONLINE</span> — OPEN TO REMOTE ROLES</span></div>
+            <div class="prow"><span class="k">ROLE</span><span class="v">GAMES &amp; CONFIG SPECIALIST</span></div>
+            <div class="prow"><span class="k">BASE</span><span class="v">PHILIPPINES · GMT+8</span></div>
+            <div class="prow"><span class="k">LEARNING</span><span class="v"><span class="warn">VIBE CODING</span> · WEB DEVELOPMENT</span></div>
+            <div class="prow"><span class="k">TOOLKIT</span><span class="v">JIRA · AIRTABLE · SERVICENOW · AI OPS</span></div>
+          </div>
+          <div class="panel-foot">
+            <span>&gt; intake → configure → qa → deploy → live</span><span class="caret" aria-hidden="true"></span>
+          </div>
+        </div>
+        <p class="personal-note"><b>OFF-DUTY //</b> Photography · Adobe Lightroom · Online Gaming</p>
       </div>
     </aside>
   </div>
@@ -450,7 +489,7 @@ footer{border-top:1px solid var(--line);padding:26px 0}
 <!-- ================= TICKER ================= -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track" id="tickerTrack">
-    <span>GAME RELEASE MANAGEMENT<em>✦</em>PROVIDER INTEGRATION<em>✦</em>JIRA SERVICE DESK<em>✦</em>AIRTABLE<em>✦</em>SERVICENOW<em>✦</em>AI WORKFLOW AUTOMATION<em>✦</em>ACTIVE DIRECTORY<em>✦</em>OFFICE 365<em>✦</em>CONTENT QA<em>✦</em>ADOBE PHOTOSHOP<em>✦</em>SLA MANAGEMENT<em>✦</em>TIER 1–2 SUPPORT<em>✦</em>ZERO-DEFECT LAUNCHES<em>✦</em></span>
+    <span>GAME RELEASE MANAGEMENT<em>✦</em>PROVIDER INTEGRATION<em>✦</em>JIRA SERVICE DESK<em>✦</em>AIRTABLE<em>✦</em>SERVICENOW<em>✦</em>AI WORKFLOW AUTOMATION<em>✦</em>ACTIVE DIRECTORY<em>✦</em>OFFICE 365<em>✦</em>CONTENT QA<em>✦</em>ADOBE PHOTOSHOP<em>✦</em>SLA MANAGEMENT<em>✦</em>TIER 1–2 SUPPORT<em>✦</em>RELIABLE RELEASE EXECUTION<em>✦</em></span>
   </div>
 </div>
 
@@ -462,9 +501,9 @@ footer{border-top:1px solid var(--line);padding:26px 0}
       <h2 class="title lm"><span>PRECISION RUNS<br>THE OPERATION</span></h2>
       <div class="stats">
         <div class="stat"><div class="n" data-n="12" data-suffix="+">0</div><div class="lbl">YEARS IN IT &amp; OPS</div></div>
-        <div class="stat"><div class="n" data-n="7" data-suffix="">0</div><div class="lbl">ROLES · 7 COMPANIES</div></div>
+        <div class="stat"><div class="n" data-n="7" data-suffix="">0</div><div class="lbl">ROLES ACROSS OPERATIONS</div></div>
         <div class="stat"><div class="n" data-n="5" data-suffix="">0</div><div class="lbl">INDUSTRIES SERVED</div></div>
-        <div class="stat"><div class="n" data-n="0" data-suffix="">0</div><div class="lbl">DEFECTS ON LIVE LAUNCHES</div></div>
+        <div class="stat"><div class="n" data-n="3" data-suffix="+">0</div><div class="lbl">YEARS IN GAME OPERATIONS</div></div>
       </div>
     </div>
     <div class="profile-text">
@@ -472,19 +511,21 @@ footer{border-top:1px solid var(--line);padding:26px 0}
         Results-driven <strong>IT, Gaming Operations &amp; Operations Management</strong> professional
         with 12+ years of experience spanning enterprise IT support and iGaming game release
         operations. Currently managing the <span class="hl-word">full game lifecycle</span> — from
-        provider intake to live deployment — for global clients at REEVO (Malta, Remote).
+        provider intake to live deployment — for global clients at a European iGaming platform.
       </p>
       <p class="rv" style="--d:.1s">
         I combine deep technical expertise in <strong>Windows, Active Directory, and Office 365</strong>
         with a modern skillset in <span class="hl-word">AI-assisted workflow automation</span>, Jira, and
-        Airtable — and I'm known for precision, cross-functional collaboration, and ensuring flawless
+        Airtable — and I'm known for precision, cross-functional collaboration, and dependable
         client-facing game launches.
       </p>
+      <p class="profile-statement rv" style="--d:.15s">I’m most effective where technical accuracy, release coordination, and clear documentation meet.</p>
       <div class="facts rv" style="--d:.2s">
-        <div class="fact"><span class="k">CURRENT</span><span class="v">Games &amp; Config Specialist — REEVO <i>(Malta, Remote)</i></span></div>
+        <div class="fact"><span class="k">CURRENT</span><span class="v">Games &amp; Config Specialist <i>(European iGaming · Remote)</i></span></div>
         <div class="fact"><span class="k">FOCUS</span><span class="v">Game release ops · IT systems · AI automation · Visual content</span></div>
+        <div class="fact"><span class="k">EXPLORING</span><span class="v">Vibe Coding · Web Development · AI-assisted development</span></div>
         <div class="fact"><span class="k">MODE</span><span class="v">Remote-first · Cross-timezone collaboration <i>(MNL ↔ MLT)</i></span></div>
-        <div class="fact"><span class="k">EDGE</span><span class="v">Zero-defect launches, real-time incident response, documentation culture</span></div>
+        <div class="fact"><span class="k">EDGE</span><span class="v">Reliable release execution · Real-time incident response · Documentation culture</span></div>
       </div>
     </div>
   </div>
@@ -496,7 +537,7 @@ footer{border-top:1px solid var(--line);padding:26px 0}
     <div class="s-head">
       <p class="s-no mono">02 — THE CRAFT</p>
       <h2 class="title lm"><span>GAME RELEASE PIPELINE</span></h2>
-      <p class="s-sub">The end-to-end lifecycle I own at REEVO — every title travels this exact route
+      <p class="s-sub">The end-to-end lifecycle I manage for a European iGaming platform — every title travels this route
       before it goes live in front of players. Hover to inspect a stage.</p>
     </div>
     <div class="pipe" id="pipeWrap">
@@ -506,13 +547,13 @@ footer{border-top:1px solid var(--line);padding:26px 0}
       <div class="stage"><span class="st-no mono">STG/02</span><h3>Configuration</h3><p>Game configuration and content setup across internal systems, tuned per client requirements.</p></div>
       <div class="stage"><span class="st-no mono">STG/03</span><h3>Integration</h3><p>Coordinating with the Integrations Team so every title connects cleanly to client platforms.</p></div>
       <div class="stage"><span class="st-no mono">STG/04</span><h3>Content QA</h3><p>Auditing game metadata and content across the website and internal systems — accuracy guaranteed.</p></div>
-      <div class="stage"><span class="st-no mono">STG/05</span><h3>Live Deployment</h3><p>Deploying games live for clients with zero defects — the launch moment, executed flawlessly.</p></div>
+      <div class="stage"><span class="st-no mono">STG/05</span><h3>Live Deployment</h3><p>Deploying games live with careful checks, clear coordination, and dependable release execution.</p></div>
       <div class="stage"><span class="st-no mono">STG/06</span><h3>Live Support</h3><p>Real-time incident lead post-launch — swift resolution keeping client operations uninterrupted.</p></div>
     </div>
     <div class="pipe-note">
       <span>CHANNELS: <b>TICKETS · EMAIL · CHAT</b></span>
       <span>TRACKING: <b>JIRA SERVICE DESK · AIRTABLE</b></span>
-      <span>RECORD: <b>ZERO-DEFECT LAUNCHES</b></span>
+      <span>STANDARD: <b>CAREFUL, RELIABLE RELEASES</b></span>
       <span>SCOPE: <b>GLOBAL CLIENTS</b></span>
     </div>
   </div>
@@ -527,12 +568,12 @@ footer{border-top:1px solid var(--line);padding:26px 0}
         <h2 class="title lm"><span>EXPERIENCE</span></h2>
         <p class="s-sub">Seven roles across iGaming, enterprise IT, healthcare support, telecom BPO,
         and government — each one sharpening the operations instinct.</p>
-        <nav class="co-nav" aria-label="Employers">
-          <a href="#r-reevo" data-co="r-reevo"><span class="yrs">2022—NOW</span><b>REEVO</b><i>Games &amp; Config Specialist</i></a>
-          <a href="#r-pm" data-co="r-pm"><span class="yrs">2024—2025</span><b>Profile Management</b><i>Quality Control Manager</i></a>
-          <a href="#r-tsi" data-co="r-tsi"><span class="yrs">2020—2022</span><b>Transworld Systems</b><i>Sr. IT Helpdesk Analyst</i></a>
-          <a href="#r-optum" data-co="r-optum"><span class="yrs">2020—2021</span><b>Optum Global</b><i>IT Helpdesk Analyst</i></a>
-          <a href="#r-atos" data-co="r-atos"><span class="yrs">2019—2020</span><b>Atos IT</b><i>IT Helpdesk Technician</i></a>
+        <nav class="co-nav" aria-label="Selected experience">
+          <a href="#r-reevo" data-co="r-reevo"><span class="yrs">2022—NOW</span><b>European iGaming Platform</b><i>Games &amp; Config Specialist</i></a>
+          <a href="#r-pm" data-co="r-pm"><span class="yrs">2024—2025</span><b>Remote Operations Company</b><i>Quality Control Manager</i></a>
+          <a href="#r-tsi" data-co="r-tsi"><span class="yrs">2020—2022</span><b>US Enterprise Technology Provider</b><i>Sr. IT Helpdesk Analyst</i></a>
+          <a href="#r-optum" data-co="r-optum"><span class="yrs">2020—2021</span><b>Global Healthcare Organization</b><i>IT Helpdesk Analyst</i></a>
+          <a href="#r-atos" data-co="r-atos"><span class="yrs">2019—2020</span><b>Global Enterprise IT Provider</b><i>IT Helpdesk Technician</i></a>
           <a href="#r-iqor" data-co="r-iqor"><span class="yrs">2014—2018</span><b>iQor Philippines</b><i>TSR / CSR / Trainer</i></a>
           <a href="#r-cgd" data-co="r-cgd"><span class="yrs">2009—2014</span><b>City Gov. Dasmariñas</b><i>IT Staff / Bookkeeper</i></a>
         </nav>
@@ -541,118 +582,102 @@ footer{border-top:1px solid var(--line);padding:26px 0}
 
     <div class="roles">
 
-      <!-- REEVO -->
+      <!-- European iGaming platform -->
       <article class="role rv" id="r-reevo">
         <div class="role-top">
           <span class="r-idx">01</span>
           <div class="role-mid">
             <h3 class="r-title">Games &amp; Config Specialist</h3>
-            <div class="r-co"><b>REEVO</b> · Malta · Remote</div>
+            <div class="r-co"><b>European iGaming Platform</b> · Malta · Remote</div>
           </div>
-          <div class="r-meta">OCT 2022 — PRESENT<div class="sub">3 YRS 8 MOS</div>
+          <div class="r-meta">OCT 2022 — PRESENT
             <div class="r-tags"><span class="tag now">● CURRENT</span><span class="tag">REMOTE</span><span class="tag">IGAMING</span></div>
           </div>
         </div>
         <ul class="r-points">
-          <li>Own the <b>end-to-end game release pipeline</b> — onboarding new titles from providers, coordinating with the Integrations Team, and deploying games live for clients with <b>zero defects</b>.</li>
-          <li>Serve as <b>real-time support lead</b> for active game issues, resolving live incidents swiftly to maintain uninterrupted client operations.</li>
-          <li>Manage all inbound client requests and queries through tickets, email, and chat, ensuring clear communication and fast resolution.</li>
-          <li>Maintain and audit all game metadata and content across the company website and internal systems, guaranteeing accuracy and up-to-date information.</li>
-          <li><b>Champion AI tool adoption</b> within the team — automating repetitive tasks and streamlining daily workflows, measurably improving team efficiency.</li>
-          <li>Design and produce internal newsletters and visual content using Adobe Photoshop, maintaining a consistent, professional brand presence for the team.</li>
+          <li><b>Situation:</b> Global game releases require accurate provider data, coordinated integrations, and careful live deployment.</li>
+          <li><b>Contribution:</b> Own the release workflow from provider intake through configuration, content QA, launch, and real-time incident support.</li>
+          <li><b>Outcome:</b> Deliver dependable releases, clearer client communication, and consistently maintained game content across systems.</li>
         </ul>
         <div class="r-tools">TOOLS — <b>JIRA SERVICE DESK · AIRTABLE · ADOBE PHOTOSHOP · AI AUTOMATION</b></div>
       </article>
 
-      <!-- Profile Management -->
+      <!-- Remote operations company -->
       <article class="role rv" id="r-pm">
         <div class="role-top">
           <span class="r-idx">02</span>
           <div class="role-mid">
             <h3 class="r-title">Quality Control Manager</h3>
-            <div class="r-co"><b>Profile Management</b> · Remote</div>
+            <div class="r-co"><b>Remote Operations Company</b> · Remote</div>
           </div>
-          <div class="r-meta">OCT 2024 — MAY 2025<div class="sub">8 MOS</div>
+          <div class="r-meta">OCT 2024 — MAY 2025
             <div class="r-tags"><span class="tag">REMOTE</span><span class="tag">OPS MANAGEMENT</span></div>
           </div>
         </div>
         <ul class="r-points">
-          <li>Managed data extraction and work-efficiency analysis by cross-referencing Employee Sales Reports with OnTheClock, producing weekly reports with <b>calculated sales-per-hour metrics</b>.</li>
-          <li>Oversaw <b>payroll integrity</b> for a remote team — validated commission structures, resolved salary disputes, and managed cut-off dates and bonus processing.</li>
-          <li>Monitored and secured core operational tools (Discord, Infloww, OnTheClock), preventing unauthorized bot access and ensuring platform uptime.</li>
-          <li>Conducted time-tracking audits, verifying employee records for accuracy and reviewing all Team Leader edits for compliance.</li>
-          <li>Built and maintained <b>Google Sheets automation templates</b> for cross-referencing data between Infloww and OnTheClock, significantly reducing manual workload.</li>
-          <li>Handled transcription of audio files into structured documentation for model talking points and internal records.</li>
-          <li>Served as the <b>bridge between PH management and employees</b> — participating in management-level decisions, escalating disputes, and supporting policy rollouts.</li>
-          <li>Tracked performance, attendance, and efficiency trends to deliver data-driven recommendations; led <b>change management</b> initiatives for process, policy, and tooling.</li>
-          <li>Researched and implemented AI-driven tools to enhance team efficiency and streamline operational workflows.</li>
+          <li><b>Situation:</b> A distributed team needed dependable reporting, payroll checks, timekeeping audits, and clearer operational controls.</li>
+          <li><b>Contribution:</b> Cross-referenced data, built Google Sheets automation, supported policy changes, and bridged management and employee concerns.</li>
+          <li><b>Outcome:</b> Reduced repetitive checking, strengthened record accuracy, and made recurring operational reviews easier to manage.</li>
         </ul>
         <div class="r-tools">TOOLS — <b>GOOGLE SHEETS · INFLOWW · ONTHECLOCK · DISCORD · AI AUTOMATION</b></div>
       </article>
 
-      <!-- TSI -->
+      <!-- US enterprise technology provider -->
       <article class="role rv" id="r-tsi">
         <div class="role-top">
           <span class="r-idx">03</span>
           <div class="role-mid">
             <h3 class="r-title">Senior IT Helpdesk Analyst</h3>
-            <div class="r-co"><b>Transworld Systems Inc. (TSI)</b> · Philippines</div>
+            <div class="r-co"><b>US Enterprise Technology Provider</b> · Philippines</div>
           </div>
-          <div class="r-meta">APR 2020 — SEP 2022<div class="sub">2 YRS 6 MOS</div>
+          <div class="r-meta">APR 2020 — SEP 2022
             <div class="r-tags"><span class="tag">DE FACTO TEAM LEAD</span></div>
           </div>
         </div>
         <ul class="r-points">
-          <li>Functioned as the <b>de facto IT Team Lead</b> within a 4-person startup IT department — with a remote manager largely uninvolved in day-to-day operations, independently making critical calls on process, change management, and team direction.</li>
-          <li>Spearheaded creation of the department's <b>Knowledge Base from near-scratch</b>, authoring the majority of internal IT documentation, SOPs, and support articles that became the team's operational foundation.</li>
-          <li>Managed full employee <b>onboarding and offboarding IT workflows</b> — account provisioning, hardware setup, access management, and system deactivation — establishing repeatable processes where none existed.</li>
-          <li>Identified limitations in the legacy TrackIT ticketing system and formally proposed the <b>migration to ServiceNow</b>, successfully driving its adoption and modernizing incident management.</li>
-          <li>Formally identified as a candidate for IT Team Lead promotion — declined in favor of maintaining a remote work arrangement. Collaborated with senior stakeholders to resolve complex infrastructure incidents.</li>
+          <li><b>Situation:</b> A growing IT department needed repeatable support processes, stronger documentation, and a more capable ticketing platform.</li>
+          <li><b>Contribution:</b> Led day-to-day technical decisions, built the Knowledge Base, formalized onboarding workflows, and proposed the move to ServiceNow.</li>
+          <li><b>Outcome:</b> Established a clearer operational foundation for support, access management, and incident handling.</li>
         </ul>
         <div class="r-tools">TOOLS — <b>SERVICENOW · TRACKIT · ACTIVE DIRECTORY · OFFICE 365</b></div>
       </article>
 
-      <!-- Optum -->
+      <!-- Global healthcare organization -->
       <article class="role rv" id="r-optum">
         <div class="role-top">
           <span class="r-idx">04</span>
           <div class="role-mid">
             <h3 class="r-title">IT Helpdesk Analyst — Tier 2</h3>
-            <div class="r-co"><b>Optum Global Solutions Intl. B.V.</b> · Philippines</div>
+            <div class="r-co"><b>Global Healthcare Organization</b> · Philippines</div>
           </div>
-          <div class="r-meta">SEP 2020 — MAY 2021<div class="sub">9 MOS</div>
+          <div class="r-meta">SEP 2020 — MAY 2021
             <div class="r-tags"><span class="tag">HEALTHCARE</span><span class="tag">TIER 2</span></div>
           </div>
         </div>
         <ul class="r-points">
-          <li>Delivered <b>Tier 2 IT support for UnitedHealth Group (UHG)</b> — one of the largest healthcare enterprises in the US — across a complex ecosystem of acquired health providers, each with distinct systems.</li>
-          <li>Remotely accessed and troubleshot a wide variety of healthcare-specific platforms and proprietary systems across multiple UHG subsidiaries, navigating a large, continuously evolving Knowledge Base.</li>
-          <li>Authored Knowledge Base articles for newly discovered fixes identified through <b>blind troubleshooting</b> — formalizing solutions for team-wide use and reducing future escalation rates.</li>
-          <li>Performed <b>root cause analysis</b> on complex, multi-system incidents; escalated findings back into the knowledge management system.</li>
-          <li>Removed <b>malware, ransomware, and endpoint threats</b>; deployed software updates and server patches to maintain security compliance across healthcare environments.</li>
-          <li>Managed incident workflows through ServiceNow, maintaining <b>full SLA compliance</b> across all assigned Tier 2 tickets.</li>
+          <li><b>Situation:</b> Tier 2 support covered security-sensitive healthcare systems with varied platforms and limited documentation.</li>
+          <li><b>Contribution:</b> Performed root-cause troubleshooting, endpoint remediation, ServiceNow incident management, and Knowledge Base authoring.</li>
+          <li><b>Outcome:</b> Turned newly discovered fixes into reusable documentation and supported stable, security-conscious operations.</li>
         </ul>
         <div class="r-tools">TOOLS — <b>SERVICENOW · WINDOWS · ENDPOINT SECURITY · KNOWLEDGE MGMT</b></div>
       </article>
 
-      <!-- Atos -->
+      <!-- Global enterprise IT provider -->
       <article class="role rv" id="r-atos">
         <div class="role-top">
           <span class="r-idx">05</span>
           <div class="role-mid">
-            <h3 class="r-title">IT Helpdesk Technician — Disney Account</h3>
-            <div class="r-co"><b>Atos Information Technology Inc.</b> · Philippines</div>
+            <h3 class="r-title">IT Helpdesk Technician — Media &amp; Entertainment Account</h3>
+            <div class="r-co"><b>Global Enterprise IT Provider</b> · Philippines</div>
           </div>
-          <div class="r-meta">AUG 2019 — AUG 2020<div class="sub">1 YR 1 MO</div>
-            <div class="r-tags"><span class="tag amb">★ DISNEY</span><span class="tag">TIER 1</span></div>
+          <div class="r-meta">AUG 2019 — AUG 2020
+            <div class="r-tags"><span class="tag amb">MEDIA ACCOUNT</span><span class="tag">TIER 1</span></div>
           </div>
         </div>
         <ul class="r-points">
-          <li>Served as primary IT support contact for the <b>Disney account</b>, delivering enterprise-grade Tier 1 helpdesk services to one of the world's most recognized brands.</li>
-          <li>Resolved hardware, software, and connectivity issues across Windows and macOS environments, leveraging <b>certified macOS expertise</b> for a mixed-platform user base.</li>
-          <li>Utilized ServiceNow and remote support tools (remote desktop, screen sharing) to diagnose and resolve end-user issues efficiently — no on-site intervention required.</li>
-          <li>Performed structured remote troubleshooting using diagnostic techniques, ensuring fast resolution and minimal downtime for enterprise users.</li>
-          <li>Maintained accurate ticketing records and technical documentation for all support interactions, contributing to a growing internal knowledge base.</li>
+          <li><b>Situation:</b> Enterprise users required remote Tier 1 support across a mixed Windows and macOS environment.</li>
+          <li><b>Contribution:</b> Diagnosed hardware, software, connectivity, and access issues using ServiceNow and remote-support tools.</li>
+          <li><b>Outcome:</b> Delivered structured, well-documented support while applying certified macOS expertise.</li>
         </ul>
         <div class="r-tools">CERTS — <b>MACOS EXPERT · HELPDESK TECHNICIAN</b> &nbsp;|&nbsp; TOOLS — <b>SERVICENOW · REMOTE DESKTOP</b></div>
       </article>
@@ -665,16 +690,14 @@ footer{border-top:1px solid var(--line);padding:26px 0}
             <h3 class="r-title">TSR / CSR / Trainer</h3>
             <div class="r-co"><b>iQor Philippines</b> · Philippines</div>
           </div>
-          <div class="r-meta">MAR 2014 — NOV 2018<div class="sub">4 YRS 9 MOS</div>
+          <div class="r-meta">MAR 2014 — NOV 2018
             <div class="r-tags"><span class="tag">BPO</span><span class="tag">CERTIFIED TRAINER</span></div>
           </div>
         </div>
         <ul class="r-points">
-          <li>Handled inbound and outbound calls for <b>AT&amp;T and T-Mobile</b> accounts — sales, troubleshooting, and account inquiries under strict queue and metrics-driven environments (AHT, CSAT, conversion).</li>
-          <li>Consistently <b>met and exceeded KPI targets</b> across multiple high-volume US telecommunications accounts, demonstrating resilience under pressure.</li>
-          <li>Drove in-call sales for AT&amp;T and T-Mobile, identifying upsell and cross-sell opportunities while maintaining high customer satisfaction scores.</li>
-          <li>Served as <b>certified trainer for the Walmart Online account</b> — onboarding new agents on product knowledge, call handling procedures, and communication standards.</li>
-          <li>Developed and delivered training materials that improved agent ramp-up time and drove consistent team performance across key metrics.</li>
+          <li><b>Situation:</b> High-volume US telecom and retail programs required sales, troubleshooting, customer care, and agent onboarding.</li>
+          <li><b>Contribution:</b> Handled multichannel customer needs, supported commercial goals, and served as a certified trainer.</li>
+          <li><b>Outcome:</b> Built resilience in metrics-driven operations and helped new agents develop consistent service habits.</li>
         </ul>
         <div class="r-tools">ACCOUNTS — <b>AT&amp;T · T-MOBILE · WALMART ONLINE</b></div>
       </article>
@@ -687,17 +710,14 @@ footer{border-top:1px solid var(--line);padding:26px 0}
             <h3 class="r-title">IT Staff / Bookkeeper</h3>
             <div class="r-co"><b>City Government of Dasmariñas</b> · Philippines</div>
           </div>
-          <div class="r-meta">MAR 2009 — FEB 2014<div class="sub">5 YRS</div>
+          <div class="r-meta">MAR 2009 — FEB 2014
             <div class="r-tags"><span class="tag">GOVERNMENT</span><span class="tag">HYBRID IT + FINANCE</span></div>
           </div>
         </div>
         <ul class="r-points">
-          <li>Served in a <b>hybrid IT and accounting role</b> — providing full IT support for government office users while managing bookkeeping alongside the Accounting, Treasury, and Budget departments.</li>
-          <li>Cross-referenced government income and expense records using <b>Microsoft Excel</b>, handling large, complex multi-tab workbooks to ensure accuracy of financial data.</li>
-          <li>Certified in <b>eSRE</b> (Electronic Statement of Receipts and Expenditures) under NGAS — the national standardized accounting framework for Philippine government entities.</li>
-          <li>Represented the City Government at inter-city Treasury and Assessor meetings, liaising with counterparts from other local government units.</li>
-          <li>Attended multiple government seminars as the city representative, staying current with regulatory updates, accounting standards, and government IT systems.</li>
-          <li>Maintained computer systems, peripherals, and local network connectivity across departments, ensuring uninterrupted operations for administrative and financial staff.</li>
+          <li><b>Situation:</b> Local-government teams needed dependable desktop support alongside accurate financial record handling.</li>
+          <li><b>Contribution:</b> Combined IT support, network maintenance, Excel-based bookkeeping, and eSRE/NGAS responsibilities.</li>
+          <li><b>Outcome:</b> Supported continuity across administrative and finance teams while maintaining careful records.</li>
         </ul>
         <div class="r-tools">CERT — <b>eSRE / NGAS</b> &nbsp;|&nbsp; TOOLS — <b>MICROSOFT EXCEL · GOV SYSTEMS</b></div>
       </article>
@@ -719,7 +739,7 @@ footer{border-top:1px solid var(--line);padding:26px 0}
     <div class="skill rv"><span class="s-idx">A/</span>
       <div class="s-main">
         <h3>Gaming &amp; Ops</h3>
-        <p class="s-note mono">DAILY DRIVER — REEVO</p>
+        <p class="s-note mono">DAILY DRIVER — EUROPEAN IGAMING</p>
         <div class="chips">
           <span class="chip">GAME RELEASE MGMT</span><span class="chip">GAME CONFIGURATION</span><span class="chip">PROVIDER INTEGRATION</span><span class="chip">AIRTABLE</span><span class="chip">JIRA SERVICE DESK</span><span class="chip">CONTENT QA</span>
         </div>
@@ -784,74 +804,65 @@ footer{border-top:1px solid var(--line);padding:26px 0}
     <div class="hl-grid">
 
       <article class="hl tall rv">
-        <div class="hl-media">
-          <img src="https://picsum.photos/seed/disney-helpdesk-support/800/1100" alt="Enterprise helpdesk support for the Disney account" loading="lazy">
-          <span class="chip-tag">ENTERPRISE TIER 1</span>
+        <div class="hl-media workflow">
+          <img src="assets/images/competition-operations-workflow.png" alt="Competition operations workflow from request and setup through monitoring and completion" loading="lazy">
+          <span class="chip-tag">AUTHENTIC WORK SAMPLE</span>
         </div>
         <div class="hl-body">
-          <h3>Front-Line IT for Disney</h3>
-          <p>Primary support contact for one of the world's most recognized brands at Atos — resolving hardware, software, and connectivity issues across a mixed Windows/macOS estate, fully remote, with certified macOS expertise.</p>
-          <div class="hl-metric"><span>ATOS · 2019–2020</span><span class="dim">ZERO ON-SITE NEEDED</span></div>
+          <h3>Competition Operations Workflow</h3>
+          <p><b>Situation:</b> Multi-team competition launches needed a shared view of setup, testing, monitoring, escalation, and completion.</p>
+          <p><b>Contribution:</b> Structured the operational flow so ownership and handoffs are easier to follow.</p>
+          <div class="hl-metric"><span>PROCESS DESIGN</span><span class="dim">JIRA · QA · NOC</span></div>
         </div>
       </article>
 
       <article class="hl w8 rv" style="--d:.08s">
-        <div class="hl-media">
-          <img src="https://picsum.photos/seed/igaming-release-ops/1100/620" alt="iGaming release operations dashboard" loading="lazy">
-          <span class="chip-tag">REEVO · GAME OPS</span>
+        <div class="hl-media providers">
+          <img src="assets/images/igaming-provider-network.jpg" alt="Catalog view showing a broad network of integrated iGaming providers" loading="lazy">
+          <span class="chip-tag">PROVIDER ECOSYSTEM</span>
         </div>
         <div class="hl-body">
-          <h3>Zero-Defect Launch Operations</h3>
-          <p>End-to-end ownership of the game release pipeline — provider onboarding, integration coordination, metadata audits, and live deployment for global clients, with real-time incident leadership after every launch.</p>
-          <div class="hl-metric"><span>3 YRS 8 MOS RUNNING</span><span class="dim">RECORD: 0 LAUNCH DEFECTS</span></div>
+          <h3>Provider Catalog &amp; Content QA</h3>
+          <p><b>Situation:</b> A broad provider catalog creates constant metadata, configuration, and content-quality demands.</p>
+          <p><b>Contribution:</b> Coordinate provider intake, validate assets and records, and keep client-facing content aligned across systems.</p>
+          <div class="hl-metric"><span>EUROPEAN IGAMING</span><span class="dim">INTAKE → CONFIG → LIVE</span></div>
         </div>
       </article>
 
       <article class="hl rv" style="--d:.14s">
         <div class="hl-media">
-          <img src="https://picsum.photos/seed/ai-automation-workflow/700/440" alt="AI-assisted workflow automation" loading="lazy">
+          <img src="assets/images/ai-automation-workflow.jpg" alt="Abstract representation of AI-assisted workflow automation" loading="lazy">
           <span class="chip-tag">AI AUTOMATION</span>
         </div>
         <div class="hl-body">
-          <h3>AI Adoption, Team-Wide</h3>
-          <p>Championed AI tooling across two teams — automating repetitive tasks, cross-referencing data between platforms, and measurably improving efficiency.</p>
-          <div class="hl-metric"><span>REEVO + PROFILE MGMT</span><span class="dim">MEASURABLE GAINS</span></div>
+          <h3>Automation Where It Helps</h3>
+          <p><b>Contribution:</b> Use AI and spreadsheet automation to reduce repetitive cross-checking while keeping human review in the loop.</p>
+          <div class="hl-metric"><span>WORKFLOW SUPPORT</span><span class="dim">AI · SHEETS</span></div>
         </div>
       </article>
 
       <article class="hl rv" style="--d:.2s">
         <div class="hl-media">
-          <img src="https://picsum.photos/seed/servicenow-ticketing-console/700/440" alt="ServiceNow ticketing console migration" loading="lazy">
-          <span class="chip-tag">TSI · CHANGE MGMT</span>
+          <img src="assets/images/servicenow-ticketing-console.jpg" alt="Abstract service-management console representing a ticketing migration" loading="lazy">
+          <span class="chip-tag">CHANGE MANAGEMENT</span>
         </div>
         <div class="hl-body">
           <h3>The ServiceNow Migration</h3>
-          <p>Identified the limits of legacy TrackIT, formally proposed ServiceNow, and drove its adoption — modernizing the department's incident management.</p>
-          <div class="hl-metric"><span>PROPOSED → ADOPTED</span><span class="dim">4-PERSON DEPT</span></div>
+          <p><b>Contribution:</b> Identified the limits of a legacy ticketing tool, proposed ServiceNow, and helped move incident management toward a stronger platform.</p>
+          <div class="hl-metric"><span>PROPOSED → ADOPTED</span><span class="dim">IT OPERATIONS</span></div>
         </div>
       </article>
 
       <article class="hl w8 rv" style="--d:.1s">
         <div class="hl-media">
-          <img src="https://picsum.photos/seed/healthcare-it-security/1100/620" alt="Healthcare IT support and security" loading="lazy">
-          <span class="chip-tag">OPTUM / UHG · TIER 2</span>
+          <img src="assets/images/it-knowledge-base-docs.jpg" alt="Technical documentation and knowledge-base workspace" loading="lazy">
+          <span class="chip-tag">DOCUMENTATION CULTURE</span>
         </div>
         <div class="hl-body">
-          <h3>Healthcare-Grade Tier 2</h3>
-          <p>Escalated support across UnitedHealth Group's ecosystem of acquired providers — blind-troubleshooting undocumented systems, authoring the fixes into the Knowledge Base, removing malware and ransomware, and holding full SLA compliance in a security-critical environment.</p>
-          <div class="hl-metric"><span>ROOT CAUSE → KB ARTICLE</span><span class="dim">FULL SLA COMPLIANCE</span></div>
-        </div>
-      </article>
-
-      <article class="hl rv" style="--d:.16s">
-        <div class="hl-media">
-          <img src="https://picsum.photos/seed/it-knowledge-base-docs/700/440" alt="Knowledge base documentation" loading="lazy">
-          <span class="chip-tag">TSI · DOCUMENTATION</span>
-        </div>
-        <div class="hl-body">
-          <h3>Knowledge Base From Zero</h3>
-          <p>Built the department's KB from near-scratch at TSI — authoring the majority of SOPs and support articles that became the team's operational foundation.</p>
-          <div class="hl-metric"><span>NEAR-SCRATCH → FOUNDATION</span><span class="dim">SOPS · GUIDES</span></div>
+          <h3>Knowledge Base as Infrastructure</h3>
+          <p><b>Contribution:</b> Turned recurring fixes and operating knowledge into SOPs, support articles, and reusable troubleshooting guidance.</p>
+          <p><b>Outcome:</b> Gave teams a clearer reference point for consistent support and future problem-solving.</p>
+          <div class="hl-metric"><span>DISCOVERY → DOCUMENTATION</span><span class="dim">SOPS · GUIDES</span></div>
         </div>
       </article>
 
@@ -865,16 +876,17 @@ footer{border-top:1px solid var(--line);padding:26px 0}
     <div class="s-head strip-head">
       <div>
         <p class="s-no mono">06 — CREATIVE OUTPUT</p>
-        <h2 class="title lm"><span>VISUAL &amp; NEWSLETTER WORK</span></h2>
+        <h2 class="title lm"><span>VISUAL &amp; CREATIVE PRACTICE</span></h2>
+        <p class="s-sub">Newsletter production, graphic design, photography, and a continuing interest in online gaming.</p>
       </div>
       <span class="drag-hint">DRAG / SCROLL →</span>
     </div>
     <div class="strip" id="strip">
-      <figure class="slide"><div class="im"><img src="https://picsum.photos/seed/internal-newsletter-design/640/480" alt="Internal newsletter design" loading="lazy"></div><figcaption><span>INTERNAL NEWSLETTER</span><span>PHOTOSHOP</span></figcaption></figure>
-      <figure class="slide"><div class="im"><img src="https://picsum.photos/seed/team-visual-content/640/480" alt="Visual content production" loading="lazy"></div><figcaption><span>VISUAL CONTENT</span><span>BRAND</span></figcaption></figure>
-      <figure class="slide"><div class="im"><img src="https://picsum.photos/seed/graphic-design-poster/640/480" alt="Graphic design work" loading="lazy"></div><figcaption><span>GRAPHIC DESIGN</span><span>TEAM COMMS</span></figcaption></figure>
-      <figure class="slide"><div class="im"><img src="https://picsum.photos/seed/lightroom-photo-edit/640/480" alt="Lightroom photo editing" loading="lazy"></div><figcaption><span>PHOTO EDITING</span><span>LIGHTROOM</span></figcaption></figure>
-      <figure class="slide"><div class="im"><img src="https://picsum.photos/seed/brand-identity-assets/640/480" alt="Brand asset production" loading="lazy"></div><figcaption><span>BRAND ASSETS</span><span>CONSISTENCY</span></figcaption></figure>
+      <figure class="slide"><div class="im"><img src="assets/images/internal-newsletter-design.jpg" alt="Internal newsletter design" loading="lazy"></div><figcaption><span>INTERNAL NEWSLETTER</span><span>PHOTOSHOP</span></figcaption></figure>
+      <figure class="slide"><div class="im"><img src="assets/images/team-visual-content.jpg" alt="Visual content production" loading="lazy"></div><figcaption><span>VISUAL CONTENT</span><span>BRAND</span></figcaption></figure>
+      <figure class="slide"><div class="im"><img src="assets/images/graphic-design-poster.jpg" alt="Graphic design work" loading="lazy"></div><figcaption><span>GRAPHIC DESIGN</span><span>TEAM COMMS</span></figcaption></figure>
+      <figure class="slide"><div class="im"><img src="assets/images/lightroom-photo-edit.jpg" alt="Lightroom photo editing" loading="lazy"></div><figcaption><span>PHOTO EDITING</span><span>LIGHTROOM</span></figcaption></figure>
+      <figure class="slide"><div class="im"><img src="assets/images/brand-identity-assets.jpg" alt="Brand asset production" loading="lazy"></div><figcaption><span>BRAND ASSETS</span><span>CONSISTENCY</span></figcaption></figure>
     </div>
   </div>
 </section>
@@ -883,10 +895,10 @@ footer{border-top:1px solid var(--line);padding:26px 0}
 <section class="sec" id="credentials">
   <div class="wrap cred-grid">
     <div>
-      <p class="s-no mono">07 — CREDENTIALS</p>
+      <p class="s-no mono">07 — CREDENTIALS &amp; EDUCATION</p>
       <h2 class="title lm" style="margin-bottom:40px"><span>CERTIFICATIONS</span></h2>
-      <div class="cred-row rv"><span class="cn">C/01</span><div><h4>macOS Expert Certification</h4><div class="ci">Atos Information Technology Inc.</div></div><span class="tag">CERTIFIED</span></div>
-      <div class="cred-row rv" style="--d:.08s"><span class="cn">C/02</span><div><h4>Helpdesk Technician Certification</h4><div class="ci">Atos Information Technology Inc.</div></div><span class="tag">CERTIFIED</span></div>
+      <div class="cred-row rv"><span class="cn">C/01</span><div><h4>macOS Expert Certification</h4><div class="ci">Global Enterprise IT Provider</div></div><span class="tag">CERTIFIED</span></div>
+      <div class="cred-row rv" style="--d:.08s"><span class="cn">C/02</span><div><h4>Helpdesk Technician Certification</h4><div class="ci">Global Enterprise IT Provider</div></div><span class="tag">CERTIFIED</span></div>
       <div class="cred-row rv" style="--d:.16s"><span class="cn">C/03</span><div><h4>eSRE Certification</h4><div class="ci">Electronic Statement of Receipts &amp; Expenditures · NGAS — City Government of Dasmariñas</div></div><span class="tag">CERTIFIED</span></div>
     </div>
     <div>
@@ -896,8 +908,9 @@ footer{border-top:1px solid var(--line);padding:26px 0}
         <h4>BS Computer Science<br>(units completed)</h4>
         <p class="sub">De La Salle University – Dasmariñas</p>
         <p class="yr mono">Cavite · Philippines</p>
+        <div class="interest-list" aria-label="Current interests"><span>PHOTOGRAPHY</span><span>ADOBE LIGHTROOM</span><span>VIBE CODING</span><span>WEB DEVELOPMENT</span></div>
       </div>
-      <p class="ref-note rv" style="--d:.1s">&gt; REFERENCES AND CERTIFICATIONS AVAILABLE UPON REQUEST_</p>
+      <p class="ref-note rv" style="--d:.1s">&gt; FULL EMPLOYMENT DETAILS ARE AVAILABLE IN THE <a href="assets/documents/John-Nerzon-Polintan-CV-2026.pdf" download>DOWNLOADABLE CV ↓</a></p>
     </div>
   </div>
 </section>
@@ -914,8 +927,13 @@ footer{border-top:1px solid var(--line);padding:26px 0}
       <a class="email-link" href="mailto:erzon22@gmail.com">erzon22@gmail.com</a>
       <button class="btn" id="copyBtn" type="button">COPY EMAIL</button>
     </div>
+    <div class="contact-actions" aria-label="Contact and document links">
+      <a class="btn fill" href="assets/documents/John-Nerzon-Polintan-CV-2026.pdf" download aria-label="Download John Nerzon Polintan's CV as PDF">CV · DOWNLOAD ↓</a>
+      <a class="btn" href="https://linkedin.com/in/erzon22" target="_blank" rel="noopener" aria-label="Open LinkedIn profile">IN · LINKEDIN ↗</a>
+      <a class="btn" href="https://wa.me/639165271923" target="_blank" rel="noopener" aria-label="Contact John Nerzon Polintan on WhatsApp">WA · WHATSAPP ↗</a>
+    </div>
     <div class="contact-rows">
-      <div class="c-row"><p class="k mono">PHONE / WHATSAPP</p><p class="v"><a href="tel:+639165271923">+63 916 527 1923</a></p></div>
+      <div class="c-row"><p class="k mono">PHONE / WHATSAPP</p><p class="v"><a href="https://wa.me/639165271923" target="_blank" rel="noopener">+63 916 527 1923 ↗</a></p></div>
       <div class="c-row"><p class="k mono">LINKEDIN</p><p class="v"><a href="https://linkedin.com/in/erzon22" target="_blank" rel="noopener">linkedin.com/in/erzon22 ↗</a></p></div>
       <div class="c-row"><p class="k mono">BASE</p><p class="v">Philippines · GMT+8 <span class="dim">— remote across timezones</span></p></div>
     </div>
