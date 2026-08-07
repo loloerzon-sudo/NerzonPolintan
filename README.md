@@ -1,2 +1,2 @@
 # NerzonPolintan
-CV / Portfolio Site
+CV / Portfolio Site 😣
