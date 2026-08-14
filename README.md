@@ -39,6 +39,11 @@
 ### 5. 📱 Quick Connect Mobile QR Matrix
 * Built-in mathematically exact, scannable QR code widget linking directly to `https://nerzon.online/` with downloadable high-DPI badge assets.
 
+### 6. 🤖 AI Engineering & Vibe Coding
+* **AI Knowledge Agents**: Architecting dedicated AI assistants with custom knowledge bases connected to Airtable relational databases.
+* **Modern AI Toolchain**: Power-user workflows across **Claude Code CLI**, **Google Antigravity IDE**, **Cursor IDE**, and **OpenAI Codex**.
+* **Rapid Prototyping**: End-to-end full-stack web application development, prompt architecture, and automated API webhook pipelines.
+
 ---
 
 ## 📁 Repository Structure
@@ -78,6 +83,7 @@
 | **Markup & Semantics** | HTML5 (Accessible ARIA landmarks, SEO meta tags) |
 | **Styling & Theme** | Modern Vanilla CSS3 (Custom Properties, Grid, Flexbox, Glassmorphism) |
 | **Logic & Interactivity** | Pure Vanilla JavaScript ES6+ (IntersectionObserver, Web Audio API, Intl) |
+| **AI Tooling & Agents** | Claude Code, Google Antigravity, Cursor IDE, OpenAI Codex, Airtable API |
 | **Fonts** | Space Grotesk, Instrument Sans, JetBrains Mono (Self-hosted) |
 | **Hosting & DNS** | GitHub Pages + Custom Domain (`nerzon.online`) + Cloudflare/SSL |
 
