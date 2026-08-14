@@ -183,6 +183,61 @@ h2.title{font-family:var(--disp);font-weight:700;font-size:clamp(30px,4.6vw,56px
 .stat .n{font-family:var(--disp);font-weight:700;font-size:clamp(38px,4vw,52px);letter-spacing:-.02em;color:var(--acc);line-height:1;font-variant-numeric:tabular-nums}
 .stat .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--dim);margin-top:10px}
 
+/* ============ COGNITIVE CARD ============ */
+.cognitive-card{
+  margin-top:36px;
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,var(--panel),var(--bg2));
+  border-radius:4px;
+  padding:24px 28px;
+  position:relative;
+  transition:border-color .35s,transform .35s,box-shadow .35s;
+  overflow:hidden;
+}
+.cognitive-card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--acc);opacity:.7;transition:opacity .3s;
+}
+.cognitive-card:hover{
+  border-color:var(--acc);
+  transform:translateY(-2px);
+  box-shadow:0 8px 30px rgba(0,0,0,.35),0 0 20px rgba(184,240,74,.08);
+}
+.cognitive-card:hover::before{opacity:1;box-shadow:0 0 12px var(--acc)}
+.cog-head{
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;
+  color:var(--acc);margin-bottom:12px;gap:12px;
+}
+.cog-status{display:flex;align-items:center;gap:7px}
+.cog-title{
+  font-family:var(--disp);font-weight:700;
+  font-size:clamp(18px,2vw,22px);letter-spacing:-.01em;
+  color:var(--txt);margin-bottom:8px;line-height:1.2;
+}
+.cog-desc{
+  font-size:14px;color:var(--mut);line-height:1.6;margin-bottom:18px;
+}
+.cog-chips{
+  display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;
+}
+.cog-chip{
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+  padding:5px 10px;border:1px solid var(--line2);
+  color:var(--txt);border-radius:2px;background:rgba(255,255,255,.02);
+}
+.cog-btn{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;
+  padding:11px 18px;border:1px solid var(--acc);
+  color:var(--acc-dk);background:var(--acc);font-weight:700;
+  display:inline-flex;align-items:center;gap:8px;
+  border-radius:2px;transition:all .28s;
+}
+.cog-btn:hover{
+  background:transparent;color:var(--acc);
+  box-shadow:0 0 15px rgba(184,240,74,.2);
+}
+
 /* ============ PIPELINE ============ */
 #pipeline{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .pipe{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:20px}
@@ -328,6 +383,66 @@ h2.title{font-family:var(--disp);font-weight:700;font-size:clamp(30px,4.6vw,56px
 .c-row .v a{border-bottom:1px solid transparent;transition:border-color .3s,color .3s}
 .c-row .v a:hover{color:var(--acc);border-color:var(--acc)}
 
+/* ============ CONTACT QR CARD ============ */
+.contact-layout{display:grid;grid-template-columns:1fr 340px;gap:64px;align-items:center}
+.contact-qr{display:flex;justify-content:center}
+.qr-card{
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,var(--panel),var(--bg2));
+  border-radius:4px;
+  padding:24px;
+  width:100%;
+  max-width:340px;
+  position:relative;
+  transition:border-color .35s,transform .35s,box-shadow .35s;
+}
+.qr-card:hover{
+  border-color:var(--acc);
+  transform:translateY(-3px);
+  box-shadow:0 12px 36px rgba(0,0,0,.45),0 0 25px rgba(184,240,74,.1);
+}
+.qr-head{
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
+  color:var(--acc);margin-bottom:18px;
+}
+.qr-status{display:flex;align-items:center;gap:7px}
+.qr-img-wrap{
+  background:var(--bg);
+  border:1px solid var(--line2);
+  border-radius:3px;
+  padding:12px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-bottom:16px;
+}
+.qr-img-wrap img{
+  width:100%;
+  max-width:200px;
+  height:auto;
+  display:block;
+  border-radius:2px;
+}
+.qr-domain{
+  font-size:12px;letter-spacing:.1em;color:var(--acc);
+  text-align:center;font-weight:700;margin-bottom:6px;
+}
+.qr-sub{
+  font-size:12.5px;color:var(--mut);line-height:1.5;
+  text-align:center;margin-bottom:14px;
+}
+.qr-dl-btn{
+  display:block;width:100%;text-align:center;
+  font-size:10px;letter-spacing:.14em;padding:9px 12px;
+  border:1px solid var(--line2);color:var(--txt);
+  border-radius:2px;background:rgba(255,255,255,.02);
+  transition:all .25s;
+}
+.qr-dl-btn:hover{
+  border-color:var(--acc);color:var(--acc);background:rgba(184,240,74,.05);
+}
+
 /* ============ FOOTER ============ */
 footer{border-top:1px solid var(--line);padding:26px 0}
 .ft{display:flex;justify-content:space-between;align-items:center;gap:20px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:var(--dim);flex-wrap:wrap}
@@ -337,6 +452,8 @@ footer{border-top:1px solid var(--line);padding:26px 0}
 
 /* ============ RESPONSIVE ============ */
 @media(max-width:1060px){
+  .contact-layout{grid-template-columns:1fr;gap:48px}
+  .contact-qr{justify-content:flex-start}
   .hero-grid{grid-template-columns:1fr;gap:44px;align-items:start}
   .hero-aside{max-width:720px}
   .panel{max-width:none}
@@ -405,6 +522,8 @@ footer{border-top:1px solid var(--line);padding:26px 0}
       <div><b>MLT</b><span id="clk-mlt">--:--:--</span></div>
     </div>
     <div class="hd-actions">
+      <button id="audioToggle" class="hd-action audio-toggle-btn" type="button" aria-label="Toggle Sound Effects">SFX: ON 🔊</button>
+      <a class="hd-action" href="personality.html" title="INTJ-A Cognitive Profile">INTJ-A ↗</a>
       <a class="hd-action primary" href="assets/documents/John-Nerzon-Polintan-CV-2026.pdf" download aria-label="Download John Nerzon Polintan's CV as PDF">CV ↓</a>
       <a class="hd-action" href="#contact">CONTACT</a>
     </div>
@@ -417,6 +536,7 @@ footer{border-top:1px solid var(--line);padding:26px 0}
 
 <div class="mnav" id="mnav" aria-hidden="true">
   <a href="#profile"><i>01</i> Profile</a>
+  <a href="personality.html"><i>★</i> INTJ-A Cognitive Profile ↗</a>
   <a href="#pipeline"><i>02</i> Pipeline</a>
   <a href="#experience"><i>03</i> Experience</a>
   <a href="#skills"><i>04</i> Skills</a>
@@ -424,6 +544,7 @@ footer{border-top:1px solid var(--line);padding:26px 0}
   <a href="#credentials"><i>07</i> Credentials</a>
   <a href="assets/documents/John-Nerzon-Polintan-CV-2026.pdf" download><i>↓</i> Download CV</a>
   <a href="#contact"><i>08</i> Contact</a>
+  <a href="#" id="audioToggleMnav" class="audio-toggle-btn"><i>🔊</i> Sound FX: ON</a>
 </div>
 
 <main id="top">
@@ -526,6 +647,23 @@ footer{border-top:1px solid var(--line);padding:26px 0}
         <div class="fact"><span class="k">EXPLORING</span><span class="v">Vibe Coding · Web Development · AI-assisted development</span></div>
         <div class="fact"><span class="k">MODE</span><span class="v">Remote-first · Cross-timezone collaboration <i>(MNL ↔ MLT)</i></span></div>
         <div class="fact"><span class="k">EDGE</span><span class="v">Reliable release execution · Real-time incident response · Documentation culture</span></div>
+      </div>
+      <div class="cognitive-card rv" style="--d:.25s" aria-label="Cognitive architecture profile preview">
+        <div class="cog-head">
+          <span class="cog-status"><span class="dot" aria-hidden="true"></span>COGNITIVE BLUEPRINT // DIAGNOSTICS</span>
+          <span class="mono dim">TYPE: INTJ-A</span>
+        </div>
+        <h3 class="cog-title">NERZON: THE ARCHITECT</h3>
+        <p class="cog-desc">
+          Strategic systems thinker driven by continuous improvement, analytical precision, and autonomous execution. View the complete cognitive breakdown and operational dynamics.
+        </p>
+        <div class="cog-chips" aria-label="Core cognitive strengths">
+          <span class="cog-chip">SYSTEMS THINKING</span>
+          <span class="cog-chip">STRATEGIC VISION</span>
+          <span class="cog-chip">HIGH AUTONOMY</span>
+          <span class="cog-chip">OPERATIONAL OPTIMIZATION</span>
+        </div>
+        <a class="cog-btn" href="personality.html">EXPLORE COGNITIVE PROFILE ↗</a>
       </div>
     </div>
   </div>
@@ -917,26 +1055,48 @@ footer{border-top:1px solid var(--line);padding:26px 0}
 
 <!-- ================= 08 CONTACT ================= -->
 <section class="sec" id="contact">
-  <div class="wrap">
-    <span class="avail"><span class="dot" aria-hidden="true"></span>OPEN TO REMOTE — WORLDWIDE</span>
-    <h2 class="contact-big">
-      <span class="lm"><span>LET'S RUN THE NEXT</span></span>
-      <span class="lm" style="--d:.1s"><span class="out">RELEASE FLAWLESSLY.</span></span>
-    </h2>
-    <div class="email-line">
-      <a class="email-link" href="mailto:erzon22@gmail.com">erzon22@gmail.com</a>
-      <button class="btn" id="copyBtn" type="button">COPY EMAIL</button>
+  <div class="wrap contact-layout">
+    <div>
+      <span class="avail"><span class="dot" aria-hidden="true"></span>OPEN TO REMOTE — WORLDWIDE</span>
+      <h2 class="contact-big">
+        <span class="lm"><span>LET'S RUN THE NEXT</span></span>
+        <span class="lm" style="--d:.1s"><span class="out">RELEASE FLAWLESSLY.</span></span>
+      </h2>
+      <div class="email-line">
+        <a class="email-link" href="mailto:erzon22@gmail.com">erzon22@gmail.com</a>
+        <button class="btn" id="copyBtn" type="button">COPY EMAIL</button>
+      </div>
+      <div class="contact-actions" aria-label="Contact and document links">
+        <a class="btn fill" href="assets/documents/John-Nerzon-Polintan-CV-2026.pdf" download aria-label="Download John Nerzon Polintan's CV as PDF">CV · DOWNLOAD ↓</a>
+        <a class="btn" href="https://linkedin.com/in/erzon22" target="_blank" rel="noopener" aria-label="Open LinkedIn profile">IN · LINKEDIN ↗</a>
+        <a class="btn" href="https://wa.me/639165271923" target="_blank" rel="noopener" aria-label="Contact John Nerzon Polintan on WhatsApp">WA · WHATSAPP ↗</a>
+      </div>
+      <div class="contact-rows">
+        <div class="c-row"><p class="k mono">PHONE / WHATSAPP</p><p class="v"><a href="https://wa.me/639165271923" target="_blank" rel="noopener">+63 916 527 1923 ↗</a></p></div>
+        <div class="c-row"><p class="k mono">LINKEDIN</p><p class="v"><a href="https://linkedin.com/in/erzon22" target="_blank" rel="noopener">linkedin.com/in/erzon22 ↗</a></p></div>
+        <div class="c-row"><p class="k mono">BASE</p><p class="v">Philippines · GMT+8 <span class="dim">— remote across timezones</span></p></div>
+      </div>
     </div>
-    <div class="contact-actions" aria-label="Contact and document links">
-      <a class="btn fill" href="assets/documents/John-Nerzon-Polintan-CV-2026.pdf" download aria-label="Download John Nerzon Polintan's CV as PDF">CV · DOWNLOAD ↓</a>
-      <a class="btn" href="https://linkedin.com/in/erzon22" target="_blank" rel="noopener" aria-label="Open LinkedIn profile">IN · LINKEDIN ↗</a>
-      <a class="btn" href="https://wa.me/639165271923" target="_blank" rel="noopener" aria-label="Contact John Nerzon Polintan on WhatsApp">WA · WHATSAPP ↗</a>
-    </div>
-    <div class="contact-rows">
-      <div class="c-row"><p class="k mono">PHONE / WHATSAPP</p><p class="v"><a href="https://wa.me/639165271923" target="_blank" rel="noopener">+63 916 527 1923 ↗</a></p></div>
-      <div class="c-row"><p class="k mono">LINKEDIN</p><p class="v"><a href="https://linkedin.com/in/erzon22" target="_blank" rel="noopener">linkedin.com/in/erzon22 ↗</a></p></div>
-      <div class="c-row"><p class="k mono">BASE</p><p class="v">Philippines · GMT+8 <span class="dim">— remote across timezones</span></p></div>
-    </div>
+
+    <!-- Quick Connect QR Card -->
+    <aside class="contact-qr rv" style="--d:.2s" aria-label="Mobile quick connect QR code">
+      <div class="qr-card">
+        <div class="qr-head">
+          <span class="qr-status"><span class="dot" aria-hidden="true"></span>QUICK CONNECT</span>
+          <span class="mono dim">SCAN // MOBILE</span>
+        </div>
+        <div class="qr-img-wrap">
+          <img src="assets/images/nerzon-online-qr-dark.png" alt="QR Code to launch https://nerzon.online/" width="200" height="200" loading="lazy">
+        </div>
+        <div class="qr-body">
+          <p class="qr-domain mono">HTTPS://NERZON.ONLINE/</p>
+          <p class="qr-sub">Scan with your smartphone camera to access this console anywhere.</p>
+          <a class="qr-dl-btn mono" href="assets/images/nerzon-online-qr-card.png" download="nerzon-online-qr-card.png">
+            DOWNLOAD QR CARD ↓
+          </a>
+        </div>
+      </div>
+    </aside>
   </div>
 </section>
 
@@ -947,6 +1107,7 @@ footer{border-top:1px solid var(--line);padding:26px 0}
   <div class="wrap ft">
     <span>© 2026 JOHN NERZON POLINTAN</span>
     <span>MNL <span id="clk-mnl2">--:--</span> · MLT <span id="clk-mlt2">--:--</span></span>
+    <button id="audioToggleFt" class="top-link audio-toggle-btn ft-toggle" type="button">SOUND FX: ON 🔊</button>
     <span>DESIGNED AS AN OPS CONSOLE · REV 2026.08</span>
     <a class="top-link" href="#top">BACK TO TOP ↑</a>
   </div>
@@ -1159,6 +1320,104 @@ footer{border-top:1px solid var(--line);padding:26px 0}
       strip.scrollLeft = startL - (e.pageX - startX) * 1.4;
     });
   }
+
+  /* ============ SOUND FX ENGINE (Web Audio API) ============ */
+  let audioCtx = null;
+  let sfxEnabled = localStorage.getItem('sfx_enabled') !== 'false';
+
+  function initAudio(){
+    if (!audioCtx){
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (AudioContext) audioCtx = new AudioContext();
+    }
+    if (audioCtx && audioCtx.state === 'suspended'){
+      audioCtx.resume();
+    }
+  }
+
+  function playTone(freq, type, duration, gainVal, slideFreq){
+    if (!sfxEnabled || reduced) return;
+    try {
+      initAudio();
+      if (!audioCtx) return;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      const now = audioCtx.currentTime;
+      osc.type = type || 'sine';
+      osc.frequency.setValueAtTime(freq, now);
+      if (slideFreq){
+        osc.frequency.exponentialRampToValueAtTime(slideFreq, now + duration);
+      }
+      gain.gain.setValueAtTime(gainVal || 0.08, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(now);
+      osc.stop(now + duration);
+    } catch(e){}
+  }
+
+  const sfx = {
+    click: function(){ playTone(680, 'sine', 0.045, 0.07, 340); },
+    hover: function(){ playTone(1200, 'sine', 0.015, 0.02, 1600); },
+    success: function(){
+      playTone(523.25, 'triangle', 0.08, 0.08);
+      setTimeout(function(){ playTone(783.99, 'triangle', 0.12, 0.09); }, 70);
+    },
+    toggle: function(on){
+      if (on){ playTone(400, 'sine', 0.06, 0.07, 800); }
+      else { playTone(800, 'sine', 0.06, 0.07, 300); }
+    }
+  };
+
+  function updateAudioUI(){
+    const btns = document.querySelectorAll('.audio-toggle-btn');
+    btns.forEach(function(b){
+      if (b.classList.contains('ft-toggle')){
+        b.textContent = 'SOUND FX: ' + (sfxEnabled ? 'ON 🔊' : 'OFF ⊘');
+      } else if (b.id === 'audioToggleMnav'){
+        b.innerHTML = '<i>' + (sfxEnabled ? '🔊' : '⊘') + '</i> Sound FX: ' + (sfxEnabled ? 'ON' : 'OFF');
+      } else {
+        b.textContent = sfxEnabled ? 'SFX: ON 🔊' : 'SFX: OFF ⊘';
+      }
+      b.style.color = sfxEnabled ? 'var(--acc)' : 'var(--dim)';
+    });
+  }
+
+  function toggleAudio(e){
+    if (e) e.preventDefault();
+    initAudio();
+    sfxEnabled = !sfxEnabled;
+    localStorage.setItem('sfx_enabled', sfxEnabled ? 'true' : 'false');
+    sfx.toggle(sfxEnabled);
+    updateAudioUI();
+  }
+
+  document.querySelectorAll('.audio-toggle-btn').forEach(function(b){
+    b.addEventListener('click', toggleAudio);
+  });
+  updateAudioUI();
+
+  // Unlock on first interaction
+  window.addEventListener('pointerdown', function(){ initAudio(); }, { once:true });
+
+  // Attach interactive sounds
+  document.querySelectorAll('.btn, .hd-action, .co-nav a, nav.main a, .cog-btn, .qr-dl-btn').forEach(function(el){
+    if (!el.classList.contains('audio-toggle-btn')){
+      el.addEventListener('click', function(){ sfx.click(); });
+    }
+    el.addEventListener('mouseenter', function(){ sfx.hover(); });
+  });
+
+  document.querySelectorAll('.stage, .chip, .trait-card, .skill, .hl').forEach(function(el){
+    el.addEventListener('mouseenter', function(){ sfx.hover(); });
+  });
+
+  const origCopyClick = copyBtn.onclick;
+  copyBtn.addEventListener('click', function(){ sfx.success(); });
+  document.querySelectorAll('a[download]').forEach(function(a){
+    a.addEventListener('click', function(){ sfx.success(); });
+  });
 })();
 </script>
 </body>
