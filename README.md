@@ -32,17 +32,37 @@
 * Comprehensive diagnostic report benchmarking cognitive traits, communication protocols, energizers, and workflow drivers based on the official **16Personalities.com (NERIS Type Explorer®)** assessment.
 * Dynamic animated trait percentage counters (51% Introverted, 71% Intuitive, 63% Thinking, 56% Judging, 65% Assertive).
 
-### 4. 🔊 Real-Time Synthesized Sound FX (Web Audio API)
-* Zero-file, zero-latency audio engine generating retro-modern clicks, hover micro-ticks, action confirmation chimes, and state toggle chirps directly via the browser's `AudioContext`.
-* Full user control with header/footer mute switches (`SFX: ON 🔊 / OFF ⊘`) and `localStorage` preference persistence.
+### 4. ⌨️ Interactive Cyber Command Palette (`Ctrl+K` / `⌘K`)
+* **Quick Access CLI**: Press `Ctrl+K`, `Cmd+K`, `/`, or click the `[⌘K]` badge to open a floating cyberpunk command palette with instant fuzzy search.
+* **Keyboard Navigation**: Full arrow key (`↑`/`↓`), `Enter` execution, and `Escape` dismissal.
+* **Command Catalog**: Direct jumps across sections 01–07, quick PDF download, INTJ-A report launcher, email copy, audio toggle, WhatsApp launcher, and a hidden `matrix` cyber rain burst Easter egg!
 
-### 5. 📱 Quick Connect Mobile QR Matrix
+### 5. 🔊 Real-Time Synthesized Sound FX & Live Audio VU-Meter
+* Zero-file, zero-latency audio engine generating retro-modern clicks, hover micro-ticks, action confirmation chimes, and state toggle chirps directly via the browser's `AudioContext`.
+* **Animated Audio VU-Meter**: 4-bar equalizer visualizer in the header that pulses dynamically with synthesized audio frequencies.
+* Full user control with header/footer mute switches (`SFX: ON / OFF`) and `localStorage` preference persistence.
+
+### 6. 🌐 Reactive Cyber Grid Canvas & 3D Tilt Cards
+* **Ambient Cyber Canvas**: High-performance background particle grid drifting smoothly and repelling gently around the cursor.
+* **Radial Spotlight Glow**: Dynamic mouse-following radial lighting illuminating borders and panels as you explore.
+* **3D Parallax Tilt**: Smooth 3D card tilt physics responding to mouse position across all service, status, and diagnostic cards.
+
+### 7. 📱 Quick Connect Mobile QR Matrix
 * Built-in mathematically exact, scannable QR code widget linking directly to `https://nerzon.online/` with downloadable high-DPI badge assets.
 
-### 6. 🤖 AI Engineering & Vibe Coding
+### 8. 🤖 AI Engineering & Vibe Coding
 * **AI Knowledge Agents**: Architecting dedicated AI assistants with custom knowledge bases connected to Airtable relational databases.
 * **Modern AI Toolchain**: Power-user workflows across **Claude Code CLI**, **Google Antigravity IDE**, **Cursor IDE**, and **OpenAI Codex**.
 * **Rapid Prototyping**: End-to-end full-stack web application development, prompt architecture, and automated API webhook pipelines.
+
+### 9. 💼 Services & Engagements
+* **Accepting Select Projects**: Available for freelance design, web development, IT consulting, and collaborative app builds.
+* **Service Offerings**:
+  1. **Webpage Design**: Custom dark-mode UI/UX wireframing, high-fidelity prototypes, and component systems.
+  2. **Website Package**: Full turnkey website creation with DNS/domain setup, SSL, hosting, and SEO optimization.
+  3. **IT Consultation**: Systems auditing, ServiceNow/Jira workflow optimization, and technical SOP documentation.
+  4. **App Development (Collaborative)**: Full-stack web and mobile application engineering built in partnership with a vetted technical engineering team.
+* **Operating Schedule**: Client sprints and consultation sessions scheduled primarily during weekend windows (GMT+8) with daily async communication.
 
 ---
 

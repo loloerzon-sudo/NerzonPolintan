@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>John Nerzon Polintan — IT · Gaming Ops · Automation</title>
 <meta name="description" content="Portfolio of John Nerzon Polintan — Games & Config Specialist, IT operations and AI workflow automation. 12+ years across iGaming, enterprise IT, and support operations.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nerzon.online/">
+<meta property="og:title" content="John Nerzon Polintan — Ops Console &amp; Portfolio">
+<meta property="og:description" content="IT, Gaming Operations &amp; AI Workflow Automation Specialist. 12+ years across enterprise IT, iGaming release pipelines, and modern web development.">
+<meta property="og:image" content="https://nerzon.online/assets/images/john-nerzon-polintan-profile.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="John Nerzon Polintan — Ops Console &amp; Portfolio">
+<meta name="twitter:description" content="IT, Gaming Operations &amp; AI Workflow Automation Specialist. 12+ years across enterprise IT, iGaming release pipelines, and modern web development.">
+<meta name="twitter:image" content="https://nerzon.online/assets/images/john-nerzon-polintan-profile.png">
+<meta name="theme-color" content="#0a0c0e">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0c0e'/><circle cx='16' cy='16' r='6' fill='%23b8f04a'/></svg>">
 <link href="assets/fonts/fonts.css" rel="stylesheet">
 <style>
@@ -91,6 +101,8 @@ nav.main a.act::after,nav.main a:hover::after{width:100%}
 .mnav a{font-family:var(--disp);font-weight:700;font-size:clamp(28px,7vw,44px);letter-spacing:-.01em;color:var(--mut);display:flex;align-items:baseline;gap:16px;padding:10px 0;border-bottom:1px solid var(--line);transition:color .25s}
 .mnav a:hover{color:var(--acc)}
 .mnav a i{font-family:var(--mono);font-style:normal;font-size:12px;color:var(--dim)}
+.mnav a.cmd-trigger-mnav{color:var(--acc);border-bottom-color:rgba(184,240,74,.3)}
+.mnav a.cmd-trigger-mnav i{color:var(--acc)}
 
 /* ============ HERO ============ */
 .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding-top:calc(var(--hdr) + 48px);position:relative;overflow:hidden}
@@ -309,40 +321,68 @@ h2.title{font-family:var(--disp);font-weight:700;font-size:clamp(30px,4.6vw,56px
 .s-bar i{position:absolute;inset:0;width:0;background:var(--acc);transition:width 1.2s cubic-bezier(.2,.65,.2,1)}
 .skill.in .s-bar i{width:var(--w)}
 
-/* ============ HIGHLIGHTS ============ */
-.hl-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
-.hl{grid-column:span 4;border:1px solid var(--line);background:var(--panel);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .35s,transform .35s}
-.hl:hover{border-color:var(--line2);transform:translateY(-5px)}
-.hl.w8{grid-column:span 8}
-.hl.tall{grid-row:span 2}
-.hl-media{position:relative;overflow:hidden;aspect-ratio:16/9;flex:none}
-.hl.tall .hl-media{aspect-ratio:auto;flex:1;min-height:300px}
-.hl-media img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05) brightness(.85);transition:filter .6s;animation:kenburns 18s ease-in-out infinite alternate}
-.hl:hover .hl-media img{filter:grayscale(0) contrast(1) brightness(.95)}
-@keyframes kenburns{from{transform:scale(1) translate(0,0)}to{transform:scale(1.12) translate(-2%,2%)}}
-.hl-media .chip-tag{position:absolute;top:14px;left:14px;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;background:rgba(10,12,14,.85);border:1px solid var(--line2);color:var(--acc);padding:6px 10px;border-radius:2px;backdrop-filter:blur(4px)}
-.hl-media.workflow img{object-fit:contain;background:#f4f5f7;animation:none;filter:saturate(.8) brightness(.88)}
-.hl-media.workflow::after{content:'WORKFLOW SAMPLE';position:absolute;right:0;bottom:0;width:29%;padding:11px 8px;background:#f4f5f7;border:1px solid #d5d8dc;color:#26313d;text-align:center;font-family:var(--mono);font-size:8px;letter-spacing:.12em}
-.hl-media.providers img{object-fit:cover;object-position:center;animation:none}
-.hl-body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:10px;flex:none}
-.hl-body h3{font-family:var(--disp);font-weight:700;font-size:20px;letter-spacing:-.01em;line-height:1.2}
-.hl-body p{font-size:13.8px;color:var(--mut);line-height:1.6}
-.hl-metric{margin-top:auto;padding-top:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:var(--acc);border-top:1px dashed var(--line2);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.hl-metric .dim{color:var(--dim)}
-
-/* ============ CREATIVE ============ */
-.strip-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.drag-hint{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--dim)}
-.strip{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 2px 18px;cursor:grab}
-.strip:active{cursor:grabbing}
-.strip::-webkit-scrollbar{height:6px}
-.slide{flex:0 0 clamp(260px,30vw,360px);scroll-snap-align:start;border:1px solid var(--line);background:var(--panel);border-radius:4px;overflow:hidden;transition:border-color .3s}
-.slide:hover{border-color:var(--line2)}
-.slide .im{aspect-ratio:4/3;overflow:hidden}
-.slide img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.9);transition:filter .5s,transform .8s}
-.slide:hover img{filter:grayscale(0);transform:scale(1.05)}
-.slide figcaption{padding:14px 16px;display:flex;justify-content:space-between;gap:12px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--mut);border-top:1px solid var(--line)}
-.slide figcaption span:last-child{color:var(--dim)}
+/* ============ SERVICES ============ */
+#services{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.avail-badge-wrap{margin-top:18px}
+.avail-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
+  color:var(--amb);border:1px solid rgba(255,180,84,.4);
+  background:rgba(255,180,84,.06);padding:7px 14px;border-radius:2px;
+}
+.avail-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--amb);position:relative;flex:none}
+.avail-tag .dot::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:1px solid var(--amb);animation:ping 2.2s ease-out infinite}
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.service-card{
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,var(--panel),var(--bg2));
+  border-radius:4px;
+  padding:32px 30px;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  transition:border-color .35s,transform .35s,box-shadow .35s;
+}
+.service-card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--acc);opacity:0;transition:opacity .35s;
+}
+.service-card:hover{
+  border-color:var(--acc);
+  transform:translateY(-4px);
+  box-shadow:0 12px 36px rgba(0,0,0,.45),0 0 25px rgba(184,240,74,.08);
+}
+.service-card:hover::before{opacity:1}
+.svc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.svc-idx{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--dim);border:1px solid var(--line2);padding:4px 8px;border-radius:2px}
+.svc-status{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;color:var(--acc);background:rgba(184,240,74,.06);border:1px solid rgba(184,240,74,.25);padding:4px 9px;border-radius:2px}
+.svc-status.amb{color:var(--amb);background:rgba(255,180,84,.06);border-color:rgba(255,180,84,.3)}
+.dot-sm{width:6px;height:6px;border-radius:50%;background:currentColor;display:inline-block}
+.svc-title{font-family:var(--disp);font-weight:700;font-size:clamp(20px,2.4vw,26px);letter-spacing:-.01em;line-height:1.2;margin-bottom:12px;color:var(--txt)}
+.svc-sub-label{font-size:12px;font-weight:400;color:var(--dim);letter-spacing:.1em}
+.svc-desc{font-size:14.2px;color:var(--mut);line-height:1.65;margin-bottom:20px}
+.svc-list{list-style:none;display:grid;gap:9px;margin-bottom:22px;padding-top:14px;border-top:1px dashed var(--line2)}
+.svc-list li{position:relative;padding-left:18px;font-size:13.5px;color:var(--txt);line-height:1.55}
+.svc-list li::before{content:'▸';position:absolute;left:0;color:var(--acc);font-size:11px;top:2px}
+.svc-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:24px}
+.svc-foot{margin-top:auto;padding-top:18px;border-top:1px solid var(--line)}
+.svc-btn{width:100%;justify-content:center;font-size:11.5px;letter-spacing:.15em;padding:12px 18px}
+.service-note{
+  margin-top:32px;
+  border:1px solid var(--line);
+  background:rgba(184,240,74,.03);
+  padding:18px 22px;
+  border-radius:4px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  font-family:var(--mono);
+  font-size:11px;
+  line-height:1.7;
+  letter-spacing:.08em;
+  color:var(--mut);
+}
+.service-note b{color:var(--acc);font-weight:500}
 
 /* ============ CREDENTIALS ============ */
 #credentials{background:var(--bg2);border-top:1px solid var(--line)}
@@ -443,8 +483,105 @@ h2.title{font-family:var(--disp);font-weight:700;font-size:clamp(30px,4.6vw,56px
   border-color:var(--acc);color:var(--acc);background:rgba(184,240,74,.05);
 }
 
+/* ============ CYBER CANVAS & SPOTLIGHT ============ */
+#cyberCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.42}
+.tilt-card{
+  transform-style:preserve-3d;
+  transition:transform .18s cubic-bezier(.2,.65,.2,1),box-shadow .35s,border-color .35s;
+  will-change:transform;
+}
+.spotlight-card{
+  position:relative;
+  overflow:hidden;
+}
+.spotlight-card::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(184,240,74,.07), transparent 70%);
+  opacity:0;transition:opacity .35s ease;
+}
+.spotlight-card:hover::after{opacity:1}
+
+/* ============ AUDIO VU-METER ============ */
+.vu-meter{
+  display:inline-flex;align-items:flex-end;gap:2px;height:11px;margin-left:6px;vertical-align:middle;padding-bottom:1px;
+}
+.vu-meter i{
+  display:block;width:2.5px;height:3px;background:var(--acc);border-radius:1px;
+  transition:height .15s ease,background .25s;
+}
+.vu-meter.active i:nth-child(1){animation:vuPulse 0.45s ease-in-out infinite alternate}
+.vu-meter.active i:nth-child(2){animation:vuPulse 0.6s ease-in-out infinite alternate 0.12s}
+.vu-meter.active i:nth-child(3){animation:vuPulse 0.38s ease-in-out infinite alternate 0.22s}
+.vu-meter.active i:nth-child(4){animation:vuPulse 0.52s ease-in-out infinite alternate 0.08s}
+@keyframes vuPulse{0%{height:2px}100%{height:11px}}
+.vu-meter.off i{
+  background:var(--dim)!important;height:2px!important;animation:none!important;
+}
+
+/* ============ COMMAND PALETTE (Ctrl+K) ============ */
+.cmd-trigger{display:inline-flex;align-items:center;gap:4px;font-weight:700}
+.cmd-k-badge{
+  font-family:var(--mono);font-size:9px;letter-spacing:.08em;padding:1px 4px;border:1px solid var(--line2);
+  border-radius:2px;background:rgba(255,255,255,.05);color:var(--acc);
+}
+.cmd-modal{
+  position:fixed;inset:0;background:rgba(10,12,14,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  z-index:100;display:flex;align-items:flex-start;justify-content:center;padding:12vh 20px 20px;
+  opacity:0;pointer-events:none;transition:opacity .25s ease;
+}
+body.cmd-open{overflow:hidden}
+body.cmd-open .cmd-modal{opacity:1;pointer-events:auto}
+.cmd-dialog{
+  width:min(620px,94vw);background:var(--panel);border:1px solid var(--line2);border-radius:4px;
+  box-shadow:0 24px 70px rgba(0,0,0,.75),0 0 35px rgba(184,240,74,.08);overflow:hidden;
+  transform:translateY(-14px) scale(.98);transition:transform .28s cubic-bezier(.2,.65,.2,1);
+}
+body.cmd-open .cmd-dialog{transform:none}
+.cmd-head{
+  display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,var(--panel2),var(--panel));
+}
+.cmd-prompt{color:var(--acc);font-weight:700;font-size:14px}
+.cmd-input{
+  flex:1;background:none;border:none;outline:none;color:var(--txt);font-family:var(--mono);
+  font-size:14px;letter-spacing:.04em;
+}
+.cmd-input::placeholder{color:var(--dim)}
+.cmd-esc{
+  font-size:9.5px;letter-spacing:.12em;padding:3px 7px;border:1px solid var(--line2);
+  border-radius:2px;color:var(--dim);background:var(--bg);cursor:pointer;
+}
+.cmd-body{max-height:360px;overflow-y:auto;padding:8px}
+.cmd-body::-webkit-scrollbar{width:6px}
+.cmd-group-label{
+  font-size:9px;letter-spacing:.22em;color:var(--dim);padding:8px 12px 4px;text-transform:uppercase;
+}
+.cmd-item{
+  display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:2px;
+  cursor:pointer;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--mut);
+  transition:background .15s,color .15s;border:1px solid transparent;
+}
+.cmd-item:hover,.cmd-item.active{
+  background:rgba(184,240,74,.08);color:var(--txt);border-color:rgba(184,240,74,.25);
+}
+.cmd-item.active .cmd-item-key{
+  color:var(--acc);border-color:var(--acc);
+}
+.cmd-item-left{display:flex;align-items:center;gap:10px}
+.cmd-item-left i{font-style:normal;color:var(--acc);font-size:11px}
+.cmd-item-key{
+  font-size:9px;letter-spacing:.1em;color:var(--dim);border:1px solid var(--line2);
+  padding:2px 6px;border-radius:2px;background:var(--bg);
+}
+.cmd-foot{
+  display:flex;align-items:center;justify-content:space-between;padding:10px 18px;
+  background:var(--bg2);border-top:1px solid var(--line);font-size:9.5px;letter-spacing:.12em;
+  color:var(--dim);
+}
+.cmd-foot b{color:var(--mut);font-weight:600}
+
 /* ============ FOOTER ============ */
-footer{border-top:1px solid var(--line);padding:26px 0}
+footer{border-top:1px solid var(--line);padding:26px 0;position:relative;z-index:2}
 .ft{display:flex;justify-content:space-between;align-items:center;gap:20px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:var(--dim);flex-wrap:wrap}
 .ft a{transition:color .25s}
 .ft a:hover{color:var(--acc)}
@@ -465,15 +602,14 @@ footer{border-top:1px solid var(--line);padding:26px 0}
   .stage{border-top:1px solid var(--line2);padding-top:20px}
   .skill{grid-template-columns:44px 1fr;gap:16px}
   .s-meter{grid-column:2}
-  .hl,.hl.w8{grid-column:span 6}
-  .hl.tall{grid-row:auto}
-  .hl.tall .hl-media{aspect-ratio:16/9;min-height:0}
+  .services-grid{grid-template-columns:1fr;gap:20px}
 }
 @media(max-width:760px){
   nav.main,.clocks.hd-clocks,.hd-actions{display:none}
   .burger{display:flex}
   .sec{padding:84px 0}
-  .hl,.hl.w8{grid-template-columns:1fr;grid-column:span 12}
+  .services-grid{grid-template-columns:1fr}
+  .service-card{padding:24px 20px}
   .contact-rows{grid-template-columns:1fr}
   .pipe{grid-template-columns:1fr 1fr}
   .fact{grid-template-columns:86px 1fr}
@@ -494,7 +630,6 @@ footer{border-top:1px solid var(--line);padding:26px 0}
   *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.15s!important}
   .ticker-track{animation:none;width:auto}
   .rv,.lm>span{opacity:1;transform:none}
-  .hl-media img{animation:none}
   .noise{animation:none}
   .skill .s-bar i{width:var(--w)}
 }
@@ -502,6 +637,7 @@ footer{border-top:1px solid var(--line);padding:26px 0}
 </head>
 <body>
 <div class="noise" aria-hidden="true"></div>
+<canvas id="cyberCanvas" aria-hidden="true"></canvas>
 
 <!-- ================= HEADER ================= -->
 <header id="hdr">
@@ -514,15 +650,17 @@ footer{border-top:1px solid var(--line);padding:26px 0}
       <a href="#pipeline"><i>02</i>PIPELINE</a>
       <a href="#experience"><i>03</i>EXPERIENCE</a>
       <a href="#skills"><i>04</i>SKILLS</a>
-      <a href="#highlights"><i>05</i>HIGHLIGHTS</a>
-      <a href="#contact"><i>08</i>CONTACT</a>
+      <a href="#services"><i>05</i>SERVICES</a>
+      <a href="#credentials"><i>06</i>CREDENTIALS</a>
+      <a href="#contact"><i>07</i>CONTACT</a>
     </nav>
     <div class="clocks hd-clocks" aria-hidden="true">
       <div><b>MNL</b><span id="clk-mnl">--:--:--</span></div>
       <div><b>MLT</b><span id="clk-mlt">--:--:--</span></div>
     </div>
     <div class="hd-actions">
-      <button id="audioToggle" class="hd-action audio-toggle-btn" type="button" aria-label="Toggle Sound Effects">SFX: ON 🔊</button>
+      <button class="hd-action cmd-trigger" id="cmdBtn" type="button" aria-label="Open Command Palette (Ctrl+K)"><span>CMD</span> <span class="cmd-k-badge">⌘K</span></button>
+      <button id="audioToggle" class="hd-action audio-toggle-btn" type="button" aria-label="Toggle Sound Effects">SFX: ON <span class="vu-meter active" id="vuMeter" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
       <a class="hd-action" href="personality.html" title="INTJ-A Cognitive Profile">INTJ-A ↗</a>
       <a class="hd-action primary" href="assets/documents/John-Nerzon-Polintan-CV-2026.pdf" download aria-label="Download John Nerzon Polintan's CV as PDF">CV ↓</a>
       <a class="hd-action" href="#contact">CONTACT</a>
@@ -535,15 +673,16 @@ footer{border-top:1px solid var(--line);padding:26px 0}
 </header>
 
 <div class="mnav" id="mnav" aria-hidden="true">
+  <a href="#" id="cmdTriggerMnav" class="cmd-trigger-mnav"><i>⌘</i> Command Palette [⌘K]</a>
   <a href="#profile"><i>01</i> Profile</a>
   <a href="personality.html"><i>★</i> INTJ-A Cognitive Profile ↗</a>
   <a href="#pipeline"><i>02</i> Pipeline</a>
   <a href="#experience"><i>03</i> Experience</a>
   <a href="#skills"><i>04</i> Skills</a>
-  <a href="#highlights"><i>05</i> Highlights</a>
-  <a href="#credentials"><i>07</i> Credentials</a>
+  <a href="#services"><i>05</i> Services</a>
+  <a href="#credentials"><i>06</i> Credentials</a>
   <a href="assets/documents/John-Nerzon-Polintan-CV-2026.pdf" download><i>↓</i> Download CV</a>
-  <a href="#contact"><i>08</i> Contact</a>
+  <a href="#contact"><i>07</i> Contact</a>
   <a href="#" id="audioToggleMnav" class="audio-toggle-btn"><i>🔊</i> Sound FX: ON</a>
 </div>
 
@@ -569,25 +708,27 @@ footer{border-top:1px solid var(--line);padding:26px 0}
         enterprise IT support, operations management, and AI-assisted workflow automation.
       </p>
       <div class="cta-row">
-        <a class="btn fill" href="#experience">VIEW EXPERIENCE ↓</a>
+        <a class="btn fill" href="#services">VIEW SERVICES ↓</a>
+        <a class="btn" href="#experience">VIEW EXPERIENCE ↓</a>
         <a class="btn" href="assets/documents/John-Nerzon-Polintan-CV-2026.pdf" download>DOWNLOAD CV ↓</a>
         <a class="btn" href="#contact">GET IN TOUCH ↗</a>
       </div>
     </div>
 
     <aside class="hero-aside rv" style="--d:.2s" aria-label="Portrait and current status">
-      <figure class="portrait-card">
+      <figure class="portrait-card tilt-card spotlight-card">
         <img src="assets/images/john-nerzon-polintan-profile.png" alt="Professional portrait of John Nerzon Polintan">
         <figcaption class="portrait-label">JOHN NERZON POLINTAN // REMOTE OPS</figcaption>
       </figure>
       <div>
-        <div class="panel" aria-label="Status panel">
+        <div class="panel tilt-card spotlight-card" aria-label="Status panel">
           <div class="panel-head">
             <span>SYSTEM STATUS</span>
             <span class="live"><span class="dot" aria-hidden="true"></span>LIVE</span>
           </div>
           <div class="panel-rows">
-            <div class="prow"><span class="k">STATUS</span><span class="v"><span class="ok">ONLINE</span> — OPEN TO REMOTE ROLES</span></div>
+            <div class="prow"><span class="k">STATUS</span><span class="v"><span class="ok">ONLINE</span> — OPEN TO PROJECTS &amp; REMOTE ROLES</span></div>
+            <div class="prow"><span class="k">PROJECTS</span><span class="v"><span class="ok">AVAILABLE</span> — ACCEPTING SELECT ENGAGEMENTS</span></div>
             <div class="prow"><span class="k">ROLE</span><span class="v">GAMES &amp; CONFIG SPECIALIST</span></div>
             <div class="prow"><span class="k">BASE</span><span class="v">PHILIPPINES · GMT+8</span></div>
             <div class="prow"><span class="k">BUILDING</span><span class="v"><span class="warn">VIBE CODING</span> · AI AGENTS · AIRTABLE DB</span></div>
@@ -610,7 +751,7 @@ footer{border-top:1px solid var(--line);padding:26px 0}
 <!-- ================= TICKER ================= -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track" id="tickerTrack">
-    <span>GAME RELEASE MANAGEMENT<em>✦</em>PROVIDER INTEGRATION<em>✦</em>AI KNOWLEDGE AGENTS<em>✦</em>AIRTABLE DB INTEGRATION<em>✦</em>VIBE CODING<em>✦</em>CLAUDE CODE<em>✦</em>ANTIGRAVITY IDE<em>✦</em>CURSOR<em>✦</em>SERVICENOW<em>✦</em>JIRA SERVICE DESK<em>✦</em>AI WORKFLOW AUTOMATION<em>✦</em>ACTIVE DIRECTORY<em>✦</em>OFFICE 365<em>✦</em>CONTENT QA<em>✦</em>SLA MANAGEMENT<em>✦</em>RELIABLE RELEASE EXECUTION<em>✦</em></span>
+    <span>GAME RELEASE MANAGEMENT<em>✦</em>PROVIDER INTEGRATION<em>✦</em>AVAILABLE FOR SELECT PROJECTS<em>✦</em>WEBPAGE DESIGN<em>✦</em>IT CONSULTATION<em>✦</em>AI KNOWLEDGE AGENTS<em>✦</em>AIRTABLE DB INTEGRATION<em>✦</em>VIBE CODING<em>✦</em>CLAUDE CODE<em>✦</em>ANTIGRAVITY IDE<em>✦</em>CURSOR<em>✦</em>SERVICENOW<em>✦</em>JIRA SERVICE DESK<em>✦</em>AI WORKFLOW AUTOMATION<em>✦</em>ACTIVE DIRECTORY<em>✦</em>OFFICE 365<em>✦</em>CONTENT QA<em>✦</em>SLA MANAGEMENT<em>✦</em>RELIABLE RELEASE EXECUTION<em>✦</em></span>
   </div>
 </div>
 
@@ -648,7 +789,7 @@ footer{border-top:1px solid var(--line);padding:26px 0}
         <div class="fact"><span class="k">MODE</span><span class="v">Remote-first · Cross-timezone collaboration <i>(MNL ↔ MLT)</i></span></div>
         <div class="fact"><span class="k">EDGE</span><span class="v">Reliable release execution · Real-time incident response · Documentation culture</span></div>
       </div>
-      <div class="cognitive-card rv" style="--d:.25s" aria-label="Cognitive architecture profile preview">
+      <div class="cognitive-card tilt-card spotlight-card rv" style="--d:.25s" aria-label="Cognitive architecture profile preview">
         <div class="cog-head">
           <span class="cog-status"><span class="dot" aria-hidden="true"></span>COGNITIVE BLUEPRINT // DIAGNOSTICS</span>
           <span class="mono dim">TYPE: INTJ-A</span>
@@ -942,109 +1083,131 @@ footer{border-top:1px solid var(--line);padding:26px 0}
   </div>
 </section>
 
-<!-- ================= 05 HIGHLIGHTS ================= -->
-<section class="sec" id="highlights">
+<!-- ================= 05 SERVICES ================= -->
+<section class="sec" id="services">
   <div class="wrap">
     <div class="s-head">
-      <p class="s-no mono">05 — TRACK RECORD</p>
-      <h2 class="title lm"><span>SELECTED HIGHLIGHTS</span></h2>
-      <p class="s-sub">The moments that defined the career — pulled straight from the field notes.</p>
-    </div>
-    <div class="hl-grid">
-
-      <article class="hl tall rv">
-        <div class="hl-media workflow">
-          <img src="assets/images/competition-operations-workflow.png" alt="Competition operations workflow from request and setup through monitoring and completion" loading="lazy">
-          <span class="chip-tag">AUTHENTIC WORK SAMPLE</span>
-        </div>
-        <div class="hl-body">
-          <h3>Competition Operations Workflow</h3>
-          <p><b>Situation:</b> Multi-team competition launches needed a shared view of setup, testing, monitoring, escalation, and completion.</p>
-          <p><b>Contribution:</b> Structured the operational flow so ownership and handoffs are easier to follow.</p>
-          <div class="hl-metric"><span>PROCESS DESIGN</span><span class="dim">JIRA · QA · NOC</span></div>
-        </div>
-      </article>
-
-      <article class="hl w8 rv" style="--d:.08s">
-        <div class="hl-media providers">
-          <img src="assets/images/igaming-provider-network.jpg" alt="Catalog view showing a broad network of integrated iGaming providers" loading="lazy">
-          <span class="chip-tag">PROVIDER ECOSYSTEM</span>
-        </div>
-        <div class="hl-body">
-          <h3>Provider Catalog &amp; Content QA</h3>
-          <p><b>Situation:</b> A broad provider catalog creates constant metadata, configuration, and content-quality demands.</p>
-          <p><b>Contribution:</b> Coordinate provider intake, validate assets and records, and keep client-facing content aligned across systems.</p>
-          <div class="hl-metric"><span>EUROPEAN IGAMING</span><span class="dim">INTAKE → CONFIG → LIVE</span></div>
-        </div>
-      </article>
-
-      <article class="hl rv" style="--d:.14s">
-        <div class="hl-media">
-          <img src="assets/images/ai-automation-workflow.jpg" alt="Abstract representation of AI-assisted workflow automation" loading="lazy">
-          <span class="chip-tag">AI AUTOMATION</span>
-        </div>
-        <div class="hl-body">
-          <h3>Automation Where It Helps</h3>
-          <p><b>Contribution:</b> Use AI and spreadsheet automation to reduce repetitive cross-checking while keeping human review in the loop.</p>
-          <div class="hl-metric"><span>WORKFLOW SUPPORT</span><span class="dim">AI · SHEETS</span></div>
-        </div>
-      </article>
-
-      <article class="hl rv" style="--d:.2s">
-        <div class="hl-media">
-          <img src="assets/images/servicenow-ticketing-console.jpg" alt="Abstract service-management console representing a ticketing migration" loading="lazy">
-          <span class="chip-tag">CHANGE MANAGEMENT</span>
-        </div>
-        <div class="hl-body">
-          <h3>The ServiceNow Migration</h3>
-          <p><b>Contribution:</b> Identified the limits of a legacy ticketing tool, proposed ServiceNow, and helped move incident management toward a stronger platform.</p>
-          <div class="hl-metric"><span>PROPOSED → ADOPTED</span><span class="dim">IT OPERATIONS</span></div>
-        </div>
-      </article>
-
-      <article class="hl w8 rv" style="--d:.1s">
-        <div class="hl-media">
-          <img src="assets/images/it-knowledge-base-docs.jpg" alt="Technical documentation and knowledge-base workspace" loading="lazy">
-          <span class="chip-tag">DOCUMENTATION CULTURE</span>
-        </div>
-        <div class="hl-body">
-          <h3>Knowledge Base as Infrastructure</h3>
-          <p><b>Contribution:</b> Turned recurring fixes and operating knowledge into SOPs, support articles, and reusable troubleshooting guidance.</p>
-          <p><b>Outcome:</b> Gave teams a clearer reference point for consistent support and future problem-solving.</p>
-          <div class="hl-metric"><span>DISCOVERY → DOCUMENTATION</span><span class="dim">SOPS · GUIDES</span></div>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- ================= 06 CREATIVE ================= -->
-<section class="sec" id="creative">
-  <div class="wrap">
-    <div class="s-head strip-head">
-      <div>
-        <p class="s-no mono">06 — CREATIVE OUTPUT</p>
-        <h2 class="title lm"><span>VISUAL &amp; CREATIVE PRACTICE</span></h2>
-        <p class="s-sub">Newsletter production, graphic design, photography, and a continuing interest in online gaming.</p>
+      <p class="s-no mono">05 — OFFERINGS</p>
+      <h2 class="title lm"><span>SERVICES &amp; ENGAGEMENTS</span></h2>
+      <p class="s-sub">Accepting select freelance builds, technical consulting, and collaborative development.</p>
+      <div class="avail-badge-wrap rv" style="--d:.05s">
+        <span class="avail-tag"><span class="dot" aria-hidden="true"></span>AVAILABLE FOR PROJECTS</span>
       </div>
-      <span class="drag-hint">DRAG / SCROLL →</span>
     </div>
-    <div class="strip" id="strip">
-      <figure class="slide"><div class="im"><img src="assets/images/internal-newsletter-design.jpg" alt="Internal newsletter design" loading="lazy"></div><figcaption><span>INTERNAL NEWSLETTER</span><span>PHOTOSHOP</span></figcaption></figure>
-      <figure class="slide"><div class="im"><img src="assets/images/team-visual-content.jpg" alt="Visual content production" loading="lazy"></div><figcaption><span>VISUAL CONTENT</span><span>BRAND</span></figcaption></figure>
-      <figure class="slide"><div class="im"><img src="assets/images/graphic-design-poster.jpg" alt="Graphic design work" loading="lazy"></div><figcaption><span>GRAPHIC DESIGN</span><span>TEAM COMMS</span></figcaption></figure>
-      <figure class="slide"><div class="im"><img src="assets/images/lightroom-photo-edit.jpg" alt="Lightroom photo editing" loading="lazy"></div><figcaption><span>PHOTO EDITING</span><span>LIGHTROOM</span></figcaption></figure>
-      <figure class="slide"><div class="im"><img src="assets/images/brand-identity-assets.jpg" alt="Brand asset production" loading="lazy"></div><figcaption><span>BRAND ASSETS</span><span>CONSISTENCY</span></figcaption></figure>
+
+    <div class="services-grid">
+      <!-- Card 1: Webpage Design -->
+      <article class="service-card tilt-card spotlight-card rv">
+        <div class="svc-top">
+          <span class="svc-idx mono">S/01</span>
+          <span class="svc-status mono"><span class="dot-sm" aria-hidden="true"></span>UI/UX DESIGN</span>
+        </div>
+        <h3 class="svc-title">Webpage Design</h3>
+        <p class="svc-desc">High-impact, modern, and dark-themed interface designs tailored for maximum engagement and visual polish. Clean layout architecture, typography hierarchy, and bespoke design systems.</p>
+        <ul class="svc-list">
+          <li>Custom UI/UX Wireframing &amp; High-Fidelity Prototyping</li>
+          <li>Responsive Mobile &amp; Desktop Layouts</li>
+          <li>Cyber-Console, Dark-Mode &amp; Glassmorphism Aesthetics</li>
+          <li>Design Systems, Component Tokens &amp; Style Guides</li>
+        </ul>
+        <div class="svc-tags">
+          <span class="tag">FIGMA</span>
+          <span class="tag">HTML5 / CSS3</span>
+          <span class="tag">UI/UX</span>
+          <span class="tag">PROTOTYPING</span>
+        </div>
+        <div class="svc-foot">
+          <a class="btn fill svc-btn" href="mailto:erzon22@gmail.com?subject=Inquiry:%20Webpage%20Design%20Project">INQUIRE ↗</a>
+        </div>
+      </article>
+
+      <!-- Card 2: Website Package -->
+      <article class="service-card tilt-card spotlight-card rv" style="--d:.08s">
+        <div class="svc-top">
+          <span class="svc-idx mono">S/02</span>
+          <span class="svc-status mono"><span class="dot-sm" aria-hidden="true"></span>FULL-STACK BUILD</span>
+        </div>
+        <h3 class="svc-title">Website Package</h3>
+        <p class="svc-desc">Turnkey, full-cycle website development from initial concept to live production. Blazing fast, zero-bloat static sites and SPAs configured with domain setup, SSL, and automated deployment.</p>
+        <ul class="svc-list">
+          <li>Complete End-to-End Build, Styling &amp; Logic</li>
+          <li>Custom Domain, DNS &amp; Cloudflare / SSL Configuration</li>
+          <li>GitHub Pages / Netlify / Vercel Production Deployment</li>
+          <li>SEO Best Practices &amp; 100/100 Lighthouse Performance Tuning</li>
+        </ul>
+        <div class="svc-tags">
+          <span class="tag">TURNKEY BUILD</span>
+          <span class="tag">FAST VANILLA STACK</span>
+          <span class="tag">DNS &amp; HOSTING</span>
+          <span class="tag">SEO OPTIMIZED</span>
+        </div>
+        <div class="svc-foot">
+          <a class="btn fill svc-btn" href="mailto:erzon22@gmail.com?subject=Inquiry:%20Website%20Package%20Project">INQUIRE ↗</a>
+        </div>
+      </article>
+
+      <!-- Card 3: IT Consultation -->
+      <article class="service-card tilt-card spotlight-card rv" style="--d:.14s">
+        <div class="svc-top">
+          <span class="svc-idx mono">S/03</span>
+          <span class="svc-status mono"><span class="dot-sm" aria-hidden="true"></span>ADVISORY &amp; AUDIT</span>
+        </div>
+        <h3 class="svc-title">IT Consultation</h3>
+        <p class="svc-desc">Strategic operational advice and hands-on auditing drawn from 12+ years across enterprise IT, service desks, and iGaming. Streamline your internal tooling, SOPs, and support operations.</p>
+        <ul class="svc-list">
+          <li>IT Systems &amp; Helpdesk Workflow Auditing</li>
+          <li>ServiceNow / Jira Service Desk Setup &amp; Optimization</li>
+          <li>Technical Documentation, SOPs &amp; Knowledge Base Architecture</li>
+          <li>Remote Support Infrastructure &amp; Tooling Strategy</li>
+        </ul>
+        <div class="svc-tags">
+          <span class="tag">SERVICENOW</span>
+          <span class="tag">JIRA SERVICE DESK</span>
+          <span class="tag">SOP WRITING</span>
+          <span class="tag">ITSM / HELPDESK</span>
+        </div>
+        <div class="svc-foot">
+          <a class="btn fill svc-btn" href="mailto:erzon22@gmail.com?subject=Inquiry:%20IT%20Consultation">INQUIRE ↗</a>
+        </div>
+      </article>
+
+      <!-- Card 4: App Development (Collaborative) -->
+      <article class="service-card tilt-card spotlight-card rv" style="--d:.2s">
+        <div class="svc-top">
+          <span class="svc-idx mono">S/04</span>
+          <span class="svc-status amb mono"><span class="dot-sm" aria-hidden="true"></span>TEAM COLLAB</span>
+        </div>
+        <h3 class="svc-title">App Development <span class="svc-sub-label mono">(Collaborative)</span></h3>
+        <p class="svc-desc">Custom web and application development executed in coordination with a vetted partner engineering team. Turn your product specifications into dependable MVPs and robust applications.</p>
+        <ul class="svc-list">
+          <li>Full-Stack Web App Engineering &amp; MVP Delivery</li>
+          <li>Frontend &amp; Backend Architecture via Dedicated Partner Team</li>
+          <li>Third-Party API, Webhook &amp; Relational Database Pipelines</li>
+          <li>Sprint-Based Delivery, Milestones &amp; Structured QA</li>
+        </ul>
+        <div class="svc-tags">
+          <span class="tag">TEAM COLLAB</span>
+          <span class="tag">API INTEGRATIONS</span>
+          <span class="tag">WEB APPS</span>
+          <span class="tag">RAPID MVP</span>
+        </div>
+        <div class="svc-foot">
+          <a class="btn fill svc-btn" href="mailto:erzon22@gmail.com?subject=Inquiry:%20App%20Development%20Project">INQUIRE ↗</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="service-note rv" style="--d:.25s">
+      <div><b>OPERATING NOTE //</b> Sprints and consultation sessions are scheduled primarily during weekend windows (GMT+8) with async communication throughout the week.</div>
     </div>
   </div>
 </section>
 
-<!-- ================= 07 CREDENTIALS ================= -->
+<!-- ================= 06 CREDENTIALS ================= -->
 <section class="sec" id="credentials">
   <div class="wrap cred-grid">
     <div>
-      <p class="s-no mono">07 — CREDENTIALS &amp; EDUCATION</p>
+      <p class="s-no mono">06 — CREDENTIALS &amp; EDUCATION</p>
       <h2 class="title lm" style="margin-bottom:40px"><span>CERTIFICATIONS</span></h2>
       <div class="cred-row rv"><span class="cn">C/01</span><div><h4>macOS Expert Certification</h4><div class="ci">Global Enterprise IT Provider</div></div><span class="tag">CERTIFIED</span></div>
       <div class="cred-row rv" style="--d:.08s"><span class="cn">C/02</span><div><h4>Helpdesk Technician Certification</h4><div class="ci">Global Enterprise IT Provider</div></div><span class="tag">CERTIFIED</span></div>
@@ -1064,11 +1227,11 @@ footer{border-top:1px solid var(--line);padding:26px 0}
   </div>
 </section>
 
-<!-- ================= 08 CONTACT ================= -->
+<!-- ================= 07 CONTACT ================= -->
 <section class="sec" id="contact">
   <div class="wrap contact-layout">
     <div>
-      <span class="avail"><span class="dot" aria-hidden="true"></span>OPEN TO REMOTE — WORLDWIDE</span>
+      <span class="avail"><span class="dot" aria-hidden="true"></span>OPEN TO PROJECTS &amp; REMOTE ROLES</span>
       <h2 class="contact-big">
         <span class="lm"><span>LET'S RUN THE NEXT</span></span>
         <span class="lm" style="--d:.1s"><span class="out">RELEASE FLAWLESSLY.</span></span>
@@ -1085,13 +1248,13 @@ footer{border-top:1px solid var(--line);padding:26px 0}
       <div class="contact-rows">
         <div class="c-row"><p class="k mono">PHONE / WHATSAPP</p><p class="v"><a href="https://wa.me/639165271923" target="_blank" rel="noopener">+63 916 527 1923 ↗</a></p></div>
         <div class="c-row"><p class="k mono">LINKEDIN</p><p class="v"><a href="https://linkedin.com/in/erzon22" target="_blank" rel="noopener">linkedin.com/in/erzon22 ↗</a></p></div>
-        <div class="c-row"><p class="k mono">BASE</p><p class="v">Philippines · GMT+8 <span class="dim">— remote across timezones</span></p></div>
+        <div class="c-row"><p class="k mono">BASE / LOCATION</p><p class="v">Philippines · GMT+8 <span class="dim">— Remote worldwide</span></p></div>
       </div>
     </div>
 
     <!-- Quick Connect QR Card -->
     <aside class="contact-qr rv" style="--d:.2s" aria-label="Mobile quick connect QR code">
-      <div class="qr-card">
+      <div class="qr-card tilt-card spotlight-card">
         <div class="qr-head">
           <span class="qr-status"><span class="dot" aria-hidden="true"></span>QUICK CONNECT</span>
           <span class="mono dim">SCAN // MOBILE</span>
@@ -1112,6 +1275,28 @@ footer{border-top:1px solid var(--line);padding:26px 0}
 </section>
 
 </main>
+
+<!-- ================= COMMAND PALETTE MODAL (Ctrl+K) ================= -->
+<div id="cmdModal" class="cmd-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Command Palette">
+  <div class="cmd-dialog">
+    <div class="cmd-head">
+      <div class="cmd-prompt mono">&gt;_</div>
+      <input type="text" id="cmdInput" class="cmd-input" placeholder="Type a command, section, or action..." autocomplete="off" spellcheck="false">
+      <span class="cmd-esc mono" id="cmdEscBtn">ESC</span>
+    </div>
+    <div class="cmd-body">
+      <div class="cmd-group-label mono" id="cmdGroupLabel">COMMANDS &amp; SHORTCUTS</div>
+      <div id="cmdList" class="cmd-list" role="listbox">
+        <!-- Dynamically rendered by JS -->
+      </div>
+    </div>
+    <div class="cmd-foot mono">
+      <span><b>↑↓</b> NAVIGATE</span>
+      <span><b>ENTER</b> EXECUTE</span>
+      <span><b>ESC</b> CLOSE</span>
+    </div>
+  </div>
+</div>
 
 <!-- ================= FOOTER ================= -->
 <footer>
@@ -1160,11 +1345,11 @@ footer{border-top:1px solid var(--line);padding:26px 0}
       .then(function(){ return scramble(rot, 'GAMES & CONFIG SPECIALIST', 1); });
     const roles = [
       'GAMES & CONFIG SPECIALIST',
+      'OPEN TO SELECT PROJECTS',
       'AI & VIBE CODING SPECIALIST',
       'GAME RELEASE OPERATIONS',
       'ENTERPRISE IT SUPPORT',
-      'AI WORKFLOW AUTOMATION',
-      'OPERATIONS MANAGEMENT'
+      'IT & OPERATIONS CONSULTANT'
     ];
     let ri = 0;
     setInterval(function(){
@@ -1320,16 +1505,156 @@ footer{border-top:1px solid var(--line);padding:26px 0}
     }
   });
 
-  /* ---------- Drag-to-scroll strip ---------- */
-  const strip = document.getElementById('strip');
-  if (strip){
-    let down = false, startX = 0, startL = 0;
-    strip.addEventListener('mousedown', function(e){ down = true; startX = e.pageX; startL = strip.scrollLeft; });
-    window.addEventListener('mouseup', function(){ down = false; });
-    strip.addEventListener('mousemove', function(e){
-      if (!down) return;
-      e.preventDefault();
-      strip.scrollLeft = startL - (e.pageX - startX) * 1.4;
+  /* ============ CYBER CANVAS ENGINE ============ */
+  const canvas = document.getElementById('cyberCanvas');
+  let ctx = canvas ? canvas.getContext('2d') : null;
+  let particles = [];
+  let matrixDrops = [];
+  let matrixMode = false;
+  let mouse = { x: -1000, y: -1000, active: false };
+  let animId = null;
+
+  function resizeCanvas(){
+    if (!canvas) return;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    initParticles();
+  }
+
+  function initParticles(){
+    if (!canvas) return;
+    particles = [];
+    const count = Math.min(48, Math.max(18, Math.floor(window.innerWidth / 30)));
+    for (let i = 0; i < count; i++){
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        baseVx: (Math.random() - 0.5) * 0.45,
+        baseVy: (Math.random() - 0.5) * 0.45,
+        size: Math.random() * 1.6 + 1.2,
+        alpha: Math.random() * 0.4 + 0.15
+      });
+    }
+  }
+
+  function triggerMatrixRain(){
+    matrixMode = true;
+    matrixDrops = [];
+    const cols = Math.floor(canvas.width / 16);
+    for (let i = 0; i < cols; i++){
+      matrixDrops.push({ x: i * 16, y: Math.random() * -500, speed: Math.random() * 8 + 6, chars: [] });
+    }
+    setTimeout(function(){ matrixMode = false; }, 4200);
+  }
+
+  function drawCanvas(){
+    if (!ctx || !canvas || reduced) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    if (matrixMode){
+      ctx.fillStyle = 'rgba(184, 240, 74, 0.85)';
+      ctx.font = '12px "JetBrains Mono", monospace';
+      const glyphs = '01アイウエオカキクケコサシスセソタチツテトナニヌネノ10_//<>*+';
+      for (let i = 0; i < matrixDrops.length; i++){
+        const d = matrixDrops[i];
+        const ch = glyphs[(Math.random() * glyphs.length) | 0];
+        ctx.fillText(ch, d.x, d.y);
+        d.y += d.speed;
+        if (d.y > canvas.height + 50){ d.y = Math.random() * -100; }
+      }
+    } else {
+      // Draw grid particles & connecting lines
+      const maxDist = 115;
+      for (let i = 0; i < particles.length; i++){
+        const p = particles[i];
+        // Mouse repulsion / interaction
+        if (mouse.active){
+          const dx = p.x - mouse.x, dy = p.y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120 && dist > 0){
+            const force = (120 - dist) / 120 * 0.8;
+            p.vx += (dx / dist) * force;
+            p.vy += (dy / dist) * force;
+          }
+        }
+        // Damping towards base speed
+        p.vx += (p.baseVx - p.vx) * 0.05;
+        p.vy += (p.baseVy - p.vy) * 0.05;
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+
+        // Draw particle dot
+        ctx.fillStyle = 'rgba(184, 240, 74, ' + p.alpha + ')';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Connect with nearby particles
+        for (let j = i + 1; j < particles.length; j++){
+          const p2 = particles[j];
+          const cdx = p.x - p2.x, cdy = p.y - p2.y;
+          const cdist = Math.sqrt(cdx * cdx + cdy * cdy);
+          if (cdist < maxDist){
+            const lineAlpha = (1 - cdist / maxDist) * 0.16;
+            ctx.strokeStyle = 'rgba(184, 240, 74, ' + lineAlpha + ')';
+            ctx.lineWidth = 0.8;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+    animId = requestAnimationFrame(drawCanvas);
+  }
+
+  if (canvas && !reduced){
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+    window.addEventListener('pointermove', function(e){
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      mouse.active = true;
+    }, { passive: true });
+    window.addEventListener('pointerleave', function(){ mouse.active = false; });
+    document.addEventListener('visibilitychange', function(){
+      if (document.hidden){ if (animId) cancelAnimationFrame(animId); }
+      else { drawCanvas(); }
+    });
+    resizeCanvas();
+    drawCanvas();
+  }
+
+  /* ============ 3D CARD TILT & SPOTLIGHT ============ */
+  if (!reduced){
+    const tiltCards = document.querySelectorAll('.tilt-card');
+    tiltCards.forEach(function(card){
+      card.addEventListener('pointermove', function(e){
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', x + 'px');
+        card.style.setProperty('--mouse-y', y + 'px');
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotX = -((y - centerY) / centerY) * 4.5;
+        const rotY = ((x - centerX) / centerX) * 4.5;
+
+        card.style.transform = 'perspective(900px) rotateX(' + rotX.toFixed(2) + 'deg) rotateY(' + rotY.toFixed(2) + 'deg) scale3d(1.01, 1.01, 1.01)';
+      });
+
+      card.addEventListener('pointerleave', function(){
+        card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      });
     });
   }
 
@@ -1345,6 +1670,17 @@ footer{border-top:1px solid var(--line);padding:26px 0}
     if (audioCtx && audioCtx.state === 'suspended'){
       audioCtx.resume();
     }
+  }
+
+  function pulseVuMeter(){
+    const vu = document.getElementById('vuMeter');
+    if (!vu || !sfxEnabled || reduced) return;
+    const bars = vu.querySelectorAll('i');
+    bars.forEach(function(bar){
+      const h = Math.floor(Math.random() * 8 + 4);
+      bar.style.height = h + 'px';
+      setTimeout(function(){ bar.style.height = ''; }, 220);
+    });
   }
 
   function playTone(freq, type, duration, gainVal, slideFreq){
@@ -1366,12 +1702,14 @@ footer{border-top:1px solid var(--line);padding:26px 0}
       gain.connect(audioCtx.destination);
       osc.start(now);
       osc.stop(now + duration);
+      pulseVuMeter();
     } catch(e){}
   }
 
   const sfx = {
     click: function(){ playTone(680, 'sine', 0.045, 0.07, 340); },
     hover: function(){ playTone(1200, 'sine', 0.015, 0.02, 1600); },
+    cmd: function(){ playTone(880, 'triangle', 0.05, 0.06, 440); },
     success: function(){
       playTone(523.25, 'triangle', 0.08, 0.08);
       setTimeout(function(){ playTone(783.99, 'triangle', 0.12, 0.09); }, 70);
@@ -1384,13 +1722,18 @@ footer{border-top:1px solid var(--line);padding:26px 0}
 
   function updateAudioUI(){
     const btns = document.querySelectorAll('.audio-toggle-btn');
+    const vu = document.getElementById('vuMeter');
+    if (vu){
+      vu.classList.toggle('active', sfxEnabled);
+      vu.classList.toggle('off', !sfxEnabled);
+    }
     btns.forEach(function(b){
       if (b.classList.contains('ft-toggle')){
         b.textContent = 'SOUND FX: ' + (sfxEnabled ? 'ON 🔊' : 'OFF ⊘');
       } else if (b.id === 'audioToggleMnav'){
         b.innerHTML = '<i>' + (sfxEnabled ? '🔊' : '⊘') + '</i> Sound FX: ' + (sfxEnabled ? 'ON' : 'OFF');
       } else {
-        b.textContent = sfxEnabled ? 'SFX: ON 🔊' : 'SFX: OFF ⊘';
+        b.innerHTML = 'SFX: ' + (sfxEnabled ? 'ON' : 'OFF') + ' <span class="vu-meter ' + (sfxEnabled ? 'active' : 'off') + '" id="vuMeter" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
       }
       b.style.color = sfxEnabled ? 'var(--acc)' : 'var(--dim)';
     });
@@ -1410,25 +1753,189 @@ footer{border-top:1px solid var(--line);padding:26px 0}
   });
   updateAudioUI();
 
-  // Unlock on first interaction
+  // Unlock audio on first interaction
   window.addEventListener('pointerdown', function(){ initAudio(); }, { once:true });
 
   // Attach interactive sounds
-  document.querySelectorAll('.btn, .hd-action, .co-nav a, nav.main a, .cog-btn, .qr-dl-btn').forEach(function(el){
+  document.querySelectorAll('.btn, .hd-action, .co-nav a, nav.main a, .cog-btn, .qr-dl-btn, .svc-btn').forEach(function(el){
     if (!el.classList.contains('audio-toggle-btn')){
       el.addEventListener('click', function(){ sfx.click(); });
     }
     el.addEventListener('mouseenter', function(){ sfx.hover(); });
   });
 
-  document.querySelectorAll('.stage, .chip, .trait-card, .skill, .hl').forEach(function(el){
+  document.querySelectorAll('.stage, .chip, .trait-card, .skill, .service-card').forEach(function(el){
     el.addEventListener('mouseenter', function(){ sfx.hover(); });
   });
 
-  const origCopyClick = copyBtn.onclick;
   copyBtn.addEventListener('click', function(){ sfx.success(); });
   document.querySelectorAll('a[download]').forEach(function(a){
     a.addEventListener('click', function(){ sfx.success(); });
+  });
+
+  /* ============ COMMAND PALETTE CONTROLLER ============ */
+  const cmdModal = document.getElementById('cmdModal');
+  const cmdInput = document.getElementById('cmdInput');
+  const cmdList = document.getElementById('cmdList');
+  const cmdBtn = document.getElementById('cmdBtn');
+  const cmdTriggerMnav = document.getElementById('cmdTriggerMnav');
+  const cmdEscBtn = document.getElementById('cmdEscBtn');
+
+  const COMMANDS = [
+    { id: 'sec-01', cat: 'NAV', label: '01 — Profile (Precision & Facts)', key: 'JUMP', action: function(){ window.location.hash = 'profile'; } },
+    { id: 'sec-02', cat: 'NAV', label: '02 — Pipeline (Game Release Stages)', key: 'JUMP', action: function(){ window.location.hash = 'pipeline'; } },
+    { id: 'sec-03', cat: 'NAV', label: '03 — Experience (European iGaming & IT)', key: 'JUMP', action: function(){ window.location.hash = 'experience'; } },
+    { id: 'sec-04', cat: 'NAV', label: '04 — Skills (AI, IT & Automation Matrix)', key: 'JUMP', action: function(){ window.location.hash = 'skills'; } },
+    { id: 'sec-05', cat: 'NAV', label: '05 — Services (Freelance & Offerings)', key: 'JUMP', action: function(){ window.location.hash = 'services'; } },
+    { id: 'sec-06', cat: 'NAV', label: '06 — Credentials (Certs & Education)', key: 'JUMP', action: function(){ window.location.hash = 'credentials'; } },
+    { id: 'sec-07', cat: 'NAV', label: '07 — Contact (Direct Connect & QR)', key: 'JUMP', action: function(){ window.location.hash = 'contact'; } },
+    { id: 'act-cv', cat: 'ACTION', label: 'Download CV / Resume (PDF)', key: 'FILE', action: function(){
+      const a = document.createElement('a'); a.href = 'assets/documents/John-Nerzon-Polintan-CV-2026.pdf'; a.download = 'John-Nerzon-Polintan-CV-2026.pdf'; a.click();
+    }},
+    { id: 'act-intj', cat: 'ACTION', label: 'INTJ-A Cognitive Blueprint & Diagnostics', key: 'VIEW', action: function(){ window.location.href = 'personality.html'; } },
+    { id: 'act-mail', cat: 'ACTION', label: 'Copy Email Address (erzon22@gmail.com)', key: 'COPY', action: function(){ copyBtn.click(); } },
+    { id: 'act-sfx', cat: 'ACTION', label: 'Toggle Sound Effects (SFX Engine)', key: 'AUDIO', action: function(){ toggleAudio(); } },
+    { id: 'act-wa', cat: 'ACTION', label: 'WhatsApp Quick Chat (+63 916 527 1923)', key: 'CHAT', action: function(){ window.open('https://wa.me/639165271923', '_blank', 'noopener'); } },
+    { id: 'act-matrix', cat: 'SYSTEM', label: 'matrix // Trigger Cyber Rain Burst', key: 'EXEC', action: function(){ triggerMatrixRain(); } }
+  ];
+
+  let filteredCmds = COMMANDS.slice();
+  let activeCmdIdx = 0;
+
+  function renderCommands(){
+    if (!cmdList) return;
+    cmdList.innerHTML = '';
+    if (filteredCmds.length === 0){
+      cmdList.innerHTML = '<div style="padding:16px 12px;font-family:var(--mono);font-size:12px;color:var(--dim);">No matching commands found.</div>';
+      return;
+    }
+    filteredCmds.forEach(function(cmd, idx){
+      const item = document.createElement('div');
+      item.className = 'cmd-item' + (idx === activeCmdIdx ? ' active' : '');
+      item.setAttribute('role', 'option');
+      item.setAttribute('aria-selected', idx === activeCmdIdx);
+      item.innerHTML = '<div class="cmd-item-left"><i>[' + cmd.cat + ']</i> <span>' + cmd.label + '</span></div><span class="cmd-item-key">' + cmd.key + '</span>';
+      item.addEventListener('mouseenter', function(){
+        activeCmdIdx = idx;
+        renderActiveItem();
+        sfx.hover();
+      });
+      item.addEventListener('click', function(){
+        executeCommand(cmd);
+      });
+      cmdList.appendChild(item);
+    });
+  }
+
+  function renderActiveItem(){
+    const items = cmdList.querySelectorAll('.cmd-item');
+    items.forEach(function(it, i){
+      it.classList.toggle('active', i === activeCmdIdx);
+      it.setAttribute('aria-selected', i === activeCmdIdx);
+      if (i === activeCmdIdx){
+        it.scrollIntoView({ block: 'nearest' });
+      }
+    });
+  }
+
+  function openCommandPalette(){
+    document.body.classList.add('cmd-open');
+    cmdModal.setAttribute('aria-hidden', 'false');
+    cmdInput.value = '';
+    filteredCmds = COMMANDS.slice();
+    activeCmdIdx = 0;
+    renderCommands();
+    sfx.cmd();
+    setTimeout(function(){ cmdInput.focus(); }, 40);
+  }
+
+  function closeCommandPalette(){
+    document.body.classList.remove('cmd-open');
+    cmdModal.setAttribute('aria-hidden', 'true');
+    cmdInput.blur();
+  }
+
+  function executeCommand(cmd){
+    closeCommandPalette();
+    sfx.success();
+    setTimeout(function(){ cmd.action(); }, 80);
+  }
+
+  if (cmdBtn) cmdBtn.addEventListener('click', openCommandPalette);
+  if (cmdTriggerMnav) cmdTriggerMnav.addEventListener('click', function(e){
+    e.preventDefault();
+    document.body.classList.remove('menu-open');
+    burger.setAttribute('aria-expanded', 'false');
+    openCommandPalette();
+  });
+  if (cmdEscBtn) cmdEscBtn.addEventListener('click', closeCommandPalette);
+
+  if (cmdModal){
+    cmdModal.addEventListener('click', function(e){
+      if (e.target === cmdModal) closeCommandPalette();
+    });
+  }
+
+  if (cmdInput){
+    cmdInput.addEventListener('input', function(){
+      const q = cmdInput.value.toLowerCase().trim();
+      if (!q){
+        filteredCmds = COMMANDS.slice();
+      } else {
+        filteredCmds = COMMANDS.filter(function(c){
+          return c.label.toLowerCase().indexOf(q) !== -1 || c.cat.toLowerCase().indexOf(q) !== -1 || c.id.indexOf(q) !== -1;
+        });
+      }
+      activeCmdIdx = 0;
+      renderCommands();
+    });
+
+    cmdInput.addEventListener('keydown', function(e){
+      if (e.key === 'ArrowDown'){
+        e.preventDefault();
+        if (filteredCmds.length){
+          activeCmdIdx = (activeCmdIdx + 1) % filteredCmds.length;
+          renderActiveItem();
+          sfx.hover();
+        }
+      } else if (e.key === 'ArrowUp'){
+        e.preventDefault();
+        if (filteredCmds.length){
+          activeCmdIdx = (activeCmdIdx - 1 + filteredCmds.length) % filteredCmds.length;
+          renderActiveItem();
+          sfx.hover();
+        }
+      } else if (e.key === 'Enter'){
+        e.preventDefault();
+        if (filteredCmds.length && filteredCmds[activeCmdIdx]){
+          executeCommand(filteredCmds[activeCmdIdx]);
+        }
+      } else if (e.key === 'Escape'){
+        e.preventDefault();
+        closeCommandPalette();
+      }
+    });
+  }
+
+  // Global hotkeys (Ctrl+K, Cmd+K, /, Escape)
+  window.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')){
+      e.preventDefault();
+      if (document.body.classList.contains('cmd-open')){
+        closeCommandPalette();
+      } else {
+        openCommandPalette();
+      }
+    } else if (e.key === '/' && !document.body.classList.contains('cmd-open')){
+      const tag = (document.activeElement && document.activeElement.tagName) || '';
+      if (tag !== 'INPUT' && tag !== 'TEXTAREA'){
+        e.preventDefault();
+        openCommandPalette();
+      }
+    } else if (e.key === 'Escape' && document.body.classList.contains('cmd-open')){
+      e.preventDefault();
+      closeCommandPalette();
+    }
   });
 })();
 </script>
