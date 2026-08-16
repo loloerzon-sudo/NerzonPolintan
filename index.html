@@ -116,10 +116,92 @@ nav.main a.act::after,nav.main a:hover::after{width:100%}
 .hero::after{content:'';position:absolute;left:-10%;bottom:-30%;width:60%;height:80%;background:radial-gradient(circle,rgba(184,240,74,.07),transparent 65%);pointer-events:none}
 .hero-grid{display:grid;grid-template-columns:7fr 5fr;gap:56px;align-items:end;position:relative;flex:1;padding-bottom:56px}
 .hero-aside{display:grid;grid-template-columns:minmax(150px,.85fr) 1.35fr;align-items:stretch;gap:14px}
-.portrait-card{position:relative;overflow:hidden;min-height:390px;border:1px solid var(--line);border-radius:4px;background:var(--panel)}
-.portrait-card img{width:100%;height:100%;object-fit:cover;object-position:center 24%;filter:grayscale(1) contrast(1.05) brightness(.88);transition:filter .6s,transform .8s}
-.portrait-card:hover img{filter:grayscale(.15) contrast(1) brightness(.96);transform:scale(1.025)}
-.portrait-label{position:absolute;left:12px;bottom:12px;right:12px;padding:9px 10px;background:rgba(10,12,14,.82);border:1px solid var(--line2);backdrop-filter:blur(6px);font-family:var(--mono);font-size:9px;letter-spacing:.15em;color:var(--acc)}
+/* ============ CYBER HUD PORTRAIT ============ */
+.portrait-card{
+  position:relative;overflow:hidden;min-height:390px;
+  border:1px solid var(--line2);border-radius:4px;background:var(--panel);
+  cursor:pointer;user-select:none;
+}
+.portrait-stage{
+  position:relative;width:100%;height:100%;min-height:390px;
+  overflow:hidden;
+}
+.portrait-img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center 20%;
+  opacity:0;transform:scale(1.04);
+  filter:grayscale(.85) contrast(1.1) brightness(.85);
+  transition:opacity .6s ease-in-out, transform .8s cubic-bezier(.2,.65,.2,1), filter .6s;
+  pointer-events:none;
+}
+.portrait-img.active{
+  opacity:1;transform:scale(1);
+  filter:grayscale(.25) contrast(1.08) brightness(.92);
+}
+.portrait-card:hover .portrait-img.active{
+  filter:grayscale(0) contrast(1.05) brightness(1);
+  transform:scale(1.025);
+}
+
+/* Biometric Scanline */
+.portrait-scanline{
+  position:absolute;left:0;right:0;height:2px;
+  background:linear-gradient(90deg, transparent, var(--acc), transparent);
+  box-shadow:0 0 12px var(--acc);
+  opacity:.65;pointer-events:none;z-index:4;
+  animation:scanlineMove 3.2s ease-in-out infinite alternate;
+}
+@keyframes scanlineMove{
+  0%{top:4%}
+  100%{top:94%}
+}
+.portrait-card:hover .portrait-scanline{
+  animation-duration:1.6s;
+  opacity:1;
+}
+
+/* Cyber Reticles / Corner Brackets */
+.portrait-corner{
+  position:absolute;width:10px;height:10px;
+  border-color:var(--acc);border-style:solid;pointer-events:none;z-index:5;
+}
+.portrait-corner.tl{top:8px;left:8px;border-width:2px 0 0 2px}
+.portrait-corner.tr{top:8px;right:8px;border-width:2px 2px 0 0}
+.portrait-corner.bl{bottom:44px;left:8px;border-width:0 0 2px 2px}
+.portrait-corner.br{bottom:44px;right:8px;border-width:0 2px 2px 0}
+
+/* Top Telemetry Tag */
+.portrait-hud-top{
+  position:absolute;top:10px;left:18px;right:18px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;
+  color:var(--acc);pointer-events:none;z-index:5;
+  text-shadow:0 1px 3px rgba(0,0,0,.8);
+}
+.portrait-hud-top .scan-live{display:flex;align-items:center;gap:5px}
+
+/* Bottom Label with Mode Switcher */
+.portrait-label{
+  position:absolute;left:10px;bottom:10px;right:10px;
+  padding:8px 12px;background:rgba(10,12,14,.88);
+  border:1px solid var(--line2);backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;
+  color:var(--acc);z-index:6;border-radius:2px;
+  transition:border-color .3s;
+}
+.portrait-card:hover .portrait-label{border-color:var(--acc)}
+.portrait-tag-wrap{display:flex;align-items:center;gap:8px}
+.portrait-nav-dots{display:flex;gap:4px}
+.portrait-dot{
+  width:5px;height:5px;border-radius:1px;background:var(--dim);
+  transition:background .25s,transform .25s;
+}
+.portrait-dot.active{
+  background:var(--acc);transform:scale(1.3);
+  box-shadow:0 0 6px var(--acc);
+}
 .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.22em;color:var(--acc);margin-bottom:28px;display:flex;align-items:center;gap:12px}
 .kicker::before{content:'';width:34px;height:1px;background:var(--acc)}
 h1.name{font-family:var(--disp);font-weight:700;font-size:clamp(46px,8.4vw,110px);line-height:.96;letter-spacing:-.03em;text-transform:uppercase}
@@ -716,9 +798,45 @@ footer{border-top:1px solid var(--line);padding:26px 0;position:relative;z-index
     </div>
 
     <aside class="hero-aside rv" style="--d:.2s" aria-label="Portrait and current status">
-      <figure class="portrait-card tilt-card spotlight-card">
-        <img src="assets/images/john-nerzon-polintan-profile.png" alt="Professional portrait of John Nerzon Polintan">
-        <figcaption class="portrait-label">JOHN NERZON POLINTAN // REMOTE OPS</figcaption>
+      <figure class="portrait-card tilt-card spotlight-card" id="portraitCard" role="region" aria-label="Interactive Cyber Portrait Slideshow (Click to cycle)">
+        <div class="portrait-stage">
+          <img class="portrait-img active" src="assets/images/john-nerzon-polintan-profile.png" alt="John Nerzon Polintan - Remote Operations" data-title="REMOTE OPS // CORE" data-idx="01">
+          <img class="portrait-img" src="assets/images/john-nerzon-matrix-operator.jpg" alt="John Nerzon Polintan - Matrix Operator" data-title="MATRIX OPERATOR // RECON" data-idx="02">
+          <img class="portrait-img" src="assets/images/john-nerzon-cyber-warrior.jpg" alt="John Nerzon Polintan - Cyber Release Warrior" data-title="BATTLE-TESTED // QA &amp; OPS" data-idx="03">
+          <img class="portrait-img" src="assets/images/john-nerzon-quantum-engineer.jpg" alt="John Nerzon Polintan - Systems Architect" data-title="SYSTEMS ARCHITECT // INTJ" data-idx="04">
+          <img class="portrait-img" src="assets/images/john-nerzon-mad-scientist.jpg" alt="John Nerzon Polintan - Chaos Engineering &amp; Hardware" data-title="CHAOS ENG // LAB CIRCUIT" data-idx="05">
+          <img class="portrait-img" src="assets/images/john-nerzon-metalhead-ops.jpg" alt="John Nerzon Polintan - Heavy Metal Server Ops" data-title="SERVER METAL // HEAVY OPS" data-idx="06">
+
+          <!-- Cyber Scanline -->
+          <div class="portrait-scanline" aria-hidden="true"></div>
+
+          <!-- HUD Corner Reticles -->
+          <div class="portrait-corner tl" aria-hidden="true"></div>
+          <div class="portrait-corner tr" aria-hidden="true"></div>
+          <div class="portrait-corner bl" aria-hidden="true"></div>
+          <div class="portrait-corner br" aria-hidden="true"></div>
+
+          <!-- Top HUD Header -->
+          <div class="portrait-hud-top" aria-hidden="true">
+            <span class="scan-live"><span class="dot-sm"></span>SCAN // ACTIVE</span>
+            <span id="portraitIdxBadge">AVATAR [01 / 06]</span>
+          </div>
+
+          <!-- Bottom Label -->
+          <figcaption class="portrait-label">
+            <div class="portrait-tag-wrap">
+              <span class="portrait-tag" id="portraitTag">REMOTE OPS // CORE</span>
+            </div>
+            <div class="portrait-nav-dots" id="portraitDots" aria-hidden="true">
+              <span class="portrait-dot active"></span>
+              <span class="portrait-dot"></span>
+              <span class="portrait-dot"></span>
+              <span class="portrait-dot"></span>
+              <span class="portrait-dot"></span>
+              <span class="portrait-dot"></span>
+            </div>
+          </figcaption>
+        </div>
       </figure>
       <div>
         <div class="panel tilt-card spotlight-card" aria-label="Status panel">
@@ -1773,6 +1891,69 @@ footer{border-top:1px solid var(--line);padding:26px 0;position:relative;z-index
     a.addEventListener('click', function(){ sfx.success(); });
   });
 
+  /* ============ CYBER HUD PORTRAIT SLIDESHOW ============ */
+  const portraitCard = document.getElementById('portraitCard');
+  let cycleAvatar = function(){};
+  if (portraitCard){
+    const pImgs = portraitCard.querySelectorAll('.portrait-img');
+    const pTag = document.getElementById('portraitTag');
+    const pIdxBadge = document.getElementById('portraitIdxBadge');
+    const pDots = portraitCard.querySelectorAll('.portrait-dot');
+    let curAvatar = 0;
+    let pInterval = null;
+    let pIsHovered = false;
+
+    function setAvatar(idx, playSound){
+      curAvatar = (idx + pImgs.length) % pImgs.length;
+      pImgs.forEach(function(img, i){
+        img.classList.toggle('active', i === curAvatar);
+      });
+      pDots.forEach(function(dot, i){
+        dot.classList.toggle('active', i === curAvatar);
+      });
+      const activeImg = pImgs[curAvatar];
+      if (activeImg && pTag){
+        const title = activeImg.getAttribute('data-title') || 'REMOTE OPS // CORE';
+        scramble(pTag, title, 1);
+      }
+      if (pIdxBadge){
+        pIdxBadge.textContent = 'AVATAR [0' + (curAvatar + 1) + ' / 0' + pImgs.length + ']';
+      }
+      if (playSound && sfx.cmd){
+        sfx.cmd();
+      }
+    }
+
+    cycleAvatar = function(){
+      setAvatar(curAvatar + 1, true);
+    };
+
+    function startAutoCycle(){
+      if (reduced) return;
+      if (pInterval) clearInterval(pInterval);
+      pInterval = setInterval(function(){
+        if (!pIsHovered){
+          setAvatar(curAvatar + 1, false);
+        }
+      }, 4800);
+    }
+
+    portraitCard.addEventListener('mouseenter', function(){
+      pIsHovered = true;
+      sfx.hover();
+    });
+
+    portraitCard.addEventListener('mouseleave', function(){
+      pIsHovered = false;
+    });
+
+    portraitCard.addEventListener('click', function(){
+      setAvatar(curAvatar + 1, true);
+    });
+
+    startAutoCycle();
+  }
+
   /* ============ COMMAND PALETTE CONTROLLER ============ */
   const cmdModal = document.getElementById('cmdModal');
   const cmdInput = document.getElementById('cmdInput');
@@ -1789,6 +1970,7 @@ footer{border-top:1px solid var(--line);padding:26px 0;position:relative;z-index
     { id: 'sec-05', cat: 'NAV', label: '05 — Services (Freelance & Offerings)', key: 'JUMP', action: function(){ window.location.hash = 'services'; } },
     { id: 'sec-06', cat: 'NAV', label: '06 — Credentials (Certs & Education)', key: 'JUMP', action: function(){ window.location.hash = 'credentials'; } },
     { id: 'sec-07', cat: 'NAV', label: '07 — Contact (Direct Connect & QR)', key: 'JUMP', action: function(){ window.location.hash = 'contact'; } },
+    { id: 'act-avatar', cat: 'AVATAR', label: 'Cycle Cyber Avatar / Persona [01-06]', key: 'CYCLE', action: function(){ cycleAvatar(); } },
     { id: 'act-cv', cat: 'ACTION', label: 'Download CV / Resume (PDF)', key: 'FILE', action: function(){
       const a = document.createElement('a'); a.href = 'assets/documents/John-Nerzon-Polintan-CV-2026.pdf'; a.download = 'John-Nerzon-Polintan-CV-2026.pdf'; a.click();
     }},
