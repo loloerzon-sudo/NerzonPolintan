@@ -163,7 +163,7 @@ export function MinimalHubPage() {
                 </span>
               </motion.button>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
                 <motion.a
                   href="https://wa.me/639165271923"
                   target="_blank"
@@ -175,20 +175,20 @@ export function MinimalHubPage() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: 8,
+                    gap: 6,
                     background: 'var(--panel)',
                     border: '1px solid var(--line2)',
                     borderRadius: 3,
-                    padding: '10px',
+                    padding: '9px 6px',
                     fontFamily: 'var(--mono)',
-                    fontSize: 11,
-                    letterSpacing: '.08em',
+                    fontSize: 10.5,
+                    letterSpacing: '.06em',
                     color: 'var(--txt)',
                     textDecoration: 'none',
+                    whiteSpace: 'nowrap',
                   }}
                 >
                   <span>💬 WhatsApp</span>
-                  <span style={{ fontSize: 10, color: 'var(--dim)' }}>↗</span>
                 </motion.a>
 
                 <motion.a
@@ -202,20 +202,47 @@ export function MinimalHubPage() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: 8,
+                    gap: 6,
                     background: 'var(--panel)',
                     border: '1px solid var(--line2)',
                     borderRadius: 3,
-                    padding: '10px',
+                    padding: '9px 6px',
                     fontFamily: 'var(--mono)',
-                    fontSize: 11,
-                    letterSpacing: '.08em',
+                    fontSize: 10.5,
+                    letterSpacing: '.06em',
                     color: 'var(--txt)',
                     textDecoration: 'none',
+                    whiteSpace: 'nowrap',
                   }}
                 >
                   <span>🔗 LinkedIn</span>
-                  <span style={{ fontSize: 10, color: 'var(--dim)' }}>↗</span>
+                </motion.a>
+
+                <motion.a
+                  href="https://www.instagram.com/erztagram/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onMouseEnter={() => playHover()}
+                  onClick={() => playClick()}
+                  whileHover={{ scale: 1.02 }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 6,
+                    background: 'var(--panel)',
+                    border: '1px solid var(--line2)',
+                    borderRadius: 3,
+                    padding: '9px 6px',
+                    fontFamily: 'var(--mono)',
+                    fontSize: 10.5,
+                    letterSpacing: '.06em',
+                    color: 'var(--txt)',
+                    textDecoration: 'none',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  <span>📸 Instagram</span>
                 </motion.a>
               </div>
 

@@ -141,7 +141,8 @@ export function TerminalDrawer({ isOpen, onClose, onMatrixRain }: TerminalDrawer
               <div>
                 Email: <a href="mailto:erzon22@gmail.com" style={{ color: 'var(--acc)', textDecoration: 'underline' }}>erzon22@gmail.com</a><br />
                 WhatsApp: <a href="https://wa.me/639165271923" target="_blank" rel="noopener" style={{ color: 'var(--acc)', textDecoration: 'underline' }}>+63 916 527 1923</a><br />
-                LinkedIn: <a href="https://linkedin.com/in/erzon22" target="_blank" rel="noopener" style={{ color: 'var(--acc)', textDecoration: 'underline' }}>linkedin.com/in/erzon22</a>
+                LinkedIn: <a href="https://linkedin.com/in/erzon22" target="_blank" rel="noopener" style={{ color: 'var(--acc)', textDecoration: 'underline' }}>linkedin.com/in/erzon22</a><br />
+                Instagram: <a href="https://www.instagram.com/erztagram/" target="_blank" rel="noopener" style={{ color: 'var(--acc)', textDecoration: 'underline' }}>instagram.com/erztagram</a>
               </div>
             ),
           },

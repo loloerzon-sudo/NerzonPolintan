@@ -40,6 +40,7 @@ export function CommandPalette({ isOpen, onClose, onCopyEmail, onMatrixRain, onO
     { id: 'act-mail', cat: 'ACTION', label: 'Copy Email Address', key: 'COPY', action: onCopyEmail },
     { id: 'act-sfx', cat: 'ACTION', label: 'Toggle Sound Effects', key: 'AUDIO', action: () => toggleSfx() },
     { id: 'act-wa', cat: 'ACTION', label: 'WhatsApp Quick Chat', key: 'CHAT', action: () => window.open('https://wa.me/639165271923', '_blank', 'noopener') },
+    { id: 'act-ig', cat: 'ACTION', label: 'Instagram Profile (@erztagram)', key: 'INSTA', action: () => window.open('https://www.instagram.com/erztagram/', '_blank', 'noopener') },
     { id: 'act-matrix', cat: 'SYSTEM', label: 'matrix // Trigger Cyber Rain Burst', key: 'EXEC', action: onMatrixRain },
   ];
 
