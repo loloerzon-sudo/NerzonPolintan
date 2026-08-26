@@ -159,11 +159,11 @@ export function HeroSection() {
             </Link>
             <motion.a
               className="btn fill"
-              href="#services"
+              href="#pipeline"
               whileHover={{ y: -3 }}
               onMouseEnter={() => playHover()}
             >
-              VIEW SERVICES ↓
+              VIEW PIPELINE ↓
             </motion.a>
             <motion.a
               className="btn"

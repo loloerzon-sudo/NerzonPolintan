@@ -4,7 +4,6 @@ import { ProfileSection } from './sections/ProfileSection';
 import { PipelineSection } from './sections/PipelineSection';
 import { ExperienceSection } from './sections/ExperienceSection';
 import { SkillsSection } from './sections/SkillsSection';
-import { ServicesSection } from './sections/ServicesSection';
 import { CredentialsSection } from './sections/CredentialsSection';
 import { ContactSection } from './sections/ContactSection';
 import { Ticker } from '@/components/Ticker';
@@ -22,7 +21,7 @@ export function HomePage() {
       initial="initial"
       animate="animate"
       exit="exit"
-      transition={{ duration: 0.35, ease: [0.2, 0.65, 0.2, 1] }}
+      transition={{ duration: 0.35, ease: [0.2, 0.65, 0.2, 1] as const }}
     >
       <HeroSection />
       <Ticker />
@@ -30,7 +29,6 @@ export function HomePage() {
       <PipelineSection />
       <ExperienceSection />
       <SkillsSection />
-      <ServicesSection />
       <CredentialsSection />
       <ContactSection />
     </motion.div>

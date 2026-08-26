@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { TiltCard } from '@/components/TiltCard';
 import { AudioVisualizer } from '@/components/AudioVisualizer';
 import { RecentProjectsSection } from '@/pages/sections/RecentProjectsSection';
+import { ServiceDetailModal, HUB_SERVICES, type ServiceDetail } from '@/components/ServiceDetailModal';
 import { useScramble } from '@/hooks/useScramble';
 import { useAudio } from '@/hooks/useAudio';
 import profileImg from '@/assets/images/john-nerzon-polintan-profile.png';
@@ -29,7 +30,8 @@ export function MinimalHubPage() {
   const { display: name2 } = useScramble('POLINTAN');
   const { display: roleText, scramble: setRole } = useScramble(ROLES[0]);
   const [toastVisible, setToastVisible] = useState(false);
-  const { playHover, playClick, playSuccess } = useAudio();
+  const [selectedService, setSelectedService] = useState<ServiceDetail | null>(null);
+  const { playHover, playClick, playSuccess, playUnfurl } = useAudio();
 
   // Active role rotator on Digital Hub
   useEffect(() => {
@@ -56,6 +58,11 @@ export function MinimalHubPage() {
     setToastVisible(true);
     setTimeout(() => setToastVisible(false), 2000);
   }, [playSuccess]);
+
+  const handleOpenService = (service: ServiceDetail) => {
+    playUnfurl();
+    setSelectedService(service);
+  };
 
   return (
     <motion.div
@@ -240,52 +247,61 @@ export function MinimalHubPage() {
             </div>
           </TiltCard>
 
-          {/* Bento 3: Core Services Overview */}
+          {/* Bento 3: Compact Core Services with Interactive Pop-up Modal */}
           <TiltCard className="hub-bento-card bento-services" intensity={2.5}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
               <div style={{ fontFamily: 'var(--mono)', fontSize: 10.5, letterSpacing: '.16em', color: 'var(--acc)' }}>
                 SERVICES &amp; ENGAGEMENTS
               </div>
               <span className="avail-tag" style={{ padding: '3px 8px', fontSize: 9 }}>
                 <span className="dot" aria-hidden="true" style={{ width: 5, height: 5 }} />
-                AVAILABLE
+                CLICK FOR SPECS
               </span>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 10 }}>
-              {[
-                { no: '01', title: 'Webpage Design', desc: 'Custom UI/UX wireframing, dark-mode cyber aesthetics, design tokens' },
-                { no: '02', title: 'Website Package', desc: 'Turnkey full-stack build, DNS, SSL hosting, 100/100 Lighthouse speed' },
-                { no: '03', title: 'IT Consultation', desc: 'ServiceNow & Jira setup, ticketing audits, SOP & Knowledge Base design' },
-                { no: '04', title: 'App Development', desc: 'Full-stack web apps, API/webhook pipelines with partner engineering team' },
-              ].map((s) => (
-                <div
+            {/* Compact 4-Row Clickable Service Cards */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 8 }}>
+              {HUB_SERVICES.map((s) => (
+                <motion.div
                   key={s.no}
+                  onClick={() => handleOpenService(s)}
+                  onMouseEnter={() => playHover()}
+                  whileHover={{ x: 3, backgroundColor: 'rgba(184,240,74,0.06)' }}
                   style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
                     background: 'rgba(0,0,0,0.3)',
                     border: '1px solid var(--line2)',
                     borderRadius: 3,
-                    padding: '12px 14px',
+                    padding: '9px 14px',
+                    cursor: 'pointer',
+                    transition: 'border-color 0.2s, background-color 0.2s',
                   }}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`View details for ${s.title}`}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
-                    <span style={{ fontFamily: 'var(--mono)', fontSize: 9.5, color: 'var(--acc)', letterSpacing: '.14em' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                    <span style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--acc)', letterSpacing: '.14em' }}>
                       {s.no} //
                     </span>
-                    <a
-                      href={`mailto:erzon22@gmail.com?subject=Inquiry: ${encodeURIComponent(s.title)}`}
-                      style={{ fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--dim)', textDecoration: 'underline' }}
-                    >
-                      INQUIRE ↗
-                    </a>
+                    <div>
+                      <h4 style={{ fontFamily: 'var(--disp)', fontSize: 14, fontWeight: 700, color: 'var(--txt)', margin: 0 }}>
+                        {s.title}
+                      </h4>
+                    </div>
                   </div>
-                  <h4 style={{ fontFamily: 'var(--disp)', fontSize: 14, fontWeight: 700, color: 'var(--txt)', margin: '2px 0 4px' }}>
-                    {s.title}
-                  </h4>
-                  <p style={{ fontSize: 11.5, color: 'var(--mut)', margin: 0, lineHeight: 1.45 }}>
-                    {s.desc}
-                  </p>
-                </div>
+
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <span className="tag" style={{ fontSize: 8.5, padding: '2px 6px' }}>
+                      {s.status}
+                    </span>
+                    <span style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--acc)' }}>
+                      VIEW DETAILS ↗
+                    </span>
+                  </div>
+                </motion.div>
               ))}
             </div>
           </TiltCard>
@@ -311,7 +327,7 @@ export function MinimalHubPage() {
               </h3>
 
               <p style={{ fontSize: 13, color: 'var(--mut)', margin: '0 0 16px', lineHeight: 1.5 }}>
-                Explore the complete 7-section console: 6-stage game release pipeline, 7 role histories, expandable metric blueprints, and skill matrix.
+                Explore the complete 6-section console: 6-stage game release pipeline, 7 role histories, expandable metric blueprints, and skill matrix.
               </p>
 
               <Link
@@ -355,6 +371,12 @@ export function MinimalHubPage() {
           </div>
         </div>
       </div>
+
+      {/* Interactive Full Service Details Modal */}
+      <ServiceDetailModal
+        service={selectedService}
+        onClose={() => setSelectedService(null)}
+      />
 
       {/* Email Copy Toast Alert */}
       <AnimatePresence>

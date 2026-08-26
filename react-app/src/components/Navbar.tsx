@@ -8,9 +8,8 @@ const consoleNavLinks = [
   { href: '#pipeline', label: 'PIPELINE', num: '02' },
   { href: '#experience', label: 'EXPERIENCE', num: '03' },
   { href: '#skills', label: 'SKILLS', num: '04' },
-  { href: '#services', label: 'SERVICES', num: '05' },
-  { href: '#credentials', label: 'CREDENTIALS', num: '06' },
-  { href: '#contact', label: 'CONTACT', num: '07' },
+  { href: '#credentials', label: 'CREDENTIALS', num: '05' },
+  { href: '#contact', label: 'CONTACT', num: '06' },
 ];
 
 function useClock(tz: string) {

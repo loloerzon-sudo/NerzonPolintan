@@ -36,7 +36,7 @@ export function CredentialsSection() {
     <section className="sec" id="credentials">
       <div className="wrap cred-grid">
         <div>
-          <p className="s-no mono">06 — CREDENTIALS & EDUCATION</p>
+          <p className="s-no mono">05 — CREDENTIALS & EDUCATION</p>
           <h2 className="title" style={{ marginBottom: 40 }}>CERTIFICATIONS</h2>
           {certs.map((c, i) => (
             <RevealSection key={c.id} delay={i * 0.08}>
