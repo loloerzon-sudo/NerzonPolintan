@@ -477,12 +477,13 @@ footer { border-top: 1px solid var(--line); padding: 26px 0; position: relative;
   border: 1px solid var(--line);
   background: linear-gradient(180deg, var(--panel), var(--bg2));
   border-radius: 4px;
-  padding: 24px 26px;
+  padding: 22px 24px;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 14px;
 }
 .hub-bento-card::before {
   content: '';

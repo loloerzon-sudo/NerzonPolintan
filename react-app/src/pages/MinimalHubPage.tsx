@@ -260,7 +260,7 @@ export function MinimalHubPage() {
             </div>
 
             {/* Compact 4-Row Clickable Service Cards */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 8 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, flex: 1 }}>
               {HUB_SERVICES.map((s) => (
                 <motion.div
                   key={s.no}
@@ -271,10 +271,11 @@ export function MinimalHubPage() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
+                    gap: 12,
                     background: 'rgba(0,0,0,0.3)',
                     border: '1px solid var(--line2)',
                     borderRadius: 3,
-                    padding: '9px 14px',
+                    padding: '11px 14px',
                     cursor: 'pointer',
                     transition: 'border-color 0.2s, background-color 0.2s',
                   }}
@@ -282,23 +283,26 @@ export function MinimalHubPage() {
                   tabIndex={0}
                   aria-label={`View details for ${s.title}`}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                    <span style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--acc)', letterSpacing: '.14em' }}>
-                      {s.no} //
-                    </span>
-                    <div>
-                      <h4 style={{ fontFamily: 'var(--disp)', fontSize: 14, fontWeight: 700, color: 'var(--txt)', margin: 0 }}>
+                  <div style={{ flex: 1, minWidth: 180 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                      <span style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--acc)', letterSpacing: '.14em' }}>
+                        {s.no} //
+                      </span>
+                      <h4 style={{ fontFamily: 'var(--disp)', fontSize: 14.5, fontWeight: 700, color: 'var(--txt)', margin: 0 }}>
                         {s.title}
                       </h4>
+                      <span className="tag" style={{ fontSize: 8.5, padding: '1px 5px', color: 'var(--dim)' }}>
+                        {s.status}
+                      </span>
                     </div>
+                    <p style={{ fontSize: 12, color: 'var(--mut)', margin: '3px 0 0', lineHeight: 1.35, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '420px' }}>
+                      {s.desc}
+                    </p>
                   </div>
 
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <span className="tag" style={{ fontSize: 8.5, padding: '2px 6px' }}>
-                      {s.status}
-                    </span>
-                    <span style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--acc)' }}>
-                      VIEW DETAILS ↗
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
+                    <span style={{ fontFamily: 'var(--mono)', fontSize: 9.5, color: 'var(--acc)', fontWeight: 600, letterSpacing: '.1em' }}>
+                      SPECS ↗
                     </span>
                   </div>
                 </motion.div>
