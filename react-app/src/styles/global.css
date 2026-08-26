@@ -12,7 +12,8 @@
 @font-face { font-family: 'JetBrains Mono'; src: url('/src/assets/fonts/jetbrains-mono-700.ttf') format('truetype'); font-weight: 700; font-display: swap; }
 
 /* ============ DESIGN TOKENS ============ */
-:root {
+:root,
+[data-theme="cyber-lime"] {
   --bg: #0a0c0e;
   --bg2: #0d1013;
   --panel: #11151a;
@@ -30,6 +31,70 @@
   --body: 'Instrument Sans', sans-serif;
   --mono: 'JetBrains Mono', monospace;
   --hdr: 64px;
+}
+
+[data-theme="neon-cyan"] {
+  --bg: #060b11;
+  --bg2: #09111a;
+  --panel: #0d1722;
+  --panel2: #121e2c;
+  --line: #1c2b3c;
+  --line2: #25394f;
+  --txt: #e6f4f8;
+  --mut: #8da5b5;
+  --dim: #4d667b;
+  --acc: #00f0ff;
+  --acc-dk: #032329;
+  --amb: #ffb454;
+  --red: #ff5370;
+}
+
+[data-theme="solar-amber"] {
+  --bg: #0c0906;
+  --bg2: #120e09;
+  --panel: #18130d;
+  --panel2: #1f1811;
+  --line: #2d2318;
+  --line2: #3d3021;
+  --txt: #f7eedf;
+  --mut: #ab9c8a;
+  --dim: #6e6050;
+  --acc: #ffb703;
+  --acc-dk: #281b01;
+  --amb: #fb8500;
+  --red: #e63946;
+}
+
+[data-theme="matrix-green"] {
+  --bg: #040804;
+  --bg2: #070d07;
+  --panel: #0a130a;
+  --panel2: #0f1a0f;
+  --line: #172817;
+  --line2: #213821;
+  --txt: #e2fbe2;
+  --mut: #82a882;
+  --dim: #466746;
+  --acc: #39ff14;
+  --acc-dk: #062302;
+  --amb: #ffd60a;
+  --red: #ff3333;
+}
+
+[data-theme="obsidian-light"] {
+  --bg: #f4f6f8;
+  --bg2: #e9ecef;
+  --panel: #ffffff;
+  --panel2: #f8fafc;
+  --line: #d2d8df;
+  --line2: #b8c1cb;
+  --txt: #111827;
+  --mut: #4b5563;
+  --dim: #9ca3af;
+  --acc: #0284c7;
+  --acc-dk: #f0f9ff;
+  --amb: #d97706;
+  --red: #dc2626;
 }
 
 /* ============ BASE RESET ============ */

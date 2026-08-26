@@ -11,6 +11,7 @@ import { TerminalDrawer } from '@/components/TerminalDrawer';
 import { MinimalHubPage } from '@/pages/MinimalHubPage';
 import { HomePage } from '@/pages/HomePage';
 import { PersonalityPage } from '@/pages/PersonalityPage';
+import { ThemeProvider } from '@/context/ThemeContext';
 import { useAudio } from '@/hooks/useAudio';
 
 const KONAMI_CODE = [
@@ -93,43 +94,45 @@ export function App() {
   }, []);
 
   return (
-    <div className="app-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <CustomCursor />
-      <NoiseOverlay />
-      <ParticleCanvas ref={canvasRef} />
+    <ThemeProvider>
+      <div className="app-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+        <CustomCursor />
+        <NoiseOverlay />
+        <ParticleCanvas ref={canvasRef} />
 
-      <Navbar
-        onOpenCmd={() => setCmdOpen(true)}
-        onOpenTerminal={() => setTermOpen(true)}
-      />
+        <Navbar
+          onOpenCmd={() => setCmdOpen(true)}
+          onOpenTerminal={() => setTermOpen(true)}
+        />
 
-      <main style={{ flex: 1, position: 'relative', zIndex: 1 }}>
-        <AnimatePresence mode="wait">
-          <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<MinimalHubPage />} />
-            <Route path="/console" element={<HomePage />} />
-            <Route path="/portfolio" element={<HomePage />} />
-            <Route path="/personality" element={<PersonalityPage />} />
-          </Routes>
-        </AnimatePresence>
-      </main>
+        <main style={{ flex: 1, position: 'relative', zIndex: 1 }}>
+          <AnimatePresence mode="wait">
+            <Routes location={location} key={location.pathname}>
+              <Route path="/" element={<MinimalHubPage />} />
+              <Route path="/console" element={<HomePage />} />
+              <Route path="/portfolio" element={<HomePage />} />
+              <Route path="/personality" element={<PersonalityPage />} />
+            </Routes>
+          </AnimatePresence>
+        </main>
 
-      <Footer sfxEnabled={sfxEnabled} onToggleSfx={toggleSfx} />
+        <Footer sfxEnabled={sfxEnabled} onToggleSfx={toggleSfx} />
 
-      <CommandPalette
-        isOpen={cmdOpen}
-        onClose={() => setCmdOpen(false)}
-        onCopyEmail={handleCopyEmail}
-        onMatrixRain={handleMatrixRain}
-        onOpenTerminal={() => setTermOpen(true)}
-      />
+        <CommandPalette
+          isOpen={cmdOpen}
+          onClose={() => setCmdOpen(false)}
+          onCopyEmail={handleCopyEmail}
+          onMatrixRain={handleMatrixRain}
+          onOpenTerminal={() => setTermOpen(true)}
+        />
 
-      <TerminalDrawer
-        isOpen={termOpen}
-        onClose={() => setTermOpen(false)}
-        onMatrixRain={handleMatrixRain}
-      />
-    </div>
+        <TerminalDrawer
+          isOpen={termOpen}
+          onClose={() => setTermOpen(false)}
+          onMatrixRain={handleMatrixRain}
+        />
+      </div>
+    </ThemeProvider>
   );
 }
 

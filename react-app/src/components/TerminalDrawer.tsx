@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback, type ReactNode } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useAudio } from '@/hooks/useAudio';
+import { useTheme } from '@/context/ThemeContext';
 
 interface TerminalDrawerProps {
   isOpen: boolean;
@@ -25,6 +26,7 @@ export function TerminalDrawer({ isOpen, onClose, onMatrixRain }: TerminalDrawer
   const inputRef = useRef<HTMLInputElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
   const { playClick, playFanfare } = useAudio();
+  const { setTheme } = useTheme();
 
   useEffect(() => {
     if (isOpen) {
@@ -37,11 +39,13 @@ export function TerminalDrawer({ isOpen, onClose, onMatrixRain }: TerminalDrawer
   }, [history]);
 
   const handleCommand = useCallback((raw: string) => {
-    const cmd = raw.trim().toLowerCase();
+    const parts = raw.trim().split(/\s+/);
+    const cmd = parts[0].toLowerCase();
+    const arg = parts[1]?.toLowerCase();
     playClick();
 
     setHistory(prev => [...prev, { type: 'input', text: `$ ${raw}` }]);
-    if (cmd) {
+    if (raw.trim()) {
       setCmdHistory(prev => [...prev, raw]);
       setHistoryIndex(-1);
     }
@@ -59,6 +63,7 @@ export function TerminalDrawer({ isOpen, onClose, onMatrixRain }: TerminalDrawer
                   <span className="mono dim">skills</span><span>List core technical capability matrix</span>
                   <span className="mono dim">pipeline</span><span>Display 6-stage game release workflow</span>
                   <span className="mono dim">status</span><span>System uptime &amp; current availability</span>
+                  <span className="mono dim">theme &lt;name&gt;</span><span>Switch theme (lime, cyan, amber, green, light)</span>
                   <span className="mono dim">cat bio</span><span>View cognitive profile &amp; overview</span>
                   <span className="mono dim">matrix</span><span>Trigger full-screen cyber matrix burst</span>
                   <span className="mono dim">whoami</span><span>Display session identity</span>
@@ -112,6 +117,33 @@ export function TerminalDrawer({ isOpen, onClose, onMatrixRain }: TerminalDrawer
             ),
           },
         ]);
+        break;
+
+      case 'theme':
+        if (arg === 'lime' || arg === 'cyber-lime') {
+          setTheme('cyber-lime');
+          setHistory(prev => [...prev, { type: 'system', text: 'Active theme switched to [Cyber Lime]' }]);
+        } else if (arg === 'cyan' || arg === 'neon-cyan') {
+          setTheme('neon-cyan');
+          setHistory(prev => [...prev, { type: 'system', text: 'Active theme switched to [Neon Cyan]' }]);
+        } else if (arg === 'amber' || arg === 'solar-amber') {
+          setTheme('solar-amber');
+          setHistory(prev => [...prev, { type: 'system', text: 'Active theme switched to [Solar Amber]' }]);
+        } else if (arg === 'green' || arg === 'matrix' || arg === 'matrix-green') {
+          setTheme('matrix-green');
+          setHistory(prev => [...prev, { type: 'system', text: 'Active theme switched to [Matrix Green]' }]);
+        } else if (arg === 'light' || arg === 'obsidian-light') {
+          setTheme('obsidian-light');
+          setHistory(prev => [...prev, { type: 'system', text: 'Active theme switched to [Obsidian Light]' }]);
+        } else {
+          setHistory(prev => [
+            ...prev,
+            {
+              type: 'output',
+              text: 'Usage: theme <lime | cyan | amber | green | light>',
+            },
+          ]);
+        }
         break;
 
       case 'cat bio':

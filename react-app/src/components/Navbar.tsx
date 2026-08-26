@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
 import { useAudio } from '@/hooks/useAudio';
+import { ThemeSelector } from '@/components/ThemeSelector';
 
 const consoleNavLinks = [
   { href: '#profile', label: 'PROFILE', num: '01' },
@@ -127,6 +128,7 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
                 <i /><i /><i /><i />
               </span>
             </button>
+            <ThemeSelector />
 
             {isHub ? (
               <Link to="/console" className="hd-action primary" onMouseEnter={() => playHover()} onClick={() => playClick()}>
