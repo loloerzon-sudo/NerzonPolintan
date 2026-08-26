@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { audioEngine } from '@/services/audioEngine';
 
-export type ThemeId = 'cyber-lime' | 'neon-cyan' | 'solar-amber' | 'matrix-green' | 'obsidian-light';
+export type ThemeId = 'cyber-lime' | 'neon-cyan' | 'solar-amber' | 'neon-pink' | 'obsidian-light';
 
 export interface ThemeConfig {
   id: ThemeId;
@@ -16,7 +16,7 @@ export const THEMES: ThemeConfig[] = [
   {
     id: 'cyber-lime',
     name: 'Cyber Lime',
-    tag: 'DEFAULT',
+    tag: 'SIGNATURE DARK',
     bgHex: '#0a0c0e',
     accHex: '#b8f04a',
     description: 'Signature dark ops console with neon lime accents',
@@ -24,34 +24,34 @@ export const THEMES: ThemeConfig[] = [
   {
     id: 'neon-cyan',
     name: 'Neon Cyan',
-    tag: 'SCI-FI',
-    bgHex: '#080d14',
+    tag: 'SCI-FI CYBER',
+    bgHex: '#060b11',
     accHex: '#00f0ff',
     description: 'Deep navy cyberpunk interface with vibrant cyan',
   },
   {
     id: 'solar-amber',
     name: 'Solar Amber',
-    tag: 'INDUSTRIAL',
-    bgHex: '#0e0b08',
+    tag: 'INDUSTRIAL GOLD',
+    bgHex: '#0c0906',
     accHex: '#ffb703',
     description: 'Heavy operations dark warm palette with gold amber',
   },
   {
-    id: 'matrix-green',
-    name: 'Matrix Green',
-    tag: 'TERMINAL',
-    bgHex: '#050905',
-    accHex: '#39ff14',
-    description: 'Phosphor green CRT terminal aesthetics',
+    id: 'neon-pink',
+    name: 'Cyber Magenta',
+    tag: 'SYNTHWAVE NEON',
+    bgHex: '#0e0612',
+    accHex: '#ff2a85',
+    description: 'Vibrant cyberpunk neon pink with deep synth purple background',
   },
   {
     id: 'obsidian-light',
-    name: 'Obsidian Light',
-    tag: 'CLEAN LIGHT',
-    bgHex: '#f4f6f8',
+    name: 'Studio Light',
+    tag: 'HIGH-CONTRAST LIGHT',
+    bgHex: '#f8fafc',
     accHex: '#0284c7',
-    description: 'Crisp, high-contrast daylight studio mode',
+    description: 'Crisp, high-contrast daylight studio mode with deep readable text',
   },
 ];
 

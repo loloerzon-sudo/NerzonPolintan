@@ -43,11 +43,11 @@ export function CommandPalette({ isOpen, onClose, onCopyEmail, onMatrixRain, onO
     { id: 'act-sfx', cat: 'ACTION', label: 'Toggle Sound Effects', key: 'AUDIO', action: () => toggleSfx() },
     { id: 'act-wa', cat: 'ACTION', label: 'WhatsApp Quick Chat', key: 'CHAT', action: () => window.open('https://wa.me/639165271923', '_blank', 'noopener') },
     { id: 'act-ig', cat: 'ACTION', label: 'Instagram Profile (@erztagram)', key: 'INSTA', action: () => window.open('https://www.instagram.com/erztagram/', '_blank', 'noopener') },
-    { id: 'thm-lime', cat: 'THEME', label: 'Theme: Cyber Lime (Default Dark)', key: 'LIME', action: () => setTheme('cyber-lime') },
-    { id: 'thm-cyan', cat: 'THEME', label: 'Theme: Neon Cyan (Sci-Fi Deep Blue)', key: 'CYAN', action: () => setTheme('neon-cyan') },
+    { id: 'thm-lime', cat: 'THEME', label: 'Theme: Cyber Lime (Signature Dark)', key: 'LIME', action: () => setTheme('cyber-lime') },
+    { id: 'thm-cyan', cat: 'THEME', label: 'Theme: Neon Cyan (Sci-Fi Deep Navy)', key: 'CYAN', action: () => setTheme('neon-cyan') },
     { id: 'thm-amber', cat: 'THEME', label: 'Theme: Solar Amber (Industrial Gold)', key: 'AMBER', action: () => setTheme('solar-amber') },
-    { id: 'thm-green', cat: 'THEME', label: 'Theme: Matrix Green (Phosphor Terminal)', key: 'MATRIX', action: () => setTheme('matrix-green') },
-    { id: 'thm-light', cat: 'THEME', label: 'Theme: Obsidian Light (Studio High-Contrast)', key: 'LIGHT', action: () => setTheme('obsidian-light') },
+    { id: 'thm-pink', cat: 'THEME', label: 'Theme: Cyber Magenta (Synthwave Neon Pink)', key: 'PINK', action: () => setTheme('neon-pink') },
+    { id: 'thm-light', cat: 'THEME', label: 'Theme: Studio Light (High-Contrast Daylight)', key: 'LIGHT', action: () => setTheme('obsidian-light') },
     { id: 'act-matrix', cat: 'SYSTEM', label: 'matrix // Trigger Cyber Rain Burst', key: 'EXEC', action: onMatrixRain },
   ];
 

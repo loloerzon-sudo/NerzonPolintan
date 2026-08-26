@@ -63,7 +63,7 @@ export function TerminalDrawer({ isOpen, onClose, onMatrixRain }: TerminalDrawer
                   <span className="mono dim">skills</span><span>List core technical capability matrix</span>
                   <span className="mono dim">pipeline</span><span>Display 6-stage game release workflow</span>
                   <span className="mono dim">status</span><span>System uptime &amp; current availability</span>
-                  <span className="mono dim">theme &lt;name&gt;</span><span>Switch theme (lime, cyan, amber, green, light)</span>
+                  <span className="mono dim">theme &lt;name&gt;</span><span>Switch theme (lime, cyan, amber, pink, light)</span>
                   <span className="mono dim">cat bio</span><span>View cognitive profile &amp; overview</span>
                   <span className="mono dim">matrix</span><span>Trigger full-screen cyber matrix burst</span>
                   <span className="mono dim">whoami</span><span>Display session identity</span>
@@ -129,18 +129,18 @@ export function TerminalDrawer({ isOpen, onClose, onMatrixRain }: TerminalDrawer
         } else if (arg === 'amber' || arg === 'solar-amber') {
           setTheme('solar-amber');
           setHistory(prev => [...prev, { type: 'system', text: 'Active theme switched to [Solar Amber]' }]);
-        } else if (arg === 'green' || arg === 'matrix' || arg === 'matrix-green') {
-          setTheme('matrix-green');
-          setHistory(prev => [...prev, { type: 'system', text: 'Active theme switched to [Matrix Green]' }]);
+        } else if (arg === 'pink' || arg === 'magenta' || arg === 'neon-pink') {
+          setTheme('neon-pink');
+          setHistory(prev => [...prev, { type: 'system', text: 'Active theme switched to [Cyber Magenta / Neon Pink]' }]);
         } else if (arg === 'light' || arg === 'obsidian-light') {
           setTheme('obsidian-light');
-          setHistory(prev => [...prev, { type: 'system', text: 'Active theme switched to [Obsidian Light]' }]);
+          setHistory(prev => [...prev, { type: 'system', text: 'Active theme switched to [Studio Light]' }]);
         } else {
           setHistory(prev => [
             ...prev,
             {
               type: 'output',
-              text: 'Usage: theme <lime | cyan | amber | green | light>',
+              text: 'Usage: theme <lime | cyan | amber | pink | light>',
             },
           ]);
         }
