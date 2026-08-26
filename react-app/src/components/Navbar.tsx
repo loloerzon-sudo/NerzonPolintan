@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
 import { useAudio } from '@/hooks/useAudio';
+import { useTheme, type ThemeId } from '@/context/ThemeContext';
 import { ThemeSelector } from '@/components/ThemeSelector';
 
 const consoleNavLinks = [
@@ -44,6 +45,7 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
   const mlt = useClock('Europe/Malta');
   const location = useLocation();
   const { sfxEnabled, toggleSfx, playClick, playHover, playCmd } = useAudio();
+  const { theme, setTheme, themes } = useTheme();
 
   const isHub = location.pathname === '/';
   const isConsole = location.pathname === '/console' || location.pathname === '/portfolio';
@@ -107,7 +109,7 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
           <div className="hd-actions">
             {onOpenTerminal && (
               <button
-                className="hd-action"
+                className="hd-action hide-on-mobile"
                 onClick={() => { playCmd(); onOpenTerminal(); }}
                 aria-label="Open CLI Terminal (~)"
                 title="Launch CLI Sandbox (~)"
@@ -115,11 +117,11 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
                 CLI <span className="cmd-k-badge">~</span>
               </button>
             )}
-            <button className="hd-action" onClick={() => { playCmd(); onOpenCmd(); }} aria-label="Open Command Palette (Ctrl+K)">
+            <button className="hd-action hide-on-mobile" onClick={() => { playCmd(); onOpenCmd(); }} aria-label="Open Command Palette (Ctrl+K)">
               CMD <span className="cmd-k-badge">⌘K</span>
             </button>
             <button
-              className="hd-action"
+              className="hd-action hide-on-mobile"
               onClick={async () => { await toggleSfx(); }}
               aria-label="Toggle Sound Effects"
             >
@@ -128,30 +130,34 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
                 <i /><i /><i /><i />
               </span>
             </button>
-            <ThemeSelector />
+
+            {/* Theme Selector stays visible on Mobile & Desktop */}
+            <div className="theme-toggle-wrap">
+              <ThemeSelector />
+            </div>
 
             {isHub ? (
-              <Link to="/console" className="hd-action primary" onMouseEnter={() => playHover()} onClick={() => playClick()}>
+              <Link to="/console" className="hd-action primary hide-on-mobile" onMouseEnter={() => playHover()} onClick={() => playClick()}>
                 FULL CONSOLE ↗
               </Link>
             ) : isConsole ? (
               <>
-                <Link to="/" className="hd-action" onMouseEnter={() => playHover()} onClick={() => playClick()}>
+                <Link to="/" className="hd-action hide-on-mobile" onMouseEnter={() => playHover()} onClick={() => playClick()}>
                   ← HUB
                 </Link>
-                <Link to="/personality" className="hd-action" onMouseEnter={() => playHover()} onClick={() => playClick()}>
+                <Link to="/personality" className="hd-action hide-on-mobile" onMouseEnter={() => playHover()} onClick={() => playClick()}>
                   INTJ-A ↗
                 </Link>
-                <a className="hd-action primary" href="/assets/documents/John-Nerzon-Polintan-CV-2026.pdf" download onClick={() => playClick()}>
+                <a className="hd-action primary hide-on-mobile" href="/assets/documents/John-Nerzon-Polintan-CV-2026.pdf" download onClick={() => playClick()}>
                   CV ↓
                 </a>
               </>
             ) : (
               <>
-                <Link to="/" className="hd-action" onMouseEnter={() => playHover()} onClick={() => playClick()}>
+                <Link to="/" className="hd-action hide-on-mobile" onMouseEnter={() => playHover()} onClick={() => playClick()}>
                   ← HUB
                 </Link>
-                <Link to="/console" className="hd-action primary" onMouseEnter={() => playHover()} onClick={() => playClick()}>
+                <Link to="/console" className="hd-action primary hide-on-mobile" onMouseEnter={() => playHover()} onClick={() => playClick()}>
                   FULL CONSOLE ↗
                 </Link>
               </>
@@ -181,38 +187,176 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
             animate={{ clipPath: 'inset(0 0 0% 0)' }}
             exit={{ clipPath: 'inset(0 0 100% 0)' }}
             transition={{ duration: 0.45, ease: [0.7, 0, 0.2, 1] as const }}
-            style={{ position: 'fixed', inset: 0, zIndex: 80, background: 'rgba(10,12,14,.97)', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 8vw', gap: 6 }}
+            style={{
+              position: 'fixed',
+              inset: 0,
+              zIndex: 99999,
+              background: 'var(--bg)',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              padding: '0 8vw',
+              gap: 12,
+              overflowY: 'auto',
+            }}
             aria-label="Mobile navigation"
           >
+            {/* Mobile Navigation Links */}
             {mobileNavItems.map((item, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -16 }}
-                transition={{ delay: i * 0.05, duration: 0.35, ease: [0.2, 0.65, 0.2, 1] as const }}
+                transition={{ delay: i * 0.04, duration: 0.35, ease: [0.2, 0.65, 0.2, 1] as const }}
               >
                 {item.action ? (
                   <button
                     onClick={item.action}
-                    style={{ fontFamily: 'var(--disp)', fontWeight: 700, fontSize: 'clamp(24px,6vw,40px)', letterSpacing: '-.01em', color: 'var(--acc)', display: 'flex', alignItems: 'baseline', gap: 16, padding: '10px 0', borderBottom: '1px solid rgba(184,240,74,.3)', width: '100%', textAlign: 'left', background: 'none', borderTop: 'none', borderLeft: 'none', borderRight: 'none', cursor: 'pointer' }}
+                    style={{
+                      fontFamily: 'var(--disp)',
+                      fontWeight: 700,
+                      fontSize: 'clamp(20px, 5.5vw, 32px)',
+                      letterSpacing: '-.01em',
+                      color: 'var(--acc)',
+                      display: 'flex',
+                      alignItems: 'baseline',
+                      gap: 14,
+                      padding: '8px 0',
+                      borderBottom: '1px solid rgba(184,240,74,.25)',
+                      width: '100%',
+                      textAlign: 'left',
+                      background: 'none',
+                      cursor: 'pointer',
+                    }}
                   >
-                    <span style={{ fontFamily: 'var(--mono)', fontStyle: 'normal', fontSize: 12, color: 'var(--acc)' }}>{item.icon}</span>
+                    <span style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--acc)' }}>{item.icon}</span>
                     {item.label}
                   </button>
                 ) : item.isRoute ? (
-                  <Link to={item.href} onClick={closeMenu} style={{ fontFamily: 'var(--disp)', fontWeight: 700, fontSize: 'clamp(24px,6vw,40px)', letterSpacing: '-.01em', color: item.accent ? 'var(--acc)' : 'var(--mut)', display: 'flex', alignItems: 'baseline', gap: 16, padding: '10px 0', borderBottom: '1px solid var(--line)' }}>
-                    <i style={{ fontFamily: 'var(--mono)', fontStyle: 'normal', fontSize: 12, color: 'var(--dim)' }}>{item.icon}</i>
+                  <Link
+                    to={item.href}
+                    onClick={closeMenu}
+                    style={{
+                      fontFamily: 'var(--disp)',
+                      fontWeight: 700,
+                      fontSize: 'clamp(20px, 5.5vw, 32px)',
+                      letterSpacing: '-.01em',
+                      color: item.accent ? 'var(--acc)' : 'var(--mut)',
+                      display: 'flex',
+                      alignItems: 'baseline',
+                      gap: 14,
+                      padding: '8px 0',
+                      borderBottom: '1px solid var(--line)',
+                    }}
+                  >
+                    <i style={{ fontFamily: 'var(--mono)', fontStyle: 'normal', fontSize: 11, color: 'var(--dim)' }}>{item.icon}</i>
                     {item.label}
                   </Link>
                 ) : (
-                  <a href={item.href} onClick={closeMenu} download={item.download ? true : undefined} style={{ fontFamily: 'var(--disp)', fontWeight: 700, fontSize: 'clamp(24px,6vw,40px)', letterSpacing: '-.01em', color: 'var(--mut)', display: 'flex', alignItems: 'baseline', gap: 16, padding: '10px 0', borderBottom: '1px solid var(--line)' }}>
-                    <i style={{ fontFamily: 'var(--mono)', fontStyle: 'normal', fontSize: 12, color: 'var(--dim)' }}>{item.icon}</i>
+                  <a
+                    href={item.href}
+                    onClick={closeMenu}
+                    download={item.download ? true : undefined}
+                    style={{
+                      fontFamily: 'var(--disp)',
+                      fontWeight: 700,
+                      fontSize: 'clamp(20px, 5.5vw, 32px)',
+                      letterSpacing: '-.01em',
+                      color: 'var(--mut)',
+                      display: 'flex',
+                      alignItems: 'baseline',
+                      gap: 14,
+                      padding: '8px 0',
+                      borderBottom: '1px solid var(--line)',
+                    }}
+                  >
+                    <i style={{ fontFamily: 'var(--mono)', fontStyle: 'normal', fontSize: 11, color: 'var(--dim)' }}>{item.icon}</i>
                     {item.label}
                   </a>
                 )}
               </motion.div>
             ))}
+
+            {/* Mobile Interactive Theme Palette Swatches */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25, duration: 0.35 }}
+              style={{
+                marginTop: 14,
+                padding: '12px 14px',
+                background: 'var(--panel)',
+                border: '1px solid var(--line2)',
+                borderRadius: 4,
+              }}
+            >
+              <div
+                style={{
+                  fontFamily: 'var(--mono)',
+                  fontSize: 10,
+                  letterSpacing: '.18em',
+                  color: 'var(--acc)',
+                  marginBottom: 10,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <span>COLOR PALETTE</span>
+                <span>[TAP TO SWITCH]</span>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 8 }}>
+                {themes.map((t) => {
+                  const isActive = t.id === theme;
+                  return (
+                    <button
+                      key={t.id}
+                      onClick={() => {
+                        setTheme(t.id);
+                        playClick();
+                      }}
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: 5,
+                        padding: '8px 4px',
+                        borderRadius: 4,
+                        border: isActive ? `1.5px solid ${t.accHex}` : '1px solid var(--line)',
+                        background: isActive ? 'rgba(255,255,255,0.06)' : 'transparent',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      <span
+                        style={{
+                          width: 18,
+                          height: 18,
+                          borderRadius: '50%',
+                          backgroundColor: t.bgHex,
+                          border: `2px solid ${t.accHex}`,
+                          display: 'inline-block',
+                          boxShadow: isActive ? `0 0 8px ${t.accHex}` : 'none',
+                        }}
+                      />
+                      <span
+                        style={{
+                          fontFamily: 'var(--mono)',
+                          fontSize: 8.5,
+                          color: isActive ? t.accHex : 'var(--dim)',
+                          fontWeight: isActive ? 700 : 400,
+                          textAlign: 'center',
+                          lineHeight: 1.1,
+                        }}
+                      >
+                        {t.id === 'cyber-lime' ? 'Lime' : t.id === 'neon-cyan' ? 'Cyan' : t.id === 'solar-amber' ? 'Amber' : t.id === 'neon-pink' ? 'Pink' : 'Light'}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </motion.div>
           </motion.nav>
         )}
       </AnimatePresence>
