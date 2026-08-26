@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { MetricGauge, SchematicFlow } from '@/components/MetricGauge';
 import { useAudio } from '@/hooks/useAudio';
@@ -107,17 +108,26 @@ interface ServiceDetailModalProps {
 export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps) {
   const { playClick, playHover } = useAudio();
 
+  // Handle ESC and Body Scroll Lock
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
     if (service) {
+      document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.body.style.overflow = '';
     }
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, [service, onClose]);
 
-  return (
+  if (typeof document === 'undefined') return null;
+
+  return createPortal(
     <AnimatePresence>
       {service && (
         <motion.div
@@ -127,13 +137,14 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
           style={{
             position: 'fixed',
             inset: 0,
-            background: 'rgba(10, 12, 14, 0.88)',
-            backdropFilter: 'blur(14px)',
-            zIndex: 9995,
+            background: 'rgba(6, 8, 10, 0.92)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            zIndex: 999999, // Above header, navbar, and everything
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: 20,
+            padding: 'max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left))',
           }}
           onClick={(e) => {
             if (e.target === e.currentTarget) onClose();
@@ -142,41 +153,43 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
           role="dialog"
         >
           <motion.div
-            initial={{ scale: 0.95, y: 16 }}
+            initial={{ scale: 0.94, y: 20 }}
             animate={{ scale: 1, y: 0 }}
-            exit={{ scale: 0.95, y: 12 }}
-            transition={{ duration: 0.25, ease: [0.2, 0.65, 0.2, 1] as const }}
+            exit={{ scale: 0.94, y: 16 }}
+            transition={{ duration: 0.24, ease: [0.2, 0.65, 0.2, 1] as const }}
             style={{
-              width: 'min(680px, 94vw)',
-              maxHeight: '90vh',
+              width: 'min(680px, 100%)',
+              maxHeight: 'calc(100dvh - 36px)',
               background: 'var(--panel)',
               border: '1px solid var(--acc)',
               borderRadius: 6,
-              boxShadow: '0 24px 70px rgba(0,0,0,0.85), 0 0 35px rgba(184,240,74,0.12)',
+              boxShadow: '0 24px 70px rgba(0,0,0,0.9), 0 0 35px rgba(184,240,74,0.15)',
               overflowY: 'auto',
+              WebkitOverflowScrolling: 'touch',
               display: 'flex',
               flexDirection: 'column',
+              position: 'relative',
             }}
           >
-            {/* Modal Header */}
+            {/* Modal Header: Sticky at Top */}
             <div
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                padding: '16px 22px',
-                background: 'linear-gradient(180deg, var(--panel2), var(--panel))',
+                padding: '14px 18px',
+                background: 'var(--panel2)',
                 borderBottom: '1px solid var(--line)',
                 position: 'sticky',
                 top: 0,
-                zIndex: 10,
+                zIndex: 30,
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <span style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--acc)', letterSpacing: '.16em' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                <span style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--acc)', letterSpacing: '.16em', fontWeight: 600 }}>
                   {service.no} // {service.status}
                 </span>
-                <span className="tag now" style={{ fontSize: 9 }}>
+                <span className="tag now" style={{ fontSize: 9, padding: '2px 6px' }}>
                   {service.tag}
                 </span>
               </div>
@@ -188,56 +201,62 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
                 }}
                 style={{
                   fontFamily: 'var(--mono)',
-                  fontSize: 10,
+                  fontSize: 12,
+                  fontWeight: 700,
                   border: '1px solid var(--line2)',
-                  borderRadius: 2,
-                  padding: '4px 8px',
-                  color: 'var(--dim)',
+                  borderRadius: 3,
+                  padding: '6px 12px',
+                  color: 'var(--txt)',
                   cursor: 'pointer',
                   background: 'var(--bg)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 4,
+                  minHeight: 36,
                 }}
                 aria-label="Close modal"
               >
-                ESC ✕
+                ✕ CLOSE
               </button>
             </div>
 
             {/* Modal Body Content */}
-            <div style={{ padding: '24px 22px' }}>
+            <div style={{ padding: '20px 18px' }}>
               <h2
                 style={{
                   fontFamily: 'var(--disp)',
-                  fontSize: 'clamp(24px, 3.2vw, 32px)',
+                  fontSize: 'clamp(22px, 3.2vw, 30px)',
                   fontWeight: 700,
                   color: 'var(--txt)',
-                  margin: '0 0 12px',
+                  margin: '0 0 10px',
+                  lineHeight: 1.15,
                 }}
               >
                 {service.title}
               </h2>
 
-              <p style={{ fontSize: 14.5, color: 'var(--mut)', lineHeight: 1.65, margin: '0 0 20px' }}>
+              <p style={{ fontSize: 14, color: 'var(--mut)', lineHeight: 1.6, margin: '0 0 18px' }}>
                 {service.desc}
               </p>
 
               {/* Deliverables Checklist */}
-              <div style={{ marginBottom: 20 }}>
-                <div style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '.18em', color: 'var(--acc)', marginBottom: 10 }}>
+              <div style={{ marginBottom: 18 }}>
+                <div style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '.18em', color: 'var(--acc)', marginBottom: 8 }}>
                   SCOPE &amp; KEY DELIVERABLES
                 </div>
-                <ul style={{ listStyle: 'none', display: 'grid', gap: 8, padding: 0, margin: 0 }}>
+                <ul style={{ listStyle: 'none', display: 'grid', gap: 7, padding: 0, margin: 0 }}>
                   {service.items.map((item, idx) => (
                     <li
                       key={idx}
                       style={{
                         position: 'relative',
-                        paddingLeft: 20,
-                        fontSize: 13.5,
+                        paddingLeft: 18,
+                        fontSize: 13,
                         color: 'var(--txt)',
-                        lineHeight: 1.5,
+                        lineHeight: 1.45,
                       }}
                     >
-                      <span style={{ position: 'absolute', left: 0, color: 'var(--acc)', fontSize: 11, top: 1 }}>▸</span>
+                      <span style={{ position: 'absolute', left: 0, color: 'var(--acc)', fontSize: 10, top: 2 }}>▸</span>
                       {item}
                     </li>
                   ))}
@@ -246,10 +265,10 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
 
               {/* Metric Radial Gauges */}
               <div style={{ marginBottom: 18 }}>
-                <div style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '.18em', color: 'var(--acc)', marginBottom: 10 }}>
+                <div style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '.18em', color: 'var(--acc)', marginBottom: 8 }}>
                   PERFORMANCE BENCHMARKS
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 10 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 10 }}>
                   {service.metrics.map((m) => (
                     <MetricGauge key={m.label} {...m} />
                   ))}
@@ -259,20 +278,35 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
               {/* Schematic Workflow */}
               <SchematicFlow steps={service.flow} />
 
-              <div style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--dim)', margin: '10px 0 22px' }}>
+              <div style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--dim)', margin: '10px 0 20px' }}>
                 <b>ESTIMATED DELIVERY //</b> {service.turnaround}
               </div>
 
-              {/* Inquiry Action Button */}
-              <div style={{ borderTop: '1px solid var(--line2)', paddingTop: 18, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              {/* Action Buttons: Stack nicely on Mobile */}
+              <div
+                style={{
+                  borderTop: '1px solid var(--line2)',
+                  paddingTop: 16,
+                  display: 'flex',
+                  gap: 10,
+                  flexDirection: 'column',
+                }}
+              >
                 <motion.a
                   href={`mailto:erzon22@gmail.com?subject=${encodeURIComponent(service.subject)}`}
                   onMouseEnter={() => playHover()}
                   onClick={() => playClick()}
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.98 }}
                   className="btn fill"
-                  style={{ flex: 1, justifyContent: 'center', fontSize: 12, padding: '13px 20px', letterSpacing: '.14em' }}
+                  style={{
+                    width: '100%',
+                    justifyContent: 'center',
+                    fontSize: 12,
+                    padding: '13px 18px',
+                    letterSpacing: '.12em',
+                    textAlign: 'center',
+                  }}
                 >
                   INQUIRE ABOUT THIS SERVICE ➔
                 </motion.a>
@@ -283,15 +317,21 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
                     onClose();
                   }}
                   className="btn"
-                  style={{ fontSize: 11, padding: '13px 18px' }}
+                  style={{
+                    width: '100%',
+                    justifyContent: 'center',
+                    fontSize: 12,
+                    padding: '12px 18px',
+                  }}
                 >
-                  CLOSE
+                  CLOSE WINDOW
                 </button>
               </div>
             </div>
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
