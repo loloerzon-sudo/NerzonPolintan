@@ -1,0 +1,12 @@
+# Dependencies
+node_modules/
+react-app/node_modules/
+
+# Production build outputs
+react-app/dist/
+
+# Local backups and temporary files
+_backup_vanilla_*/
+*.log
+.DS_Store
+Thumbs.db
