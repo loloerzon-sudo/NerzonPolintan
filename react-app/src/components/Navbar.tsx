@@ -67,7 +67,6 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
     ...(onOpenTerminal ? [{ label: 'CLI Terminal [~]', icon: '$_', action: () => { closeMenu(); onOpenTerminal(); }, accent: true }] : []),
     ...(isHub ? [
       { label: 'Full Ops Console ↗', icon: '🚀', href: '/console', isRoute: true as const, accent: true },
-      { label: 'INTJ-A Cognitive Profile ↗', icon: '★', href: '/personality', isRoute: true as const, accent: false },
     ] : isConsole ? [
       { label: '← Back to Minimal Hub', icon: '◂', href: '/', isRoute: true as const, accent: true },
       ...consoleNavLinks.map(l => ({ label: l.label, icon: l.num, href: l.href, accent: false })),
@@ -130,14 +129,9 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
             </button>
 
             {isHub ? (
-              <>
-                <Link to="/personality" className="hd-action" onMouseEnter={() => playHover()} onClick={() => playClick()}>
-                  INTJ-A ↗
-                </Link>
-                <Link to="/console" className="hd-action primary" onMouseEnter={() => playHover()} onClick={() => playClick()}>
-                  FULL CONSOLE ↗
-                </Link>
-              </>
+              <Link to="/console" className="hd-action primary" onMouseEnter={() => playHover()} onClick={() => playClick()}>
+                FULL CONSOLE ↗
+              </Link>
             ) : isConsole ? (
               <>
                 <Link to="/" className="hd-action" onMouseEnter={() => playHover()} onClick={() => playClick()}>

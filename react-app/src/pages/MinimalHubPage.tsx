@@ -342,62 +342,38 @@ export function MinimalHubPage() {
             <RecentProjectsSection />
           </TiltCard>
 
-          {/* Bento 5: Deep Gateway Portals */}
-          <div className="bento-gateways" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 14 }}>
-            {/* Gateway A: Full Ops Console */}
-            <TiltCard className="hub-bento-card" intensity={3}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
-                <span style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--acc)', letterSpacing: '.16em' }}>
-                  DEEP PORTFOLIO GATEWAY
+          {/* Bento 5: Deep Gateway Portal */}
+          <div className="bento-gateways">
+            <TiltCard className="hub-bento-card" intensity={2.5}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12, flexWrap: 'wrap', gap: 8 }}>
+                <span style={{ fontFamily: 'var(--mono)', fontSize: 10.5, color: 'var(--acc)', letterSpacing: '.16em' }}>
+                  DEEP PORTFOLIO GATEWAY // 6-SECTION OPS CONSOLE
                 </span>
                 <span className="cmd-k-badge">/console</span>
               </div>
 
-              <h3 style={{ fontFamily: 'var(--disp)', fontSize: 20, fontWeight: 700, margin: '4px 0 8px', color: 'var(--txt)' }}>
-                Full Interactive Ops Console ↗
-              </h3>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20, flexWrap: 'wrap' }}>
+                <div style={{ flex: 1, minWidth: 260 }}>
+                  <h3 style={{ fontFamily: 'var(--disp)', fontSize: 'clamp(20px, 2.6vw, 26px)', fontWeight: 700, margin: '0 0 8px', color: 'var(--txt)' }}>
+                    Launch Full Interactive Ops Console ↗
+                  </h3>
+                  <p style={{ fontSize: 13.5, color: 'var(--mut)', margin: 0, lineHeight: 1.55 }}>
+                    Dive into the complete operations ecosystem: 6-stage live game release pipeline, 7 role histories with deep metric blueprints, technical capability matrix, and verified certifications.
+                  </p>
+                </div>
 
-              <p style={{ fontSize: 13, color: 'var(--mut)', margin: '0 0 16px', lineHeight: 1.5 }}>
-                Explore the complete 6-section console: 6-stage game release pipeline, 7 role histories, expandable metric blueprints, and skill matrix.
-              </p>
-
-              <Link
-                to="/console"
-                onMouseEnter={() => playHover()}
-                onClick={() => playClick()}
-                className="btn fill"
-                style={{ width: '100%', justifyContent: 'center', fontSize: 11.5, padding: '12px 16px' }}
-              >
-                LAUNCH FULL OPS CONSOLE ➔
-              </Link>
-            </TiltCard>
-
-            {/* Gateway B: INTJ-A Cognitive Profile */}
-            <TiltCard className="hub-bento-card" intensity={3}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
-                <span style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--acc)', letterSpacing: '.16em' }}>
-                  PSYCHOMETRIC BLUEPRINT
-                </span>
-                <span className="cmd-k-badge">/personality</span>
+                <div style={{ flexShrink: 0 }}>
+                  <Link
+                    to="/console"
+                    onMouseEnter={() => playHover()}
+                    onClick={() => playClick()}
+                    className="btn fill"
+                    style={{ fontSize: 12, padding: '14px 24px', letterSpacing: '.14em', whiteSpace: 'nowrap' }}
+                  >
+                    EXPLORE FULL CONSOLE ➔
+                  </Link>
+                </div>
               </div>
-
-              <h3 style={{ fontFamily: 'var(--disp)', fontSize: 20, fontWeight: 700, margin: '4px 0 8px', color: 'var(--txt)' }}>
-                INTJ-A Cognitive Blueprint ↗
-              </h3>
-
-              <p style={{ fontSize: 13, color: 'var(--mut)', margin: '0 0 16px', lineHeight: 1.5 }}>
-                Strategic systems thinking, operational dynamics, energizers/drainers breakdown based on the 16Personalities NERIS assessment.
-              </p>
-
-              <Link
-                to="/personality"
-                onMouseEnter={() => playHover()}
-                onClick={() => playClick()}
-                className="btn"
-                style={{ width: '100%', justifyContent: 'center', fontSize: 11.5, padding: '12px 16px', borderColor: 'var(--acc)', color: 'var(--acc)' }}
-              >
-                VIEW COGNITIVE REPORT ➔
-              </Link>
             </TiltCard>
           </div>
         </div>
