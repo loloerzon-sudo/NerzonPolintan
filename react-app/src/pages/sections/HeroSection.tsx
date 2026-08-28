@@ -274,7 +274,7 @@ export function HeroSection() {
                 <span className="caret" aria-hidden="true" />
               </div>
             </TiltCard>
-            <p className="personal-note"><b>OFF-DUTY //</b> Photography · Adobe Lightroom · Online Gaming</p>
+            <p className="personal-note"><b>OFF-DUTY //</b> Vibe Coding · AI Tech &amp; Agent Research · Photography · Adobe Lightroom · Online Gaming</p>
           </div>
         </motion.aside>
       </div>
