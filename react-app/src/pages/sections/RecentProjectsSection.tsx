@@ -23,12 +23,12 @@ export const RECENT_PROJECTS: ProjectItem[] = [
   },
   {
     id: 'p-02',
-    name: 'Akhi Web Platform',
-    url: 'https://akhi-psi.vercel.app/',
-    displayUrl: 'akhi-psi.vercel.app',
-    desc: 'Modern web application and digital platform with interactive components.',
+    name: 'Akhi Builders Corp.',
+    url: 'https://www.akhibuilderscorp.com/',
+    displayUrl: 'akhibuilderscorp.com',
+    desc: 'Official corporate website and digital platform for Akhi Builders Corp.',
     status: 'IN-PROGRESS',
-    tags: ['WEB APP', 'NEXT.JS / REACT', 'VIBE CODING'],
+    tags: ['CORPORATE WEB', 'NEXT.JS / REACT', 'VIBE CODING'],
   },
   {
     id: 'p-03',
