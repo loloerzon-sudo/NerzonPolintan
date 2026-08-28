@@ -14,6 +14,24 @@ export interface ProjectItem {
 export const RECENT_PROJECTS: ProjectItem[] = [
   {
     id: 'p-01',
+    name: 'Tumpak! Tagalog Game',
+    url: 'https://tumpak-tagalog-game.vercel.app/',
+    displayUrl: 'tumpak-tagalog-game.vercel.app',
+    desc: 'Interactive browser-based Tagalog word game featuring real-time gameplay mechanics.',
+    status: 'IN-PROGRESS',
+    tags: ['GAME DEV', 'INTERACTIVE', 'BROWSER GAME'],
+  },
+  {
+    id: 'p-02',
+    name: 'Akhi Builders Corp.',
+    url: 'https://www.akhibuilderscorp.com/',
+    displayUrl: 'akhibuilderscorp.com',
+    desc: 'Official corporate website and digital platform for Akhi Builders Corp.',
+    status: 'COMPLETED',
+    tags: ['CORPORATE WEB', 'NEXT.JS / REACT', 'VIBE CODING'],
+  },
+  {
+    id: 'p-03',
     name: 'Icy Brow Studio',
     url: 'https://icybrowstudio.com/',
     displayUrl: 'icybrowstudio.com',
@@ -22,22 +40,13 @@ export const RECENT_PROJECTS: ProjectItem[] = [
     tags: ['TURNKEY WEB', 'CLIENT BOOKING', 'UI/UX'],
   },
   {
-    id: 'p-02',
-    name: 'Akhi Builders Corp.',
-    url: 'https://www.akhibuilderscorp.com/',
-    displayUrl: 'akhibuilderscorp.com',
-    desc: 'Official corporate website and digital platform for Akhi Builders Corp.',
-    status: 'IN-PROGRESS',
-    tags: ['CORPORATE WEB', 'NEXT.JS / REACT', 'VIBE CODING'],
-  },
-  {
-    id: 'p-03',
-    name: 'Tumpak! Tagalog Game',
-    url: 'https://tumpak-tagalog-game.vercel.app/',
-    displayUrl: 'tumpak-tagalog-game.vercel.app',
-    desc: 'Interactive browser-based Tagalog word game featuring real-time gameplay mechanics.',
-    status: 'IN-PROGRESS',
-    tags: ['GAME DEV', 'INTERACTIVE', 'BROWSER GAME'],
+    id: 'p-04',
+    name: 'JNP Photography Portfolio',
+    url: 'https://jnp-blue.vercel.app/',
+    displayUrl: 'jnp-blue.vercel.app',
+    desc: 'Visual photography showcase featuring Adobe Lightroom editing, portrait collections, and creative gallery exhibits.',
+    status: 'COMPLETED',
+    tags: ['PHOTOGRAPHY', 'LIGHTROOM', 'GALLERY SHOWCASE'],
   },
 ];
 
@@ -51,7 +60,7 @@ export function RecentProjectsSection({ isBento = false }: { isBento?: boolean }
           <span className="dot-sm" />
           RECENT PROJECTS &amp; TRACK RECORD
         </div>
-        <span className="mono dim" style={{ fontSize: 9.5 }}>3 ACTIVE</span>
+        <span className="mono dim" style={{ fontSize: 9.5 }}>4 FEATURED</span>
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
