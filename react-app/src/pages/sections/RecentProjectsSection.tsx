@@ -14,6 +14,15 @@ export interface ProjectItem {
 export const RECENT_PROJECTS: ProjectItem[] = [
   {
     id: 'p-01',
+    name: 'Konekto: Tagalog Word-Trace',
+    url: 'https://loloerzon-sudo.github.io/konekto/',
+    displayUrl: 'loloerzon-sudo.github.io/konekto',
+    desc: 'Dense 4×4 Tagalog word-trace puzzle featuring interwoven pathing, cross-word letter sharing, and dynamic vanishing tiles.',
+    status: 'COMPLETED',
+    tags: ['GAME DEV', 'TAGALOG PUZZLE', 'VANILLA JS'],
+  },
+  {
+    id: 'p-02',
     name: 'Tumpak! Tagalog Game',
     url: 'https://tumpak-tagalog-game.vercel.app/',
     displayUrl: 'tumpak-tagalog-game.vercel.app',
@@ -22,7 +31,7 @@ export const RECENT_PROJECTS: ProjectItem[] = [
     tags: ['GAME DEV', 'INTERACTIVE', 'BROWSER GAME'],
   },
   {
-    id: 'p-02',
+    id: 'p-03',
     name: 'Akhi Builders Corp.',
     url: 'https://www.akhibuilderscorp.com/',
     displayUrl: 'akhibuilderscorp.com',
@@ -31,7 +40,7 @@ export const RECENT_PROJECTS: ProjectItem[] = [
     tags: ['CORPORATE WEB', 'NEXT.JS / REACT', 'VIBE CODING'],
   },
   {
-    id: 'p-03',
+    id: 'p-04',
     name: 'Icy Brow Studio',
     url: 'https://icybrowstudio.com/',
     displayUrl: 'icybrowstudio.com',
@@ -40,7 +49,7 @@ export const RECENT_PROJECTS: ProjectItem[] = [
     tags: ['TURNKEY WEB', 'CLIENT BOOKING', 'UI/UX'],
   },
   {
-    id: 'p-04',
+    id: 'p-05',
     name: 'JNP Photography Portfolio',
     url: 'https://jnp-blue.vercel.app/',
     displayUrl: 'jnp-blue.vercel.app',
@@ -60,7 +69,7 @@ export function RecentProjectsSection({ isBento = false }: { isBento?: boolean }
           <span className="dot-sm" />
           RECENT PROJECTS &amp; TRACK RECORD
         </div>
-        <span className="mono dim" style={{ fontSize: 9.5 }}>4 FEATURED</span>
+        <span className="mono dim" style={{ fontSize: 9.5 }}>{RECENT_PROJECTS.length} FEATURED</span>
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>

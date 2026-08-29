@@ -32,6 +32,7 @@ export function CommandPalette({ isOpen, onClose, onCopyEmail, onMatrixRain, onO
     { id: 'sec-04', cat: 'SECTION', label: '04 — Skills (Console)', key: 'JUMP', action: () => { navigate('/console#skills'); } },
     { id: 'sec-05', cat: 'SECTION', label: '05 — Credentials (Console)', key: 'JUMP', action: () => { navigate('/console#credentials'); } },
     { id: 'sec-06', cat: 'SECTION', label: '06 — Contact (Console)', key: 'JUMP', action: () => { navigate('/console#contact'); } },
+    { id: 'proj-konekto', cat: 'PROJECT', label: 'Konekto: Tagalog Word-Trace [Completed]', key: 'LINK', action: () => window.open('https://loloerzon-sudo.github.io/konekto/', '_blank', 'noopener') },
     { id: 'proj-tumpak', cat: 'PROJECT', label: 'Tumpak! Tagalog Game [In-Progress]', key: 'LINK', action: () => window.open('https://tumpak-tagalog-game.vercel.app/', '_blank', 'noopener') },
     { id: 'proj-akhi', cat: 'PROJECT', label: 'Akhi Builders Corp. [Completed]', key: 'LINK', action: () => window.open('https://www.akhibuilderscorp.com/', '_blank', 'noopener') },
     { id: 'proj-icy', cat: 'PROJECT', label: 'Icy Brow Studio [Completed]', key: 'LINK', action: () => window.open('https://icybrowstudio.com/', '_blank', 'noopener') },
