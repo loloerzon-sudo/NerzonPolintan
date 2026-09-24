@@ -32,6 +32,7 @@ export function CommandPalette({ isOpen, onClose, onCopyEmail, onMatrixRain, onO
     { id: 'sec-04', cat: 'SECTION', label: '04 — Skills (Console)', key: 'JUMP', action: () => { navigate('/console#skills'); } },
     { id: 'sec-05', cat: 'SECTION', label: '05 — Credentials (Console)', key: 'JUMP', action: () => { navigate('/console#credentials'); } },
     { id: 'sec-06', cat: 'SECTION', label: '06 — Contact (Console)', key: 'JUMP', action: () => { navigate('/console#contact'); } },
+    { id: 'proj-aerzonwave', cat: 'PROJECT', label: 'AerzonWave: 3D Cyber Visualizer [In-Progress]', key: 'LINK', action: () => window.open('https://aerzonwave.nerzon.online/', '_blank', 'noopener') },
     { id: 'proj-tumpak', cat: 'PROJECT', label: 'Tumpak! Tagalog Game [In-Progress]', key: 'LINK', action: () => window.open('https://tumpak.nerzon.online/', '_blank', 'noopener') },
     { id: 'proj-konekto', cat: 'PROJECT', label: 'Konekto: Tagalog Word-Trace [In-Progress]', key: 'LINK', action: () => window.open('http://konekto.nerzon.online/', '_blank', 'noopener') },
     { id: 'proj-weddings', cat: 'PROJECT', label: 'Wedding Invitation Website [In-Progress]', key: 'LINK', action: () => window.open('https://weddings.nerzon.online/', '_blank', 'noopener') },

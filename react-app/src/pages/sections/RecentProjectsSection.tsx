@@ -14,6 +14,15 @@ export interface ProjectItem {
 export const RECENT_PROJECTS: ProjectItem[] = [
   {
     id: 'p-01',
+    name: 'AerzonWave: 3D Cyber Visualizer',
+    url: 'https://aerzonwave.nerzon.online/',
+    displayUrl: 'aerzonwave.nerzon.online',
+    desc: 'High-fidelity 3D audio-reactive cyber visualizer with real-time Web Audio API frequency analysis, procedural shaders, and kinetic typography.',
+    status: 'IN-PROGRESS',
+    tags: ['3D VISUALIZER', 'THREE.JS', 'AUDIO REACTIVE'],
+  },
+  {
+    id: 'p-02',
     name: 'Tumpak! Tagalog Game',
     url: 'https://tumpak.nerzon.online/',
     displayUrl: 'tumpak.nerzon.online',
@@ -22,7 +31,7 @@ export const RECENT_PROJECTS: ProjectItem[] = [
     tags: ['GAME DEV', 'INTERACTIVE', 'BROWSER GAME'],
   },
   {
-    id: 'p-02',
+    id: 'p-03',
     name: 'Konekto: Tagalog Word-Trace',
     url: 'http://konekto.nerzon.online/',
     displayUrl: 'konekto.nerzon.online',
@@ -31,7 +40,7 @@ export const RECENT_PROJECTS: ProjectItem[] = [
     tags: ['GAME DEV', 'TAGALOG PUZZLE', 'VANILLA JS'],
   },
   {
-    id: 'p-03',
+    id: 'p-04',
     name: 'Wedding Invitation Website',
     url: 'https://weddings.nerzon.online/',
     displayUrl: 'weddings.nerzon.online',
@@ -40,7 +49,7 @@ export const RECENT_PROJECTS: ProjectItem[] = [
     tags: ['EVENT PLATFORM', 'REACT / VITE', 'RSVP & UI/UX'],
   },
   {
-    id: 'p-04',
+    id: 'p-05',
     name: 'Akhi Builders Corp.',
     url: 'https://www.akhibuilderscorp.com/',
     displayUrl: 'akhibuilderscorp.com',
@@ -49,7 +58,7 @@ export const RECENT_PROJECTS: ProjectItem[] = [
     tags: ['CORPORATE WEB', 'NEXT.JS / REACT', 'VIBE CODING'],
   },
   {
-    id: 'p-05',
+    id: 'p-06',
     name: 'Icy Brow Studio',
     url: 'https://icybrowstudio.com/',
     displayUrl: 'icybrowstudio.com',
@@ -58,7 +67,7 @@ export const RECENT_PROJECTS: ProjectItem[] = [
     tags: ['TURNKEY WEB', 'CLIENT BOOKING', 'UI/UX'],
   },
   {
-    id: 'p-06',
+    id: 'p-07',
     name: 'JNP Photography Portfolio',
     url: 'http://jnp.nerzon.online/',
     displayUrl: 'jnp.nerzon.online',
