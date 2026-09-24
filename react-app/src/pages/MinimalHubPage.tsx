@@ -274,10 +274,11 @@ export function MinimalHubPage() {
             </div>
           </TiltCard>
 
-          {/* Bento 3: Compact Core Services with Interactive Pop-up Modal */}
+          {/* Bento 3: Core Services with Interactive Pop-up Modal */}
           <TiltCard className="hub-bento-card bento-services" intensity={2.5}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-              <div style={{ fontFamily: 'var(--mono)', fontSize: 10.5, letterSpacing: '.16em', color: 'var(--acc)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'var(--mono)', fontSize: 10.5, letterSpacing: '.16em', color: 'var(--acc)' }}>
+                <span className="dot-sm" />
                 SERVICES &amp; ENGAGEMENTS
               </div>
               <span className="avail-tag" style={{ padding: '3px 8px', fontSize: 9 }}>
@@ -286,54 +287,188 @@ export function MinimalHubPage() {
               </span>
             </div>
 
-            {/* Compact 4-Row Clickable Service Cards */}
+            {/* Enriched 6-Row Clickable Service Cards */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10, flex: 1 }}>
               {HUB_SERVICES.map((s) => (
                 <motion.div
                   key={s.no}
                   onClick={() => handleOpenService(s)}
                   onMouseEnter={() => playHover()}
-                  whileHover={{ x: 3, backgroundColor: 'rgba(184,240,74,0.06)' }}
+                  whileHover={{ x: 3, backgroundColor: 'rgba(255, 255, 255, 0.03)' }}
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    gap: 12,
-                    background: 'rgba(0,0,0,0.3)',
+                    display: 'block',
+                    background: 'rgba(0,0,0,0.25)',
                     border: '1px solid var(--line2)',
                     borderRadius: 3,
-                    padding: '11px 14px',
+                    padding: '12px 14px',
                     cursor: 'pointer',
-                    transition: 'border-color 0.2s, background-color 0.2s',
+                    transition: 'border-color 0.2s ease',
                   }}
                   role="button"
                   tabIndex={0}
                   aria-label={`View details for ${s.title}`}
                 >
-                  <div style={{ flex: 1, minWidth: 180 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, flexWrap: 'wrap' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                       <span style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--acc)', letterSpacing: '.14em' }}>
                         {s.no} //
                       </span>
-                      <h4 style={{ fontFamily: 'var(--disp)', fontSize: 14.5, fontWeight: 700, color: 'var(--txt)', margin: 0 }}>
+                      <h4 style={{ fontFamily: 'var(--disp)', fontSize: 15, fontWeight: 700, color: 'var(--txt)', margin: 0 }}>
                         {s.title}
                       </h4>
-                      <span className="tag" style={{ fontSize: 8.5, padding: '1px 5px', color: 'var(--dim)' }}>
-                        {s.status}
-                      </span>
                     </div>
-                    <p style={{ fontSize: 12, color: 'var(--mut)', margin: '3px 0 0', lineHeight: 1.35, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '420px' }}>
-                      {s.desc}
-                    </p>
+
+                    <span
+                      style={{
+                        fontFamily: 'var(--mono)',
+                        fontSize: 9,
+                        letterSpacing: '.14em',
+                        padding: '2px 8px',
+                        borderRadius: 2,
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 5,
+                        color: 'var(--acc)',
+                        backgroundColor: 'rgba(184,240,74,0.08)',
+                        border: '1px solid rgba(184,240,74,0.3)',
+                      }}
+                    >
+                      <span
+                        style={{
+                          width: 5,
+                          height: 5,
+                          borderRadius: '50%',
+                          backgroundColor: 'var(--acc)',
+                        }}
+                      />
+                      {s.status}
+                    </span>
                   </div>
 
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
-                    <span style={{ fontFamily: 'var(--mono)', fontSize: 9.5, color: 'var(--acc)', fontWeight: 600, letterSpacing: '.1em' }}>
-                      SPECS ↗
-                    </span>
+                  <p style={{ fontSize: 12.5, color: 'var(--mut)', margin: '6px 0 8px', lineHeight: 1.45 }}>
+                    {s.desc}
+                  </p>
+
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, flexWrap: 'wrap' }}>
+                    <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                      {(s.tags || []).map((t) => (
+                        <span
+                          key={t}
+                          style={{
+                            fontFamily: 'var(--mono)',
+                            fontSize: 8.5,
+                            letterSpacing: '.08em',
+                            color: 'var(--dim)',
+                            border: '1px solid var(--line)',
+                            padding: '1px 5px',
+                            borderRadius: 2,
+                          }}
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                      <span style={{ fontFamily: 'var(--mono)', fontSize: 9.5, color: 'var(--dim)', letterSpacing: '.06em' }}>
+                        {s.turnaround.split(' ')[0]} SLA
+                      </span>
+                      <span style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--acc)', fontWeight: 600, letterSpacing: '.1em' }}>
+                        SPECS ↗
+                      </span>
+                    </div>
                   </div>
                 </motion.div>
               ))}
+
+              {/* Custom Scope & Retainer Advisory Banner Card */}
+              <motion.div
+                onMouseEnter={() => playHover()}
+                style={{
+                  marginTop: 2,
+                  background: 'linear-gradient(135deg, rgba(184,240,74,0.04) 0%, rgba(0,0,0,0.35) 100%)',
+                  border: '1px dashed rgba(184,240,74,0.35)',
+                  borderRadius: 3,
+                  padding: '13px 15px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 8,
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 6 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <span style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--acc)', letterSpacing: '.14em', fontWeight: 600 }}>
+                      BESPOKE // SLA
+                    </span>
+                    <h4 style={{ fontFamily: 'var(--disp)', fontSize: 14.5, fontWeight: 700, color: 'var(--txt)', margin: 0 }}>
+                      Custom Scope &amp; Retainer Advisory
+                    </h4>
+                  </div>
+                  <span
+                    style={{
+                      fontFamily: 'var(--mono)',
+                      fontSize: 8.5,
+                      letterSpacing: '.12em',
+                      padding: '2px 7px',
+                      borderRadius: 2,
+                      color: 'var(--acc)',
+                      backgroundColor: 'rgba(184,240,74,0.08)',
+                      border: '1px solid rgba(184,240,74,0.3)',
+                    }}
+                  >
+                    WEEKENDS (GMT+8) + ASYNC
+                  </span>
+                </div>
+
+                <p style={{ fontSize: 12, color: 'var(--mut)', margin: 0, lineHeight: 1.45 }}>
+                  Need a dedicated technical lead, bespoke automation architecture, iGaming API integration, or private sprint SLA? Available for custom contract retainers and project milestone engineering.
+                </p>
+
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, flexWrap: 'wrap', paddingTop: 2 }}>
+                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                    {['DEDICATED ADVISORY', 'API PIPELINES', 'SPRINT SLA'].map((t) => (
+                      <span
+                        key={t}
+                        style={{
+                          fontFamily: 'var(--mono)',
+                          fontSize: 8.5,
+                          letterSpacing: '.08em',
+                          color: 'var(--dim)',
+                          border: '1px solid var(--line)',
+                          padding: '1px 5px',
+                          borderRadius: 2,
+                        }}
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  <motion.a
+                    href="mailto:erzon22@gmail.com?subject=Inquiry:%20Custom%20Scope%20/%20Retainer%20Advisory"
+                    onMouseEnter={() => playHover()}
+                    onClick={() => playClick()}
+                    whileHover={{ scale: 1.02, x: 2 }}
+                    whileTap={{ scale: 0.98 }}
+                    style={{
+                      fontFamily: 'var(--mono)',
+                      fontSize: 10,
+                      fontWeight: 700,
+                      letterSpacing: '.12em',
+                      color: 'var(--acc-dk)',
+                      backgroundColor: 'var(--acc)',
+                      padding: '5px 11px',
+                      borderRadius: 2,
+                      textDecoration: 'none',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 4,
+                    }}
+                  >
+                    INQUIRE BESPOKE ➔
+                  </motion.a>
+                </div>
+              </motion.div>
             </div>
           </TiltCard>
 

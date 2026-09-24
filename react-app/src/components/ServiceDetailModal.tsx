@@ -9,6 +9,7 @@ export interface ServiceDetail {
   title: string;
   status: string;
   tag: string;
+  tags?: string[];
   desc: string;
   items: string[];
   metrics: { label: string; value: string; pct: number; subtext: string }[];
@@ -23,6 +24,7 @@ export const HUB_SERVICES: ServiceDetail[] = [
     title: 'Landing Page Sprint',
     status: '48–72H LAUNCH',
     tag: 'RAPID · HIGH-CONVERTING',
+    tags: ['HIGH-CONVERTING', 'REACT / VITE', 'RAPID LAUNCH'],
     desc: 'High-conversion single-page website, portfolio, or event launch delivered at speed. Mobile-responsive, dark/light aesthetic, with custom domain and 1-click contact integration.',
     items: [
       'Single-Page High-Impact Wireframing & UI/UX Styling',
@@ -43,6 +45,7 @@ export const HUB_SERVICES: ServiceDetail[] = [
     title: 'Website Package',
     status: 'FULL-STACK BUILD',
     tag: 'TURNKEY · ZERO-BLOAT',
+    tags: ['TURNKEY BUILD', 'FAST VANILLA / SPA', 'DNS & HOSTING'],
     desc: 'Turnkey, full-cycle website development from initial concept to live production. Blazing fast, zero-bloat static sites and modern single-page applications.',
     items: [
       'Complete End-to-End Build, Styling, Animations & Logic',
@@ -63,6 +66,7 @@ export const HUB_SERVICES: ServiceDetail[] = [
     title: 'No-Code & AI Automation',
     status: 'WORKFLOW ADVISORY',
     tag: 'AIRTABLE · ZAPIER · MAKE',
+    tags: ['AIRTABLE CRM', 'ZAPIER / MAKE', 'AI AGENTS'],
     desc: 'Automate manual business tasks and repetitive processes using no-code platforms, Airtable relational databases, webhooks, and custom AI agents to save hours weekly.',
     items: [
       'Business Process Audit & Manual Task Bottleneck Identification',
@@ -83,6 +87,7 @@ export const HUB_SERVICES: ServiceDetail[] = [
     title: '1-on-1 Vibe Coding Coaching',
     status: 'LIVE TUTORIAL',
     tag: 'CURSOR · CLAUDE · AGENTS',
+    tags: ['CURSOR & CLAUDE', 'AI PROMPT ARCHITECTURE', 'LIVE PAIRING'],
     desc: 'Interactive 1-on-1 screen-share tutorial teaching non-technical founders, operators, and creators how to build & deploy real web apps from scratch using Cursor, Claude Code, and AI prompting.',
     items: [
       'IDE & AI Toolkit Setup (Cursor, Claude Code, Antigravity, Git)',
@@ -103,6 +108,7 @@ export const HUB_SERVICES: ServiceDetail[] = [
     title: 'IT Consultation',
     status: 'ADVISORY & AUDIT',
     tag: 'ITSM · SERVICENOW · JIRA',
+    tags: ['ITSM / SERVICENOW', 'JIRA SERVICE DESK', 'SOP ARCHITECTURE'],
     desc: 'Strategic operational advice and hands-on auditing drawn from 12+ years across enterprise IT support, service desks, and iGaming operations.',
     items: [
       'IT Systems & Helpdesk Workflow Auditing & Triage Optimization',
@@ -123,6 +129,7 @@ export const HUB_SERVICES: ServiceDetail[] = [
     title: 'App Development',
     status: 'TEAM COLLABORATION',
     tag: 'FULL-STACK · MVP DELIVERY',
+    tags: ['TEAM COLLAB', 'API PIPELINES', 'RAPID MVP'],
     desc: 'Custom web and application development executed in direct coordination with a vetted partner engineering team for end-to-end delivery.',
     items: [
       'Full-Stack Web App Engineering & Rapid MVP Delivery',
