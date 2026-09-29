@@ -50,6 +50,15 @@ export const RECENT_PROJECTS: ProjectItem[] = [
   },
   {
     id: 'p-05',
+    name: 'INNI INK: Tattoo Studio & Flash Archive',
+    url: 'https://inni-ink.vercel.app/',
+    displayUrl: 'inni-ink.vercel.app',
+    desc: 'Contemporary tattoo studio portfolio, digital flash archive, anime linework, darkwork gallery, and custom appointment booking experience.',
+    status: 'IN-PROGRESS',
+    tags: ['TATTOO STUDIO', 'REACT / VITE', 'FLASH ARCHIVE'],
+  },
+  {
+    id: 'p-06',
     name: 'Akhi Builders Corp.',
     url: 'https://www.akhibuilderscorp.com/',
     displayUrl: 'akhibuilderscorp.com',
@@ -58,7 +67,7 @@ export const RECENT_PROJECTS: ProjectItem[] = [
     tags: ['CORPORATE WEB', 'NEXT.JS / REACT', 'VIBE CODING'],
   },
   {
-    id: 'p-06',
+    id: 'p-07',
     name: 'Icy Brow Studio',
     url: 'https://icybrowstudio.com/',
     displayUrl: 'icybrowstudio.com',
@@ -67,7 +76,7 @@ export const RECENT_PROJECTS: ProjectItem[] = [
     tags: ['TURNKEY WEB', 'CLIENT BOOKING', 'UI/UX'],
   },
   {
-    id: 'p-07',
+    id: 'p-08',
     name: 'JNP Photography Portfolio',
     url: 'http://jnp.nerzon.online/',
     displayUrl: 'jnp.nerzon.online',

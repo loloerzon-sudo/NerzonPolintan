@@ -36,6 +36,7 @@ export function CommandPalette({ isOpen, onClose, onCopyEmail, onMatrixRain, onO
     { id: 'proj-tumpak', cat: 'PROJECT', label: 'Tumpak! Tagalog Game [In-Progress]', key: 'LINK', action: () => window.open('https://tumpak.nerzon.online/', '_blank', 'noopener') },
     { id: 'proj-konekto', cat: 'PROJECT', label: 'Konekto: Tagalog Word-Trace [In-Progress]', key: 'LINK', action: () => window.open('http://konekto.nerzon.online/', '_blank', 'noopener') },
     { id: 'proj-weddings', cat: 'PROJECT', label: 'Wedding Invitation Website [In-Progress]', key: 'LINK', action: () => window.open('https://weddings.nerzon.online/', '_blank', 'noopener') },
+    { id: 'proj-inni', cat: 'PROJECT', label: 'INNI INK: Tattoo Studio & Flash Archive [In-Progress]', key: 'LINK', action: () => window.open('https://inni-ink.vercel.app/', '_blank', 'noopener') },
     { id: 'proj-akhi', cat: 'PROJECT', label: 'Akhi Builders Corp. [Completed]', key: 'LINK', action: () => window.open('https://www.akhibuilderscorp.com/', '_blank', 'noopener') },
     { id: 'proj-icy', cat: 'PROJECT', label: 'Icy Brow Studio [Completed]', key: 'LINK', action: () => window.open('https://icybrowstudio.com/', '_blank', 'noopener') },
     { id: 'proj-jnp', cat: 'PROJECT', label: 'JNP Photography Portfolio [Completed]', key: 'LINK', action: () => window.open('http://jnp.nerzon.online/', '_blank', 'noopener') },
