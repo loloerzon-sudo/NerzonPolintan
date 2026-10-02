@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
 import { useAudio } from '@/hooks/useAudio';
-import { useTheme, type ThemeId } from '@/context/ThemeContext';
-import { ThemeSelector } from '@/components/ThemeSelector';
 
 const consoleNavLinks = [
   { href: '#profile', label: 'PROFILE', num: '01' },
@@ -45,7 +43,6 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
   const mlt = useClock('Europe/Malta');
   const location = useLocation();
   const { sfxEnabled, toggleSfx, playClick, playHover, playCmd } = useAudio();
-  const { theme, setTheme, themes } = useTheme();
 
   const isHub = location.pathname === '/';
   const isConsole = location.pathname === '/console' || location.pathname === '/portfolio';
@@ -131,10 +128,6 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
               </span>
             </button>
 
-            {/* Theme Selector stays visible on Mobile & Desktop */}
-            <div className="theme-toggle-wrap">
-              <ThemeSelector />
-            </div>
 
             {isHub ? (
               <Link to="/console" className="hd-action primary hide-on-mobile" onMouseEnter={() => playHover()} onClick={() => playClick()}>
@@ -278,85 +271,6 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
               </motion.div>
             ))}
 
-            {/* Mobile Interactive Theme Palette Swatches */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25, duration: 0.35 }}
-              style={{
-                marginTop: 14,
-                padding: '12px 14px',
-                background: 'var(--panel)',
-                border: '1px solid var(--line2)',
-                borderRadius: 4,
-              }}
-            >
-              <div
-                style={{
-                  fontFamily: 'var(--mono)',
-                  fontSize: 10,
-                  letterSpacing: '.18em',
-                  color: 'var(--acc)',
-                  marginBottom: 10,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <span>COLOR PALETTE</span>
-                <span>[TAP TO SWITCH]</span>
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 8 }}>
-                {themes.map((t) => {
-                  const isActive = t.id === theme;
-                  return (
-                    <button
-                      key={t.id}
-                      onClick={() => {
-                        setTheme(t.id);
-                        playClick();
-                      }}
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        gap: 5,
-                        padding: '8px 4px',
-                        borderRadius: 4,
-                        border: isActive ? `1.5px solid ${t.accHex}` : '1px solid var(--line)',
-                        background: isActive ? 'rgba(255,255,255,0.06)' : 'transparent',
-                        cursor: 'pointer',
-                      }}
-                    >
-                      <span
-                        style={{
-                          width: 18,
-                          height: 18,
-                          borderRadius: '50%',
-                          backgroundColor: t.bgHex,
-                          border: `2px solid ${t.accHex}`,
-                          display: 'inline-block',
-                          boxShadow: isActive ? `0 0 8px ${t.accHex}` : 'none',
-                        }}
-                      />
-                      <span
-                        style={{
-                          fontFamily: 'var(--mono)',
-                          fontSize: 8.5,
-                          color: isActive ? t.accHex : 'var(--dim)',
-                          fontWeight: isActive ? 700 : 400,
-                          textAlign: 'center',
-                          lineHeight: 1.1,
-                        }}
-                      >
-                        {t.id === 'cyber-lime' ? 'Lime' : t.id === 'neon-cyan' ? 'Cyan' : t.id === 'solar-amber' ? 'Amber' : t.id === 'neon-pink' ? 'Pink' : 'Light'}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            </motion.div>
           </motion.nav>
         )}
       </AnimatePresence>

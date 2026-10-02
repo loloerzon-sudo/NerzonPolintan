@@ -4,6 +4,7 @@ import { AnimatePresence } from 'motion/react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { NoiseOverlay } from '@/components/NoiseOverlay';
+import { LiquidPlasmaCanvas } from '@/components/LiquidPlasmaCanvas';
 import { ParticleCanvas, type ParticleCanvasRef } from '@/components/ParticleCanvas';
 import { CommandPalette } from '@/components/CommandPalette';
 import { CustomCursor } from '@/components/CustomCursor';
@@ -11,6 +12,7 @@ import { TerminalDrawer } from '@/components/TerminalDrawer';
 import { MinimalHubPage } from '@/pages/MinimalHubPage';
 import { HomePage } from '@/pages/HomePage';
 import { PersonalityPage } from '@/pages/PersonalityPage';
+import { PlasmaLabPage } from '@/pages/PlasmaLabPage';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { useAudio } from '@/hooks/useAudio';
 
@@ -98,6 +100,7 @@ export function App() {
       <div className="app-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <CustomCursor />
         <NoiseOverlay />
+        <LiquidPlasmaCanvas />
         <ParticleCanvas ref={canvasRef} />
 
         <Navbar
@@ -112,6 +115,7 @@ export function App() {
               <Route path="/console" element={<HomePage />} />
               <Route path="/portfolio" element={<HomePage />} />
               <Route path="/personality" element={<PersonalityPage />} />
+              <Route path="/plasma" element={<PlasmaLabPage />} />
             </Routes>
           </AnimatePresence>
         </main>

@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { audioEngine } from '@/services/audioEngine';
 
-export type ThemeId = 'cyber-lime' | 'neon-cyan' | 'solar-amber' | 'neon-pink' | 'obsidian-light';
+export type ThemeId = 'cyber-lime';
 
 export interface ThemeConfig {
   id: ThemeId;
@@ -20,38 +20,6 @@ export const THEMES: ThemeConfig[] = [
     bgHex: '#0a0c0e',
     accHex: '#b8f04a',
     description: 'Signature dark ops console with neon lime accents',
-  },
-  {
-    id: 'neon-cyan',
-    name: 'Neon Cyan',
-    tag: 'SCI-FI CYBER',
-    bgHex: '#060b11',
-    accHex: '#00f0ff',
-    description: 'Deep navy cyberpunk interface with vibrant cyan',
-  },
-  {
-    id: 'solar-amber',
-    name: 'Solar Amber',
-    tag: 'INDUSTRIAL GOLD',
-    bgHex: '#0c0906',
-    accHex: '#ffb703',
-    description: 'Heavy operations dark warm palette with gold amber',
-  },
-  {
-    id: 'neon-pink',
-    name: 'Cyber Magenta',
-    tag: 'SYNTHWAVE NEON',
-    bgHex: '#0e0612',
-    accHex: '#ff2a85',
-    description: 'Vibrant cyberpunk neon pink with deep synth purple background',
-  },
-  {
-    id: 'obsidian-light',
-    name: 'Studio Light',
-    tag: 'HIGH-CONTRAST LIGHT',
-    bgHex: '#f8fafc',
-    accHex: '#0284c7',
-    description: 'Crisp, high-contrast daylight studio mode with deep readable text',
   },
 ];
 

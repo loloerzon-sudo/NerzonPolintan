@@ -2,7 +2,6 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
 import { useAudio } from '@/hooks/useAudio';
-import { useTheme } from '@/context/ThemeContext';
 
 interface Cmd { id: string; cat: string; label: string; key: string; action: () => void; }
 
@@ -20,12 +19,12 @@ export function CommandPalette({ isOpen, onClose, onCopyEmail, onMatrixRain, onO
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const { playHover, playSuccess, toggleSfx } = useAudio();
-  const { setTheme } = useTheme();
 
   const COMMANDS: Cmd[] = [
     { id: 'nav-hub', cat: 'GATEWAY', label: 'Minimal Digital Hub (Home)', key: 'HUB', action: () => navigate('/') },
     { id: 'nav-console', cat: 'GATEWAY', label: 'Full Interactive Ops Console', key: 'OPS', action: () => navigate('/console') },
     { id: 'act-intj', cat: 'GATEWAY', label: 'INTJ-A Cognitive Blueprint', key: 'VIEW', action: () => navigate('/personality') },
+    { id: 'act-plasma', cat: 'EXPERIMENTAL', label: '🧪 Launch Plasma UI Liquid Glass Sandbox', key: 'LAB', action: () => navigate('/plasma') },
     { id: 'sec-01', cat: 'SECTION', label: '01 — Profile (Console)', key: 'JUMP', action: () => { navigate('/console#profile'); } },
     { id: 'sec-02', cat: 'SECTION', label: '02 — Pipeline (Console)', key: 'JUMP', action: () => { navigate('/console#pipeline'); } },
     { id: 'sec-03', cat: 'SECTION', label: '03 — Experience (Console)', key: 'JUMP', action: () => { navigate('/console#experience'); } },
@@ -49,11 +48,6 @@ export function CommandPalette({ isOpen, onClose, onCopyEmail, onMatrixRain, onO
     { id: 'act-sfx', cat: 'ACTION', label: 'Toggle Sound Effects', key: 'AUDIO', action: () => toggleSfx() },
     { id: 'act-wa', cat: 'ACTION', label: 'WhatsApp Quick Chat', key: 'CHAT', action: () => window.open('https://wa.me/639165271923', '_blank', 'noopener') },
     { id: 'act-ig', cat: 'ACTION', label: 'Instagram Profile (@erztagram)', key: 'INSTA', action: () => window.open('https://www.instagram.com/erztagram/', '_blank', 'noopener') },
-    { id: 'thm-lime', cat: 'THEME', label: 'Theme: Cyber Lime (Signature Dark)', key: 'LIME', action: () => setTheme('cyber-lime') },
-    { id: 'thm-cyan', cat: 'THEME', label: 'Theme: Neon Cyan (Sci-Fi Deep Navy)', key: 'CYAN', action: () => setTheme('neon-cyan') },
-    { id: 'thm-amber', cat: 'THEME', label: 'Theme: Solar Amber (Industrial Gold)', key: 'AMBER', action: () => setTheme('solar-amber') },
-    { id: 'thm-pink', cat: 'THEME', label: 'Theme: Cyber Magenta (Synthwave Neon Pink)', key: 'PINK', action: () => setTheme('neon-pink') },
-    { id: 'thm-light', cat: 'THEME', label: 'Theme: Studio Light (High-Contrast Daylight)', key: 'LIGHT', action: () => setTheme('obsidian-light') },
     { id: 'act-matrix', cat: 'SYSTEM', label: 'matrix // Trigger Cyber Rain Burst', key: 'EXEC', action: onMatrixRain },
   ];
 
