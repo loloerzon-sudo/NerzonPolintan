@@ -8,6 +8,20 @@ import { ServiceDetailModal, HUB_SERVICES, type ServiceDetail } from '@/componen
 import { useScramble } from '@/hooks/useScramble';
 import { useAudio } from '@/hooks/useAudio';
 import profileImg from '@/assets/images/john-nerzon-polintan-profile.png';
+import matrixImg from '@/assets/images/john-nerzon-matrix-operator.jpg';
+import cyberImg from '@/assets/images/john-nerzon-cyber-warrior.jpg';
+import quantumImg from '@/assets/images/john-nerzon-quantum-engineer.jpg';
+import madImg from '@/assets/images/john-nerzon-mad-scientist.jpg';
+import metalImg from '@/assets/images/john-nerzon-metalhead-ops.jpg';
+
+const PERSONAS = [
+  { id: 'core',  label: 'CORE',  idx: '01', title: 'REMOTE OPS // CORE', src: profileImg },
+  { id: 'recon', label: 'RECON', idx: '02', title: 'MATRIX OPERATOR // RECON', src: matrixImg },
+  { id: 'ops',   label: 'OPS',   idx: '03', title: 'BATTLE-TESTED // QA & OPS', src: cyberImg },
+  { id: 'intj',  label: 'INTJ',  idx: '04', title: 'SYSTEMS ARCHITECT // INTJ', src: quantumImg },
+  { id: 'lab',   label: 'LAB',   idx: '05', title: 'CHAOS ENG // LAB CIRCUIT', src: madImg },
+  { id: 'metal', label: 'HEAVY', idx: '06', title: 'SERVER METAL // HEAVY OPS', src: metalImg },
+];
 
 const ROLES = [
   'GAMES & CONFIG SPECIALIST',
@@ -31,7 +45,35 @@ export function MinimalHubPage() {
   const { display: roleText, scramble: setRole } = useScramble(ROLES[0]);
   const [toastVisible, setToastVisible] = useState(false);
   const [selectedService, setSelectedService] = useState<ServiceDetail | null>(null);
-  const { playHover, playClick, playSuccess, playUnfurl } = useAudio();
+  const [personaIdx, setPersonaIdx] = useState(0);
+  const [isGlitching, setIsGlitching] = useState(false);
+  const [isAutoCycling, setIsAutoCycling] = useState(true);
+  const { playHover, playClick, playSuccess, playUnfurl, playCmd } = useAudio();
+
+  // Gentle auto-cycling of personas (paused permanently on user interaction)
+  useEffect(() => {
+    if (!isAutoCycling) return;
+    const id = setInterval(() => {
+      setPersonaIdx((i) => (i + 1) % PERSONAS.length);
+    }, 6000);
+    return () => clearInterval(id);
+  }, [isAutoCycling]);
+
+  const selectPersona = (idx: number, fromUser = true) => {
+    if (fromUser) {
+      setIsAutoCycling(false);
+    }
+    playCmd();
+    setIsGlitching(true);
+    setTimeout(() => setIsGlitching(false), 300);
+    setPersonaIdx(idx);
+  };
+
+  const cyclePersona = () => {
+    selectPersona((personaIdx + 1) % PERSONAS.length, true);
+  };
+
+  const curPersona = PERSONAS[personaIdx];
 
   // Active role rotator on Digital Hub
   useEffect(() => {
@@ -91,17 +133,118 @@ export function MinimalHubPage() {
         <div className="hub-bento-grid">
           {/* Bento 1: Identity & Profile Header */}
           <TiltCard className="hub-bento-card bento-hero" intensity={2.5}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
-              <div style={{ position: 'relative', width: 90, height: 90, borderRadius: 4, overflow: 'hidden', border: '1px solid var(--acc)', flexShrink: 0 }}>
-                <img
-                  src={profileImg}
-                  alt="John Nerzon Polintan"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }}
-                />
-                <div className="portrait-scanline" style={{ animationDuration: '2s' }} aria-hidden="true" />
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: 20, flexWrap: 'wrap' }}>
+              {/* Interactive Cyber Persona Cluster */}
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+                <div
+                  onClick={cyclePersona}
+                  onMouseEnter={() => playHover()}
+                  role="button"
+                  tabIndex={0}
+                  title="Click to cycle cyber persona"
+                  style={{
+                    position: 'relative',
+                    width: 96,
+                    height: 96,
+                    borderRadius: 4,
+                    overflow: 'hidden',
+                    border: '1px solid var(--acc)',
+                    cursor: 'pointer',
+                    boxShadow: '0 0 16px rgba(184, 240, 74, 0.12)',
+                    filter: isGlitching ? 'hue-rotate(90deg) contrast(1.4)' : 'none',
+                    transition: 'filter 0.2s ease, box-shadow 0.2s ease',
+                  }}
+                >
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={curPersona.src}
+                      src={curPersona.src}
+                      alt={`John Nerzon Polintan - ${curPersona.title}`}
+                      initial={{ opacity: 0, scale: 1.05 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.96 }}
+                      transition={{ duration: 0.35, ease: 'easeInOut' }}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }}
+                    />
+                  </AnimatePresence>
+
+                  <div className="portrait-scanline" style={{ animationDuration: '2s' }} aria-hidden="true" />
+
+                  {/* Corner accents */}
+                  <span style={{ position: 'absolute', top: 2, left: 2, width: 4, height: 4, borderTop: '1px solid var(--acc)', borderLeft: '1px solid var(--acc)' }} aria-hidden="true" />
+                  <span style={{ position: 'absolute', top: 2, right: 2, width: 4, height: 4, borderTop: '1px solid var(--acc)', borderRight: '1px solid var(--acc)' }} aria-hidden="true" />
+                  <span style={{ position: 'absolute', bottom: 2, left: 2, width: 4, height: 4, borderBottom: '1px solid var(--acc)', borderLeft: '1px solid var(--acc)' }} aria-hidden="true" />
+                  <span style={{ position: 'absolute', bottom: 2, right: 2, width: 4, height: 4, borderBottom: '1px solid var(--acc)', borderRight: '1px solid var(--acc)' }} aria-hidden="true" />
+
+                  {/* Mini click-to-cycle hint badge */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      background: 'rgba(10, 12, 14, 0.78)',
+                      backdropFilter: 'blur(4px)',
+                      fontFamily: 'var(--mono)',
+                      fontSize: 8,
+                      letterSpacing: '.12em',
+                      color: 'var(--acc)',
+                      textAlign: 'center',
+                      padding: '2px 0',
+                      borderTop: '1px solid rgba(184,240,74,0.3)',
+                    }}
+                  >
+                    {curPersona.idx}/06 ⇄ CYCLE
+                  </div>
+                </div>
+
+                {/* Persona Title Badge */}
+                <div
+                  style={{
+                    fontFamily: 'var(--mono)',
+                    fontSize: 8.5,
+                    letterSpacing: '.1em',
+                    color: 'var(--acc)',
+                    textAlign: 'center',
+                    maxWidth: 110,
+                    lineHeight: 1.25,
+                  }}
+                >
+                  {curPersona.title}
+                </div>
+
+                {/* Mini Persona Selector Pills */}
+                <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', justifyContent: 'center', maxWidth: 120 }}>
+                  {PERSONAS.map((p, idx) => {
+                    const isSelected = idx === personaIdx;
+                    return (
+                      <button
+                        key={p.id}
+                        type="button"
+                        onMouseEnter={() => playHover()}
+                        onClick={() => selectPersona(idx, true)}
+                        title={p.title}
+                        style={{
+                          fontFamily: 'var(--mono)',
+                          fontSize: 7.5,
+                          letterSpacing: '.08em',
+                          padding: '1px 4px',
+                          borderRadius: 2,
+                          border: `1px solid ${isSelected ? 'var(--acc)' : 'var(--line)'}`,
+                          backgroundColor: isSelected ? 'rgba(184, 240, 74, 0.18)' : 'rgba(0, 0, 0, 0.3)',
+                          color: isSelected ? 'var(--acc)' : 'var(--dim)',
+                          cursor: 'pointer',
+                          transition: 'all 0.15s ease',
+                        }}
+                      >
+                        {p.label}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
 
-              <div style={{ flex: 1, minWidth: 240 }}>
+              <div style={{ flex: 1, minWidth: 220 }}>
                 <p className="kicker" style={{ margin: '0 0 6px', fontSize: 10.5, letterSpacing: '.18em' }}>
                   OPERATIONS &amp; WEB SPECIALIST
                 </p>
@@ -245,6 +388,36 @@ export function MinimalHubPage() {
                   <span>📸 Instagram</span>
                 </motion.a>
               </div>
+
+              <motion.a
+                href="https://ko-fi.com/nerzon"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Pang kape please ☕"
+                onMouseEnter={() => playHover()}
+                onClick={() => playClick()}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 8,
+                  background: 'rgba(184, 240, 74, 0.06)',
+                  border: '1px solid var(--acc)',
+                  color: 'var(--acc)',
+                  borderRadius: 3,
+                  padding: '10px 14px',
+                  fontFamily: 'var(--mono)',
+                  fontSize: 11.5,
+                  letterSpacing: '.1em',
+                  textDecoration: 'none',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                }}
+              >
+                <span>☕ BUY ME A COFFEE ↗</span>
+              </motion.a>
 
               <motion.a
                 href="/assets/documents/John-Nerzon-Polintan-CV-2026.pdf"

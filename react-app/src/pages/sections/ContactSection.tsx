@@ -49,10 +49,11 @@ export function ContactSection() {
           <div className="contact-actions">
             {[
               { label: 'CV · DOWNLOAD ↓', href: '/assets/documents/John-Nerzon-Polintan-CV-2026.pdf', fill: true, download: true },
+              { label: '☕ BUY ME A COFFEE ↗', href: 'https://ko-fi.com/nerzon', ext: true, title: 'Pang kape please ☕' },
               { label: 'IN · LINKEDIN ↗', href: 'https://linkedin.com/in/erzon22', ext: true },
               { label: 'WA · WHATSAPP ↗', href: 'https://wa.me/639165271923', ext: true },
               { label: 'IG · INSTAGRAM ↗', href: 'https://www.instagram.com/erztagram/', ext: true },
-            ].map(({ label, href, fill, download, ext }) => (
+            ].map(({ label, href, fill, download, ext, title }) => (
               <motion.a
                 key={label}
                 className={`btn${fill ? ' fill' : ''}`}
@@ -60,6 +61,7 @@ export function ContactSection() {
                 download={download}
                 target={ext ? '_blank' : undefined}
                 rel={ext ? 'noopener' : undefined}
+                title={title}
                 whileHover={{ y: -3 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 onMouseEnter={() => playHover()}
@@ -71,6 +73,7 @@ export function ContactSection() {
           <div className="contact-rows">
             {[
               { k: 'PHONE / WHATSAPP', v: <a href="https://wa.me/639165271923" target="_blank" rel="noopener">+63 916 527 1923 ↗</a> },
+              { k: 'SUPPORT / KO-FI',  v: <a href="https://ko-fi.com/nerzon" target="_blank" rel="noopener" title="Pang kape please ☕">ko-fi.com/nerzon ☕ ↗</a> },
               { k: 'LINKEDIN',         v: <a href="https://linkedin.com/in/erzon22" target="_blank" rel="noopener">linkedin.com/in/erzon22 ↗</a> },
               { k: 'INSTAGRAM',        v: <a href="https://www.instagram.com/erztagram/" target="_blank" rel="noopener">instagram.com/erztagram ↗</a> },
               { k: 'BASE / LOCATION',  v: <>Philippines · GMT+8 <span className="dim">— Remote worldwide</span></> },

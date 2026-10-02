@@ -677,6 +677,28 @@ footer { border-top: 1px solid var(--line); padding: 26px 0; position: relative;
   }
 }
 
+.project-item-card {
+  padding: 12px 14px;
+}
+
+@media (max-width: 760px) {
+  .hub-bento-card {
+    padding: 18px 16px;
+  }
+  .project-item-card {
+    padding: 11px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hub-bento-card {
+    padding: 14px 12px;
+  }
+  .project-item-card {
+    padding: 10px 10px;
+  }
+}
+
 /* ============ REDUCED MOTION ============ */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

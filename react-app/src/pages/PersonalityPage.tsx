@@ -90,7 +90,7 @@ function SWGrid({ items }: { items: { title: string; note: string; noteColor?: s
 export function PersonalityPage() {
   const { display: nm1 } = useScramble('NERZON:');
   const { display: nm2 } = useScramble('THE ARCHITECT');
-  const { playHover } = useAudio();
+  const { playHover, playClick } = useAudio();
 
   return (
     <motion.div
@@ -342,8 +342,40 @@ export function PersonalityPage() {
             </div>
           </RevealSection>
           <RevealSection delay={0.2}>
-            <div style={{ marginTop: 40, display: 'flex', justifyContent: 'center' }}>
-              <Link to="/" className="btn fill" style={{ fontSize: 12, padding: '14px 28px', letterSpacing: '.16em' }}>← RETURN TO PORTFOLIO</Link>
+            <div style={{ marginTop: 40, display: 'flex', justifyContent: 'center', gap: 14, flexWrap: 'wrap' }}>
+              <Link
+                to="/"
+                className="btn fill"
+                style={{ fontSize: 12, padding: '14px 28px', letterSpacing: '.16em' }}
+                onMouseEnter={() => playHover()}
+                onClick={() => playClick()}
+              >
+                ← RETURN TO PORTFOLIO
+              </Link>
+              <motion.a
+                href="https://ko-fi.com/nerzon"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Pang kape please ☕"
+                className="btn"
+                whileHover={{ y: -3 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                onMouseEnter={() => playHover()}
+                onClick={() => playClick()}
+                style={{
+                  fontSize: 12,
+                  padding: '14px 24px',
+                  letterSpacing: '.14em',
+                  borderColor: 'var(--acc)',
+                  color: 'var(--acc)',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  textDecoration: 'none',
+                }}
+              >
+                ☕ BUY ME A COFFEE ↗
+              </motion.a>
             </div>
           </RevealSection>
         </div>
