@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+﻿import { useState, useCallback, useEffect } from 'react';
 import { Link } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
 import { TiltCard } from '@/components/TiltCard';
@@ -106,11 +106,11 @@ export function MinimalHubPage() {
       exit="exit"
       transition={{ duration: 0.35, ease: [0.2, 0.65, 0.2, 1] as const }}
       className="hub-page-wrap"
-      style={{ minHeight: 'calc(100vh - var(--hdr))', paddingTop: 'calc(var(--hdr) + 24px)', paddingBottom: 48 }}
+      style={{ minHeight: 'calc(100vh - var(--hdr))', paddingTop: 'calc(var(--hdr) + 24px)', paddingBottom: 48, width: '100%', overflowX: 'hidden' }}
     >
       <div className="wrap">
         {/* Top Hub Status Bar */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20, flexWrap: 'wrap', gap: 10 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20, flexWrap: 'wrap', gap: 10, width: '100%' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '.18em', color: 'var(--acc)' }}>
             <span className="dot" aria-hidden="true" />
             <span>OPERATIONAL HUB // DIGITAL GATEWAY</span>
@@ -125,9 +125,9 @@ export function MinimalHubPage() {
         <div className="hub-bento-grid">
           {/* Bento 1: Identity & Profile Header */}
           <TiltCard className="hub-bento-card bento-hero" intensity={2.5}>
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: 20, flexWrap: 'wrap' }}>
+            <div className="hub-bento-hero-inner">
               {/* Interactive Cyber Persona Cluster */}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+              <div className="hub-persona-cluster">
                 <div
                   onClick={cyclePersona}
                   onMouseEnter={() => playHover()}
@@ -236,15 +236,15 @@ export function MinimalHubPage() {
                 </div>
               </div>
 
-              <div style={{ flex: 1, minWidth: 220 }}>
+              <div className="hub-bento-hero-text">
                 <p className="kicker" style={{ margin: '0 0 6px', fontSize: 10.5, letterSpacing: '.18em' }}>
                   OPERATIONS &amp; WEB SPECIALIST
                 </p>
-                <h1 style={{ fontFamily: 'var(--disp)', fontSize: 'clamp(26px, 3.8vw, 42px)', fontWeight: 700, lineHeight: 1.05, textTransform: 'uppercase', margin: 0 }}>
+                <h1 style={{ fontFamily: 'var(--disp)', fontSize: 'clamp(24px, 3.8vw, 42px)', fontWeight: 700, lineHeight: 1.05, textTransform: 'uppercase', margin: 0, wordBreak: 'break-word' }}>
                   <span>{name1}</span>{' '}
                   <span style={{ color: 'transparent', WebkitTextStroke: '1.2px var(--txt)' }}>{name2}</span>
                 </h1>
-                <div style={{ fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--acc)', marginTop: 8, display: 'flex', alignItems: 'center', gap: 8 }}>
+                <div style={{ fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--acc)', marginTop: 8, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
                   <span>&gt;_</span>
                   <b>{roleText}</b>
                   <span className="caret" aria-hidden="true" />
@@ -252,9 +252,13 @@ export function MinimalHubPage() {
               </div>
             </div>
 
-            <div style={{ borderTop: '1px solid var(--line2)', marginTop: 18, paddingTop: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10 }}>
-              <div style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--mut)' }}>
-                <span className="ok" style={{ color: 'var(--acc)', fontWeight: 600 }}>● ONLINE</span> — Philippines (GMT+8) • Remote Worldwide
+            <div className="hub-bento-status-row">
+              <div style={{ fontFamily: 'var(--mono)', fontSize: 10.5, color: 'var(--mut)', display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '4px 6px' }}>
+                <span className="ok" style={{ color: 'var(--acc)', fontWeight: 600 }}>● ONLINE</span>
+                <span style={{ color: 'var(--dim)' }}>—</span>
+                <span>Philippines (GMT+8)</span>
+                <span style={{ color: 'var(--dim)' }}>•</span>
+                <span>Remote Worldwide</span>
               </div>
               <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--dim)' }}>
                 12+ YEARS ENTERPRISE IT, IGAMING &amp; WEB
@@ -290,13 +294,14 @@ export function MinimalHubPage() {
                   fontSize: 12,
                   letterSpacing: '.08em',
                   cursor: 'pointer',
+                  width: '100%',
                 }}
               >
-                <span>✉ erzon22@gmail.com</span>
-                <span style={{ fontSize: 10, opacity: 0.8 }}>[COPY EMAIL]</span>
+                <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>✉ erzon22@gmail.com</span>
+                <span style={{ fontSize: 10, opacity: 0.8, flexShrink: 0, marginLeft: 6 }}>[COPY]</span>
               </motion.button>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+              <div className="hub-contact-2col">
                 <motion.a
                   href="https://t.me/nerzon"
                   target="_blank"
@@ -352,7 +357,7 @@ export function MinimalHubPage() {
                 </motion.a>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+              <div className="hub-contact-2col">
                 <motion.a
                   href="https://ko-fi.com/nerzon"
                   target="_blank"
@@ -410,7 +415,7 @@ export function MinimalHubPage() {
           </TiltCard>
 
           {/* Bento 3: Brief Introduction (Personal Human Dossier) */}
-          <div style={{ gridColumn: 'span 12' }}>
+          <div className="bento-intro">
             <TiltCard className="hub-bento-card" intensity={2}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 8 }}>
                 <div style={{ fontFamily: 'var(--mono)', fontSize: 10.5, letterSpacing: '.18em', color: 'var(--acc)', display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -420,12 +425,12 @@ export function MinimalHubPage() {
                 <span className="mono dim" style={{ fontSize: 9.5 }}>PHILOSOPHY &amp; ETHOS</span>
               </div>
 
-              <h3 style={{ fontFamily: 'var(--disp)', fontSize: 'clamp(22px, 3.2vw, 32px)', fontWeight: 700, margin: '0 0 16px', color: 'var(--txt)', letterSpacing: '-.01em', lineHeight: 1.2 }}>
+              <h3 style={{ fontFamily: 'var(--disp)', fontSize: 'clamp(20px, 3.2vw, 32px)', fontWeight: 700, margin: '0 0 16px', color: 'var(--txt)', letterSpacing: '-.01em', lineHeight: 1.25, wordBreak: 'break-word' }}>
                 Part-Time Coder.{' '}
                 <span style={{ color: 'var(--acc)' }}>Full-Time Curious Human.</span>
               </h3>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 14, fontSize: 'clamp(14.5px, 1.8vw, 16px)', color: 'var(--mut)', lineHeight: 1.7, maxWidth: 960 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 14, fontSize: 'clamp(14px, 1.8vw, 16px)', color: 'var(--mut)', lineHeight: 1.7, maxWidth: 960 }}>
                 <p style={{ margin: 0 }}>
                   Dad of three boys, AI enthusiast, hobbyist vibe coder, and an iGaming professional by day.
                 </p>
@@ -443,18 +448,19 @@ export function MinimalHubPage() {
                   background: 'linear-gradient(135deg, rgba(184, 240, 74, 0.07) 0%, rgba(10, 12, 14, 0.5) 100%)',
                   border: '1px solid rgba(184, 240, 74, 0.35)',
                   borderRadius: 4,
-                  padding: '14px 20px',
+                  padding: '14px 18px',
                   display: 'flex',
                   alignItems: 'center',
                   gap: 12,
                   fontFamily: 'var(--mono)',
-                  fontSize: 'clamp(12px, 1.6vw, 13.5px)',
+                  fontSize: 'clamp(11.5px, 1.6vw, 13.5px)',
                   color: 'var(--acc)',
                   fontWeight: 600,
                   letterSpacing: '.03em',
+                  lineHeight: 1.5,
                 }}
               >
-                <span style={{ fontSize: 18 }}>☕</span>
+                <span style={{ fontSize: 18, flexShrink: 0 }}>☕</span>
                 <span>Powered by curiosity, caffeine, and an unreasonable number of browser tabs.</span>
               </div>
             </TiltCard>
@@ -471,7 +477,7 @@ export function MinimalHubPage() {
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20, flexWrap: 'wrap' }}>
-                <div style={{ flex: 1, minWidth: 260 }}>
+                <div style={{ flex: 1, minWidth: 240 }}>
                   <h3 style={{ fontFamily: 'var(--disp)', fontSize: 'clamp(20px, 2.6vw, 26px)', fontWeight: 700, margin: '0 0 8px', color: 'var(--txt)' }}>
                     Launch Full Interactive Ops Console ↗
                   </h3>
@@ -480,7 +486,7 @@ export function MinimalHubPage() {
                   </p>
                 </div>
 
-                <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+                <div className="hub-gateway-buttons">
                   <Link
                     to="/personality"
                     onMouseEnter={() => playHover()}

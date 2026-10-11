@@ -17,6 +17,8 @@ export function TiltCard({ children, className = '', style, intensity = 4.5 }: T
   const rotateY = useSpring(useTransform(x, [-1, 1], [-intensity, intensity]), spring);
 
   const handleMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    // Disable 3D tilt on mobile touch interactions for clean, stable scrolling
+    if (e.pointerType === 'touch') return;
     const rect = cardRef.current?.getBoundingClientRect();
     if (!rect) return;
     x.set((e.clientX - rect.left - rect.width / 2) / (rect.width / 2));

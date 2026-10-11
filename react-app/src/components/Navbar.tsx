@@ -69,6 +69,7 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
     ...(onOpenTerminal ? [{ label: 'CLI Terminal [~]', icon: '$_', action: () => { closeMenu(); onOpenTerminal(); }, accent: true }] : []),
     ...(isHub ? [
       { label: 'Full Ops Console ↗', icon: '⚡', href: '/console', isRoute: true as const, accent: true },
+      { label: 'INTJ-A Profile ↗', icon: '🧠', href: '/personality', isRoute: true as const, accent: false },
     ] : isConsole ? [
       { label: '← Back to Minimal Hub', icon: '←', href: '/', isRoute: true as const, accent: true },
       ...consoleNavLinks.map(l => ({ label: l.label, icon: l.num, href: l.href, accent: false })),
@@ -82,7 +83,7 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
 
   return (
     <>
-      <header id="hdr" className={scrolled ? 'sc' : ''}>
+      <header id="hdr" className={scrolled ? 'sc' : ''} style={{ zIndex: 100000 }}>
         <div className="hd">
           <Link to="/" className="brand" aria-label="Home">
             <img
@@ -185,12 +186,13 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
             initial={{ clipPath: 'inset(0 0 100% 0)' }}
             animate={{ clipPath: 'inset(0 0 0% 0)' }}
             exit={{ clipPath: 'inset(0 0 100% 0)' }}
-            transition={{ duration: 0.45, ease: [0.7, 0, 0.2, 1] as const }}
+            transition={{ duration: 0.35, ease: [0.7, 0, 0.2, 1] as const }}
             style={{
               position: 'fixed',
               inset: 0,
               zIndex: 99999,
-              background: 'var(--bg)',
+              background: 'rgba(8, 10, 13, 0.98)',
+              backdropFilter: 'blur(20px)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
@@ -207,7 +209,7 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -16 }}
-                transition={{ delay: i * 0.04, duration: 0.35, ease: [0.2, 0.65, 0.2, 1] as const }}
+                transition={{ delay: i * 0.04, duration: 0.3, ease: [0.2, 0.65, 0.2, 1] as const }}
               >
                 {item.action ? (
                   <button
@@ -229,7 +231,7 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
                       cursor: 'pointer',
                     }}
                   >
-                    <span style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--acc)' }}>{item.icon}</span>
+                    <span style={{ fontFamily: 'var(--mono)', fontSize: 13, color: 'var(--acc)' }}>{item.icon}</span>
                     {item.label}
                   </button>
                 ) : item.isRoute ? (
@@ -249,7 +251,7 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
                       borderBottom: '1px solid var(--line)',
                     }}
                   >
-                    <i style={{ fontFamily: 'var(--mono)', fontStyle: 'normal', fontSize: 11, color: 'var(--dim)' }}>{item.icon}</i>
+                    <i style={{ fontFamily: 'var(--mono)', fontStyle: 'normal', fontSize: 13, color: 'var(--dim)' }}>{item.icon}</i>
                     {item.label}
                   </Link>
                 ) : (
@@ -270,7 +272,7 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
                       borderBottom: '1px solid var(--line)',
                     }}
                   >
-                    <i style={{ fontFamily: 'var(--mono)', fontStyle: 'normal', fontSize: 11, color: 'var(--dim)' }}>{item.icon}</i>
+                    <i style={{ fontFamily: 'var(--mono)', fontStyle: 'normal', fontSize: 13, color: 'var(--dim)' }}>{item.icon}</i>
                     {item.label}
                   </a>
                 )}
@@ -282,3 +284,5 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
     </>
   );
 }
+
+export default Navbar;
