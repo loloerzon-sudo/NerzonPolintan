@@ -32,7 +32,7 @@ export function CustomCursor() {
       if (!target) return;
 
       const interactive = target.closest('button, a, input, textarea, [role="button"], .hd-action, .chip');
-      const card = target.closest('.role, .service-card, .portrait-card, .cognitive-card, .qr-card');
+      const card = target.closest('.role, .service-card, .portrait-card, .project-card, .qr-card');
 
       if (interactive) {
         setCursorState('hover');

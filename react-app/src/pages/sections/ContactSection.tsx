@@ -52,6 +52,8 @@ export function ContactSection() {
               { label: '☕ BUY ME A COFFEE ↗', href: 'https://ko-fi.com/nerzon', ext: true, title: 'Pang kape please ☕' },
               { label: 'IN · LINKEDIN ↗', href: 'https://linkedin.com/in/erzon22', ext: true },
               { label: 'WA · WHATSAPP ↗', href: 'https://wa.me/639165271923', ext: true },
+              { label: 'TG · TELEGRAM ↗', href: 'https://t.me/nerzon022', ext: true },
+              { label: 'FB · FACEBOOK PAGE ↗', href: 'https://www.facebook.com/nerzon.online/', ext: true },
               { label: 'IG · INSTAGRAM ↗', href: 'https://www.instagram.com/erztagram/', ext: true },
             ].map(({ label, href, fill, download, ext, title }) => (
               <motion.a

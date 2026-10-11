@@ -279,7 +279,7 @@ export function ExperienceSection() {
       <div className="wrap xp-grid">
         <RevealSection direction="left" className="xp-side">
           <div className="sticky">
-            <p className="s-no mono">03 — HISTORY</p>
+            <p className="s-no mono">05 — HISTORY</p>
             <h2 className="title">EXPERIENCE</h2>
             <p className="s-sub">Seven roles across iGaming, enterprise IT, healthcare support, telecom BPO, and government — each one sharpening the operations instinct.</p>
             <nav className="co-nav" aria-label="Selected experience">

@@ -1,8 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { useInView, animate } from 'motion/react';
-import { Link } from 'react-router';
 import { RevealSection } from '@/components/RevealSection';
-import { TiltCard } from '@/components/TiltCard';
 
 function StatCounter({ value, suffix }: { value: number; suffix: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -89,22 +87,6 @@ export function ProfileSection() {
             </div>
           </RevealSection>
 
-          <RevealSection delay={0.25}>
-            <TiltCard className="cognitive-card" intensity={3}>
-              <div className="cog-head">
-                <span className="cog-status"><span className="dot" aria-hidden="true" />COGNITIVE BLUEPRINT // DIAGNOSTICS</span>
-                <span className="mono dim">TYPE: INTJ-A</span>
-              </div>
-              <h3 className="cog-title">NERZON: THE ARCHITECT</h3>
-              <p className="cog-desc">Strategic systems thinker driven by continuous improvement, analytical precision, and autonomous execution.</p>
-              <div className="cog-chips">
-                {['SYSTEMS THINKING', 'STRATEGIC VISION', 'HIGH AUTONOMY', 'OPERATIONAL OPTIMIZATION'].map(c => (
-                  <span key={c} className="cog-chip">{c}</span>
-                ))}
-              </div>
-              <Link to="/personality" className="cog-btn">EXPLORE COGNITIVE PROFILE ↗</Link>
-            </TiltCard>
-          </RevealSection>
         </div>
       </div>
     </section>

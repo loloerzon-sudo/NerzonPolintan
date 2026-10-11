@@ -24,6 +24,9 @@ export function Footer({ sfxEnabled, onToggleSfx }: FooterProps) {
   return (
     <footer>
       <div className="wrap ft">
+        <Link to="/" className="footer-brand" aria-label="Nerzon Online home">
+          <img src="/assets/branding/LightLandScapeLogo.png" alt="Nerzon Online" width={224} height={63} loading="lazy" />
+        </Link>
         <span>© 2026 JOHN NERZON POLINTAN // NERZON.ONLINE</span>
         <span>MNL {mnl} • MLT {mlt}</span>
         <button className="top-link" onClick={onToggleSfx}>
@@ -54,7 +57,7 @@ export function Footer({ sfxEnabled, onToggleSfx }: FooterProps) {
             ← RETURN TO DIGITAL HUB
           </Link>
         )}
-        <span>DESIGNED AS AN OPS CONSOLE • REV 2026.10</span>
+        <Link to="/personality" className="top-link">THE ARCHITECT · INTJ-A ↗</Link>
         <a className="top-link" href="#top">BACK TO TOP ↑</a>
       </div>
     </footer>

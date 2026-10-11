@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, lazy, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router';
 import { AnimatePresence } from 'motion/react';
 import { Navbar } from '@/components/Navbar';
@@ -10,11 +10,12 @@ import { CommandPalette } from '@/components/CommandPalette';
 import { CustomCursor } from '@/components/CustomCursor';
 import { TerminalDrawer } from '@/components/TerminalDrawer';
 import { MinimalHubPage } from '@/pages/MinimalHubPage';
-import { HomePage } from '@/pages/HomePage';
-import { PersonalityPage } from '@/pages/PersonalityPage';
-import { PlasmaLabPage } from '@/pages/PlasmaLabPage';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { useAudio } from '@/hooks/useAudio';
+
+const HomePage = lazy(() => import('@/pages/HomePage'));
+const PersonalityPage = lazy(() => import('@/pages/PersonalityPage').then(module => ({ default: module.PersonalityPage })));
+const PlasmaLabPage = lazy(() => import('@/pages/PlasmaLabPage').then(module => ({ default: module.PlasmaLabPage })));
 
 const KONAMI_CODE = [
   'ArrowUp', 'ArrowUp',
@@ -109,15 +110,17 @@ export function App() {
         />
 
         <main style={{ flex: 1, position: 'relative', zIndex: 1 }}>
-          <AnimatePresence mode="wait">
-            <Routes location={location} key={location.pathname}>
-              <Route path="/" element={<MinimalHubPage />} />
-              <Route path="/console" element={<HomePage />} />
-              <Route path="/portfolio" element={<HomePage />} />
-              <Route path="/personality" element={<PersonalityPage />} />
-              <Route path="/plasma" element={<PlasmaLabPage />} />
-            </Routes>
-          </AnimatePresence>
+          <Suspense fallback={<div className="route-loading" role="status"><img src="/assets/branding/Light.png" alt="" width={64} height={64} /><span>Opening workspace…</span></div>}>
+            <AnimatePresence mode="wait">
+              <Routes location={location} key={location.pathname}>
+                <Route path="/" element={<MinimalHubPage />} />
+                <Route path="/console" element={<HomePage />} />
+                <Route path="/portfolio" element={<HomePage />} />
+                <Route path="/personality" element={<PersonalityPage />} />
+                <Route path="/plasma" element={<PlasmaLabPage />} />
+              </Routes>
+            </AnimatePresence>
+          </Suspense>
         </main>
 
         <Footer sfxEnabled={sfxEnabled} onToggleSfx={toggleSfx} />

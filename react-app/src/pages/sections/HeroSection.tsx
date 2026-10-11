@@ -5,6 +5,7 @@ import { useScramble } from '@/hooks/useScramble';
 import { useAudio } from '@/hooks/useAudio';
 import { TiltCard } from '@/components/TiltCard';
 import { AudioVisualizer } from '@/components/AudioVisualizer';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 import profileImg from '@/assets/images/john-nerzon-polintan-profile.png';
 import matrixImg from '@/assets/images/john-nerzon-matrix-operator.jpg';
@@ -35,6 +36,8 @@ const AVATARS = [
 export function HeroSection() {
   const [avatarIdx, setAvatarIdx] = useState(0);
   const [isGlitching, setIsGlitching] = useState(false);
+  const [autoCycle, setAutoCycle] = useState(true);
+  const reduced = useReducedMotion();
   const { display: name1 } = useScramble('JOHN NERZON');
   const { display: name2 } = useScramble('POLINTAN');
   const { display: roleText, scramble: setRole } = useScramble(ROLES[0]);
@@ -52,11 +55,13 @@ export function HeroSection() {
 
   // Avatar auto-cycle
   useEffect(() => {
+    if (!autoCycle || reduced) return;
     const id = setInterval(() => setAvatarIdx(i => (i + 1) % AVATARS.length), 4800);
     return () => clearInterval(id);
-  }, []);
+  }, [autoCycle, reduced]);
 
   const cycleAvatar = () => {
+    setAutoCycle(false);
     playCmd();
     setIsGlitching(true);
     setTimeout(() => setIsGlitching(false), 350);
@@ -101,7 +106,7 @@ export function HeroSection() {
               <span>← RETURN TO DIGITAL HUB</span>
             </Link>
             <span style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--dim)' }}>
-              OPS CONSOLE // REV 2026.08
+              OPS CONSOLE // REV 2026.10
             </span>
           </motion.div>
 
@@ -195,23 +200,23 @@ export function HeroSection() {
         >
           {/* Portrait Card */}
           <TiltCard className="portrait-card" intensity={3}>
-            <div
+            <button
+              type="button"
               className={`portrait-stage ${isGlitching ? 'glitch-active' : ''}`}
               onClick={cycleAvatar}
               onMouseEnter={() => playHover()}
-              role="button"
-              aria-label="Cycle avatar"
-              tabIndex={0}
+              aria-label="Show next persona"
             >
               <AnimatePresence mode="wait">
                 <motion.img
                   key={cur.src}
                   className="portrait-img"
                   src={cur.src}
+                  decoding="async"
                   alt={`John Nerzon Polintan - ${cur.title}`}
-                  initial={{ opacity: 0, scale: 1.04, filter: 'grayscale(0.85) contrast(1.1) brightness(0.85)' }}
-                  animate={{ opacity: 1, scale: 1, filter: 'grayscale(0.25) contrast(1.08) brightness(0.92)' }}
-                  exit={{ opacity: 0, scale: 0.97 }}
+                  initial={reduced ? false : { opacity: 0, scale: 1.04 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
                   transition={{ duration: 0.55, ease: 'easeInOut' }}
                 />
               </AnimatePresence>
@@ -233,15 +238,20 @@ export function HeroSection() {
                 </span>
               </div>
 
-              <figcaption className="portrait-label">
+            </button>
+              <div className="portrait-label">
                 <span className="portrait-tag">{cur.title}</span>
                 <div className="portrait-nav-dots" aria-hidden="true">
                   {AVATARS.map((_, i) => (
                     <span key={i} className={`portrait-dot${i === avatarIdx ? ' active' : ''}`} />
                   ))}
                 </div>
-              </figcaption>
-            </div>
+              </div>
+              <div className="portrait-controls">
+                <button type="button" aria-label="Show previous persona" onClick={() => { setAutoCycle(false); setAvatarIdx(i => (i - 1 + AVATARS.length) % AVATARS.length); playCmd(); }}>←</button>
+                <button type="button" onClick={() => setAutoCycle(value => !value)} disabled={reduced} aria-pressed={autoCycle && !reduced}>{autoCycle && !reduced ? 'PAUSE CYCLE' : 'PLAY CYCLE'}</button>
+                <button type="button" aria-label="Show next persona" onClick={cycleAvatar}>→</button>
+              </div>
           </TiltCard>
 
           {/* Status Panel */}

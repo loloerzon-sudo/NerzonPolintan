@@ -162,7 +162,7 @@ export function LiquidPlasmaCanvas() {
     const uLightLoc = gl.getUniformLocation(prog, 'uLight');
 
     let animId: number;
-    let startTime = performance.now();
+    const startTime = performance.now();
 
     const handleResize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
@@ -175,14 +175,13 @@ export function LiquidPlasmaCanvas() {
       }
     };
     handleResize();
-    window.addEventListener('resize', handleResize);
 
     const handleMouseMove = (e: MouseEvent) => {
       const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
       mouse.current.tx = e.clientX * dpr;
       mouse.current.ty = (window.innerHeight - e.clientY) * dpr;
     };
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    if (!reduced) window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
     // Set initial mouse to screen center
     const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
@@ -192,6 +191,7 @@ export function LiquidPlasmaCanvas() {
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
     const render = (now: number) => {
+      if (document.hidden) return;
       // Smooth mouse follow
       mouse.current.x = lerp(mouse.current.x, mouse.current.tx, 0.08);
       mouse.current.y = lerp(mouse.current.y, mouse.current.ty, 0.08);
@@ -215,14 +215,22 @@ export function LiquidPlasmaCanvas() {
       gl.uniform1f(uLightLoc, 0.0);
 
       gl.drawArrays(gl.TRIANGLES, 0, 6);
-      animId = requestAnimationFrame(render);
+      if (!reduced) animId = requestAnimationFrame(render);
     };
 
+    const onResize = () => { handleResize(); if (reduced) render(performance.now()); };
+    const onVisibility = () => {
+      cancelAnimationFrame(animId);
+      if (!document.hidden) animId = requestAnimationFrame(render);
+    };
+    window.addEventListener('resize', onResize);
+    document.addEventListener('visibilitychange', onVisibility);
     animId = requestAnimationFrame(render);
 
     return () => {
       cancelAnimationFrame(animId);
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', onResize);
+      document.removeEventListener('visibilitychange', onVisibility);
       window.removeEventListener('mousemove', handleMouseMove);
       gl.deleteBuffer(buf);
       gl.deleteProgram(prog);

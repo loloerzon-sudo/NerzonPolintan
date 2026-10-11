@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useAudio } from '@/hooks/useAudio';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
 
-export interface ProjectItem {
+interface ProjectItem {
   id: string;
   name: string;
   url: string;
@@ -12,7 +13,7 @@ export interface ProjectItem {
   tags: string[];
 }
 
-export const RECENT_PROJECTS: ProjectItem[] = [
+const RECENT_PROJECTS: ProjectItem[] = [
   {
     id: 'p-01',
     name: 'AerzonWave: 3D Cyber Visualizer',
@@ -87,178 +88,43 @@ export const RECENT_PROJECTS: ProjectItem[] = [
   },
 ];
 
-export function RecentProjectsSection({ isBento = false }: { isBento?: boolean }) {
+export function RecentProjectsSection() {
   const { playHover, playClick } = useAudio();
+  const reduced = useReducedMotion();
   const [filter, setFilter] = useState<'ALL' | 'ACTIVE' | 'SHIPPED'>('ALL');
-
-  const countAll = RECENT_PROJECTS.length;
-  const countActive = RECENT_PROJECTS.filter((p) => p.status === 'IN-PROGRESS').length;
-  const countShipped = RECENT_PROJECTS.filter((p) => p.status === 'COMPLETED').length;
-
-  const filteredProjects = RECENT_PROJECTS.filter((proj) => {
-    if (filter === 'ACTIVE') return proj.status === 'IN-PROGRESS';
-    if (filter === 'SHIPPED') return proj.status === 'COMPLETED';
-    return true;
-  });
+  const filteredProjects = RECENT_PROJECTS.filter(project => filter === 'ALL' || project.status === (filter === 'ACTIVE' ? 'IN-PROGRESS' : 'COMPLETED'));
 
   return (
-    <div className={`projects-container${isBento ? ' in-bento' : ''}`}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12, flexWrap: 'wrap', gap: 8 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'var(--mono)', fontSize: 10.5, letterSpacing: '.16em', color: 'var(--acc)' }}>
-          <span className="dot-sm" />
-          RECENT PROJECTS &amp; TRACK RECORD
-        </div>
-        <span className="mono dim" style={{ fontSize: 9.5 }}>{filteredProjects.length} OF {countAll} SHOWN</span>
-      </div>
-
-      {/* Pill Filter Tabs */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 14, flexWrap: 'wrap' }}>
-        {[
-          { id: 'ALL' as const, label: 'ALL', count: countAll },
-          { id: 'ACTIVE' as const, label: 'ACTIVE', count: countActive },
-          { id: 'SHIPPED' as const, label: 'SHIPPED', count: countShipped },
-        ].map((tab) => {
-          const isActive = filter === tab.id;
-          return (
-            <button
-              key={tab.id}
-              type="button"
-              onMouseEnter={() => playHover()}
-              onClick={() => {
-                playClick();
-                setFilter(tab.id);
-              }}
-              style={{
-                fontFamily: 'var(--mono)',
-                fontSize: 9.5,
-                letterSpacing: '.12em',
-                padding: '4px 10px',
-                borderRadius: 2,
-                border: `1px solid ${isActive ? 'var(--acc)' : 'var(--line)'}`,
-                backgroundColor: isActive ? 'rgba(184, 240, 74, 0.12)' : 'rgba(0, 0, 0, 0.25)',
-                color: isActive ? 'var(--acc)' : 'var(--dim)',
-                cursor: 'pointer',
-                transition: 'all 0.18s ease',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 5,
-              }}
-            >
-              <span>{tab.label}</span>
-              <span
-                style={{
-                  fontSize: 8.5,
-                  padding: '1px 4px',
-                  borderRadius: 2,
-                  backgroundColor: isActive ? 'rgba(184, 240, 74, 0.2)' : 'rgba(255, 255, 255, 0.06)',
-                  color: isActive ? 'var(--acc)' : 'var(--mut)',
-                }}
-              >
-                {tab.count}
-              </span>
+    <div className="projects-container">
+      <div className="project-toolbar">
+        <div className="project-filters" role="group" aria-label="Filter projects">
+          {(['ALL', 'ACTIVE', 'SHIPPED'] as const).map(value => (
+            <button type="button" key={value} aria-pressed={filter === value} onMouseEnter={() => playHover()} onClick={() => { playClick(); setFilter(value); }}>
+              {value} <span>{RECENT_PROJECTS.filter(project => value === 'ALL' || project.status === (value === 'ACTIVE' ? 'IN-PROGRESS' : 'COMPLETED')).length}</span>
             </button>
-          );
-        })}
+          ))}
+        </div>
+        <span className="project-count" role="status">{filteredProjects.length} OF {RECENT_PROJECTS.length} PROJECTS</span>
       </div>
-
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div className="project-grid">
         <AnimatePresence mode="popLayout">
-          {filteredProjects.map((proj) => {
-            const isComplete = proj.status === 'COMPLETED';
-
-            return (
-              <motion.a
-                key={proj.id}
-                layout
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.2 }}
-                href={proj.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                onMouseEnter={() => playHover()}
-                onClick={() => playClick()}
-                whileHover={{ x: 3, backgroundColor: 'rgba(255, 255, 255, 0.03)' }}
-                className="project-item-card"
-                style={{
-                  display: 'block',
-                  background: 'rgba(0,0,0,0.25)',
-                  border: '1px solid var(--line2)',
-                  borderRadius: 3,
-                  textDecoration: 'none',
-                  color: 'inherit',
-                  transition: 'border-color 0.2s ease',
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, flexWrap: 'wrap' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <h4 style={{ fontFamily: 'var(--disp)', fontSize: 15, fontWeight: 700, color: 'var(--txt)', margin: 0 }}>
-                      {proj.name}
-                    </h4>
-                    <span style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--dim)' }}>
-                      ↗
-                    </span>
-                  </div>
-
-                  <span
-                    style={{
-                      fontFamily: 'var(--mono)',
-                      fontSize: 9,
-                      letterSpacing: '.14em',
-                      padding: '2px 8px',
-                      borderRadius: 2,
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: 5,
-                      color: isComplete ? 'var(--acc)' : 'var(--amb)',
-                      backgroundColor: isComplete ? 'rgba(184,240,74,0.08)' : 'rgba(255,180,84,0.08)',
-                      border: `1px solid ${isComplete ? 'rgba(184,240,74,0.3)' : 'rgba(255,180,84,0.3)'}`,
-                    }}
-                  >
-                    <span
-                      style={{
-                        width: 5,
-                        height: 5,
-                        borderRadius: '50%',
-                        backgroundColor: isComplete ? 'var(--acc)' : 'var(--amb)',
-                      }}
-                    />
-                    {proj.status}
-                  </span>
-                </div>
-
-                <p style={{ fontSize: 12.5, color: 'var(--mut)', margin: '6px 0 8px', lineHeight: 1.45 }}>
-                  {proj.desc}
-                </p>
-
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, flexWrap: 'wrap' }}>
-                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                    {proj.tags.map((t) => (
-                      <span
-                        key={t}
-                        style={{
-                          fontFamily: 'var(--mono)',
-                          fontSize: 8.5,
-                          letterSpacing: '.08em',
-                          color: 'var(--dim)',
-                          border: '1px solid var(--line)',
-                          padding: '1px 5px',
-                          borderRadius: 2,
-                        }}
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-
-                  <span style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--acc)', opacity: 0.85 }}>
-                    {proj.displayUrl}
-                  </span>
-                </div>
-              </motion.a>
-            );
-          })}
+          {filteredProjects.map(project => (
+            <motion.a key={project.id} layout={!reduced} initial={reduced ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: reduced ? 0 : 0.25 }}
+              href={project.url} target="_blank" rel="noopener noreferrer" className="project-card" onMouseEnter={() => playHover()} onClick={() => playClick()}>
+              <div className="project-thumbnail">
+                <img src={`/assets/projects/${project.id}.svg`} alt={`${project.name} illustrated project cover`} width={800} height={500} loading="lazy" decoding="async" />
+                <span className={`project-status ${project.status === 'COMPLETED' ? 'shipped' : ''}`}>{project.status === 'COMPLETED' ? 'SHIPPED' : 'IN PROGRESS'}</span>
+                <span className="project-open" aria-hidden="true">↗</span>
+              </div>
+              <div className="project-card-body">
+                <p className="project-category">{project.tags[0]}</p>
+                <h3>{project.name}</h3>
+                <p className="project-description">{project.desc}</p>
+                <div className="project-tags">{project.tags.slice(1).map(tag => <span key={tag}>{tag}</span>)}</div>
+                <div className="project-card-footer"><span>{project.displayUrl}</span><span>EXPLORE ↗</span></div>
+              </div>
+            </motion.a>
+          ))}
         </AnimatePresence>
       </div>
     </div>

@@ -89,7 +89,7 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
             <img
               src="/assets/branding/Light.png"
               alt="Nerzon Emblem"
-              style={{ width: 18, height: 18, objectFit: 'contain' }}
+              style={{ width: 26, height: 26, objectFit: 'contain' }}
               aria-hidden="true"
             />
             {isHub ? 'NERZON // DIGITAL HUB' : isPersonality ? 'NERZON // ARCHITECT' : 'NERZON // OPS CONSOLE'}
@@ -106,7 +106,7 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
             </nav>
           )}
 
-          <div className="clocks hd-clocks" aria-hidden="true" style={{ marginLeft: isConsole ? 0 : 'auto' }}>
+          <div className="clocks hd-clocks" aria-hidden="true" style={{ marginLeft: 'auto', display: isConsole ? 'none' : undefined }}>
             <div><b>MNL</b><span>{mnl}</span></div>
             <div><b>MLT</b><span>{mlt}</span></div>
           </div>
@@ -125,7 +125,7 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
             <button className="hd-action hide-on-mobile" onClick={() => { playCmd(); onOpenCmd(); }} aria-label="Open Command Palette (Ctrl+K)">
               CMD <span className="cmd-k-badge">^K</span>
             </button>
-            <button
+            {!isConsole && <button
               className="hd-action hide-on-mobile"
               onClick={async () => { await toggleSfx(); }}
               aria-label="Toggle Sound Effects"
@@ -134,25 +134,13 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
               <span className={`vu-meter ${sfxEnabled ? 'active' : 'off'}`} aria-hidden="true">
                 <i /><i /><i /><i />
               </span>
-            </button>
+            </button>}
 
             {isHub ? (
               <Link to="/console" className="hd-action primary hide-on-mobile" onMouseEnter={() => playHover()} onClick={() => playClick()}>
                 FULL CONSOLE ↗
               </Link>
-            ) : isConsole ? (
-              <>
-                <Link to="/" className="hd-action hide-on-mobile" onMouseEnter={() => playHover()} onClick={() => playClick()}>
-                  ← HUB
-                </Link>
-                <Link to="/personality" className="hd-action hide-on-mobile" onMouseEnter={() => playHover()} onClick={() => playClick()}>
-                  INTJ-A ↗
-                </Link>
-                <a className="hd-action primary hide-on-mobile" href="/assets/documents/John-Nerzon-Polintan-CV-2026.pdf" download onClick={() => playClick()}>
-                  CV ↓
-                </a>
-              </>
-            ) : (
+            ) : isConsole ? null : (
               <>
                 <Link to="/" className="hd-action hide-on-mobile" onMouseEnter={() => playHover()} onClick={() => playClick()}>
                   ← HUB

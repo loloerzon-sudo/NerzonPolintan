@@ -174,7 +174,7 @@ export function ServicesSection() {
     <section className="sec" id="services">
       <div className="wrap">
         <RevealSection className="s-head">
-          <p className="s-no mono">05 — OFFERINGS</p>
+          <p className="s-no mono">04 — OFFERINGS</p>
           <h2 className="title">SERVICES & ENGAGEMENTS</h2>
           <p className="s-sub">Accepting select freelance builds, technical consulting, and collaborative development.</p>
           <div className="avail-badge-wrap" style={{ marginTop: 18 }}>

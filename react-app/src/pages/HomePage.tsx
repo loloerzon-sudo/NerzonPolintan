@@ -1,4 +1,6 @@
 import { motion } from 'motion/react';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router';
 import { HeroSection } from './sections/HeroSection';
 import { ProfileSection } from './sections/ProfileSection';
 import { PipelineSection } from './sections/PipelineSection';
@@ -18,6 +20,13 @@ const pageVariants = {
 };
 
 export function HomePage() {
+  const { hash } = useLocation();
+  useEffect(() => {
+    if (!hash) return;
+    const frame = requestAnimationFrame(() => document.getElementById(hash.slice(1))?.scrollIntoView());
+    return () => cancelAnimationFrame(frame);
+  }, [hash]);
+
   return (
     <motion.div
       variants={pageVariants}

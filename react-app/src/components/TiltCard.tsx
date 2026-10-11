@@ -1,5 +1,6 @@
 import { useRef, type ReactNode } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 interface TiltCardProps {
   children: ReactNode;
@@ -10,6 +11,7 @@ interface TiltCardProps {
 
 export function TiltCard({ children, className = '', style, intensity = 4.5 }: TiltCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const spring = { damping: 20, stiffness: 150 };
@@ -18,7 +20,7 @@ export function TiltCard({ children, className = '', style, intensity = 4.5 }: T
 
   const handleMove = (e: React.PointerEvent<HTMLDivElement>) => {
     // Disable 3D tilt on mobile touch interactions for clean, stable scrolling
-    if (e.pointerType === 'touch') return;
+    if (reduced || e.pointerType === 'touch') return;
     const rect = cardRef.current?.getBoundingClientRect();
     if (!rect) return;
     x.set((e.clientX - rect.left - rect.width / 2) / (rect.width / 2));

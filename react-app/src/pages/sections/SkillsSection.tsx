@@ -39,7 +39,7 @@ export function SkillsSection() {
     <section className="sec" id="skills">
       <div className="wrap">
         <RevealSection className="s-head">
-          <p className="s-no mono">04 — CAPABILITIES</p>
+          <p className="s-no mono">06 — CAPABILITIES</p>
           <h2 className="title">SKILL MATRIX</h2>
           <p className="s-sub">Six disciplines, one operating mindset: keep the system accurate, the launch clean, and the team faster than yesterday.</p>
         </RevealSection>
