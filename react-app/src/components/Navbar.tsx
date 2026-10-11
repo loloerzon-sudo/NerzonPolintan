@@ -63,17 +63,17 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
   const closeMenu = () => setMenuOpen(false);
 
   const mobileNavItems: MobileNavItem[] = [
-    { label: 'Command Palette [⌘K]', icon: '⌘', action: () => { closeMenu(); onOpenCmd(); }, accent: true },
+    { label: 'Command Palette [Ctrl+K]', icon: '⌘', action: () => { closeMenu(); onOpenCmd(); }, accent: true },
     ...(onOpenTerminal ? [{ label: 'CLI Terminal [~]', icon: '$_', action: () => { closeMenu(); onOpenTerminal(); }, accent: true }] : []),
     ...(isHub ? [
-      { label: 'Full Ops Console ↗', icon: '🚀', href: '/console', isRoute: true as const, accent: true },
+      { label: 'Full Ops Console ↗', icon: '⚡', href: '/console', isRoute: true as const, accent: true },
     ] : isConsole ? [
-      { label: '← Back to Minimal Hub', icon: '◂', href: '/', isRoute: true as const, accent: true },
+      { label: '← Back to Minimal Hub', icon: '←', href: '/', isRoute: true as const, accent: true },
       ...consoleNavLinks.map(l => ({ label: l.label, icon: l.num, href: l.href, accent: false })),
-      { label: 'INTJ-A Cognitive Profile ↗', icon: '★', href: '/personality', isRoute: true as const, accent: false },
+      { label: 'INTJ-A Cognitive Profile ↗', icon: '🧠', href: '/personality', isRoute: true as const, accent: false },
     ] : [
-      { label: '← Back to Minimal Hub', icon: '◂', href: '/', isRoute: true as const, accent: true },
-      { label: 'Full Ops Console ↗', icon: '🚀', href: '/console', isRoute: true as const, accent: true },
+      { label: '← Back to Minimal Hub', icon: '←', href: '/', isRoute: true as const, accent: true },
+      { label: 'Full Ops Console ↗', icon: '⚡', href: '/console', isRoute: true as const, accent: true },
     ]),
     { label: 'Download CV ↓', icon: '↓', href: '/assets/documents/John-Nerzon-Polintan-CV-2026.pdf', download: true, accent: false },
   ];
@@ -83,8 +83,13 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
       <header id="hdr" className={scrolled ? 'sc' : ''}>
         <div className="hd">
           <Link to="/" className="brand" aria-label="Home">
-            <span className="dot" aria-hidden="true" />
-            {isHub ? 'JNP // DIGITAL HUB' : isPersonality ? 'NERZON // ARCHITECT' : 'JNP // OPS CONSOLE'}
+            <img
+              src="/assets/branding/Light.png"
+              alt="Nerzon Emblem"
+              style={{ width: 18, height: 18, objectFit: 'contain' }}
+              aria-hidden="true"
+            />
+            {isHub ? 'NERZON // DIGITAL HUB' : isPersonality ? 'NERZON // ARCHITECT' : 'NERZON // OPS CONSOLE'}
           </Link>
 
           {/* Desktop Nav Links (Active on /console) */}
@@ -115,7 +120,7 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
               </button>
             )}
             <button className="hd-action hide-on-mobile" onClick={() => { playCmd(); onOpenCmd(); }} aria-label="Open Command Palette (Ctrl+K)">
-              CMD <span className="cmd-k-badge">⌘K</span>
+              CMD <span className="cmd-k-badge">^K</span>
             </button>
             <button
               className="hd-action hide-on-mobile"
@@ -127,7 +132,6 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
                 <i /><i /><i /><i />
               </span>
             </button>
-
 
             {isHub ? (
               <Link to="/console" className="hd-action primary hide-on-mobile" onMouseEnter={() => playHover()} onClick={() => playClick()}>
@@ -270,7 +274,6 @@ export function Navbar({ onOpenCmd, onOpenTerminal }: NavbarProps) {
                 )}
               </motion.div>
             ))}
-
           </motion.nav>
         )}
       </AnimatePresence>

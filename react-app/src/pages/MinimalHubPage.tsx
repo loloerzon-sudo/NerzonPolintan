@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+﻿import { useState, useCallback, useEffect } from 'react';
 import { Link } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
 import { TiltCard } from '@/components/TiltCard';
@@ -125,7 +125,7 @@ export function MinimalHubPage() {
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontFamily: 'var(--mono)', fontSize: 10.5, color: 'var(--dim)' }}>
             <AudioVisualizer bars={8} height={12} />
-            <span>REV 2026.08 · ACTIVE DEPLOYMENT</span>
+            <span>REV 2026.10 • ACTIVE DEPLOYMENT</span>
           </div>
         </div>
 
@@ -194,7 +194,7 @@ export function MinimalHubPage() {
                       borderTop: '1px solid rgba(184,240,74,0.3)',
                     }}
                   >
-                    {curPersona.idx}/06 ⇄ CYCLE
+                    {curPersona.idx}/06 ↻ CYCLE
                   </div>
                 </div>
 
@@ -262,7 +262,7 @@ export function MinimalHubPage() {
 
             <div style={{ borderTop: '1px solid var(--line2)', marginTop: 18, paddingTop: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10 }}>
               <div style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--mut)' }}>
-                <span className="ok" style={{ color: 'var(--acc)', fontWeight: 600 }}>● ONLINE</span> — Philippines (GMT+8) · Remote Worldwide
+                <span className="ok" style={{ color: "var(--acc)", fontWeight: 600 }}>● ONLINE</span> — Philippines (GMT+8) • Remote Worldwide
               </div>
               <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--dim)' }}>
                 12+ YEARS ENTERPRISE IT, IGAMING &amp; WEB

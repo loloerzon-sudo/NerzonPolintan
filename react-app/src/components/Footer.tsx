@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router';
 
-function useClock(tz: string, short = true) {
+function useClock(tz: string) {
   const [time, setTime] = useState('--:--');
   useEffect(() => {
     const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: tz, hour: '2-digit', minute: '2-digit', hour12: false });
@@ -24,17 +24,17 @@ export function Footer({ sfxEnabled, onToggleSfx }: FooterProps) {
   return (
     <footer>
       <div className="wrap ft">
-        <span>© 2026 JOHN NERZON POLINTAN</span>
-        <span>MNL {mnl} · MLT {mlt}</span>
+        <span>© 2026 JOHN NERZON POLINTAN // NERZON.ONLINE</span>
+        <span>MNL {mnl} • MLT {mlt}</span>
         <button className="top-link" onClick={onToggleSfx}>
-          SOUND FX: {sfxEnabled ? 'ON 🔊' : 'OFF ⊘'}
+          SOUND FX: {sfxEnabled ? 'ON' : 'OFF'}
         </button>
         <a
           href="https://ko-fi.com/nerzon"
           target="_blank"
           rel="noopener noreferrer"
           className="top-link"
-          title="Pang kape please ☕"
+          title="Buy me a coffee"
           style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -54,7 +54,7 @@ export function Footer({ sfxEnabled, onToggleSfx }: FooterProps) {
             ← RETURN TO DIGITAL HUB
           </Link>
         )}
-        <span>DESIGNED AS AN OPS CONSOLE · REV 2026.08</span>
+        <span>DESIGNED AS AN OPS CONSOLE • REV 2026.10</span>
         <a className="top-link" href="#top">BACK TO TOP ↑</a>
       </div>
     </footer>
