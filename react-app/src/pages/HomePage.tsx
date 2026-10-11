@@ -2,10 +2,13 @@ import { motion } from 'motion/react';
 import { HeroSection } from './sections/HeroSection';
 import { ProfileSection } from './sections/ProfileSection';
 import { PipelineSection } from './sections/PipelineSection';
+import { RecentProjectsSection } from './sections/RecentProjectsSection';
+import { ServicesSection } from './sections/ServicesSection';
 import { ExperienceSection } from './sections/ExperienceSection';
 import { SkillsSection } from './sections/SkillsSection';
 import { CredentialsSection } from './sections/CredentialsSection';
 import { ContactSection } from './sections/ContactSection';
+import { RevealSection } from '@/components/RevealSection';
 import { Ticker } from '@/components/Ticker';
 
 const pageVariants = {
@@ -27,6 +30,24 @@ export function HomePage() {
       <Ticker />
       <ProfileSection />
       <PipelineSection />
+
+      {/* Recent Projects Section */}
+      <section className="sec" id="projects">
+        <div className="wrap">
+          <RevealSection className="s-head">
+            <p className="s-no mono">03 — RECENT WORK</p>
+            <h2 className="title">RECENT PROJECTS &amp; EXPERIMENTS</h2>
+            <p className="s-sub">Live platforms, interactive games, 3D audio-reactive engines, and client builds.</p>
+          </RevealSection>
+          <div style={{ marginTop: 24 }}>
+            <RecentProjectsSection />
+          </div>
+        </div>
+      </section>
+
+      {/* Services & Engagements Section */}
+      <ServicesSection />
+
       <ExperienceSection />
       <SkillsSection />
       <CredentialsSection />
@@ -34,3 +55,5 @@ export function HomePage() {
     </motion.div>
   );
 }
+
+export default HomePage;

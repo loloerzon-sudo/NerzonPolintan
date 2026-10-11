@@ -6,10 +6,12 @@ import { useAudio } from '@/hooks/useAudio';
 const consoleNavLinks = [
   { href: '#profile', label: 'PROFILE', num: '01' },
   { href: '#pipeline', label: 'PIPELINE', num: '02' },
-  { href: '#experience', label: 'EXPERIENCE', num: '03' },
-  { href: '#skills', label: 'SKILLS', num: '04' },
-  { href: '#credentials', label: 'CREDENTIALS', num: '05' },
-  { href: '#contact', label: 'CONTACT', num: '06' },
+  { href: '#projects', label: 'PROJECTS', num: '03' },
+  { href: '#services', label: 'SERVICES', num: '04' },
+  { href: '#experience', label: 'EXPERIENCE', num: '05' },
+  { href: '#skills', label: 'SKILLS', num: '06' },
+  { href: '#credentials', label: 'CREDENTIALS', num: '07' },
+  { href: '#contact', label: 'CONTACT', num: '08' },
 ];
 
 function useClock(tz: string) {

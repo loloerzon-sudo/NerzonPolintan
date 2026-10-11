@@ -1,10 +1,8 @@
-﻿import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Link } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
 import { TiltCard } from '@/components/TiltCard';
 import { AudioVisualizer } from '@/components/AudioVisualizer';
-import { RecentProjectsSection } from '@/pages/sections/RecentProjectsSection';
-import { ServiceDetailModal, HUB_SERVICES, type ServiceDetail } from '@/components/ServiceDetailModal';
 import { useScramble } from '@/hooks/useScramble';
 import { useAudio } from '@/hooks/useAudio';
 import profileImg from '@/assets/images/john-nerzon-polintan-profile.png';
@@ -44,11 +42,10 @@ export function MinimalHubPage() {
   const { display: name2 } = useScramble('POLINTAN');
   const { display: roleText, scramble: setRole } = useScramble(ROLES[0]);
   const [toastVisible, setToastVisible] = useState(false);
-  const [selectedService, setSelectedService] = useState<ServiceDetail | null>(null);
   const [personaIdx, setPersonaIdx] = useState(0);
   const [isGlitching, setIsGlitching] = useState(false);
   const [isAutoCycling, setIsAutoCycling] = useState(true);
-  const { playHover, playClick, playSuccess, playUnfurl, playCmd } = useAudio();
+  const { playHover, playClick, playSuccess, playCmd } = useAudio();
 
   // Gentle auto-cycling of personas (paused permanently on user interaction)
   useEffect(() => {
@@ -101,11 +98,6 @@ export function MinimalHubPage() {
     setTimeout(() => setToastVisible(false), 2000);
   }, [playSuccess]);
 
-  const handleOpenService = (service: ServiceDetail) => {
-    playUnfurl();
-    setSelectedService(service);
-  };
-
   return (
     <motion.div
       variants={pageVariants}
@@ -117,7 +109,7 @@ export function MinimalHubPage() {
       style={{ minHeight: 'calc(100vh - var(--hdr))', paddingTop: 'calc(var(--hdr) + 24px)', paddingBottom: 48 }}
     >
       <div className="wrap">
-        {/* Top Hub Welcome Ticker */}
+        {/* Top Hub Status Bar */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20, flexWrap: 'wrap', gap: 10 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '.18em', color: 'var(--acc)' }}>
             <span className="dot" aria-hidden="true" />
@@ -129,7 +121,7 @@ export function MinimalHubPage() {
           </div>
         </div>
 
-        {/* 5-Bento Grid Layout */}
+        {/* Bento Grid Layout */}
         <div className="hub-bento-grid">
           {/* Bento 1: Identity & Profile Header */}
           <TiltCard className="hub-bento-card bento-hero" intensity={2.5}>
@@ -262,7 +254,7 @@ export function MinimalHubPage() {
 
             <div style={{ borderTop: '1px solid var(--line2)', marginTop: 18, paddingTop: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10 }}>
               <div style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--mut)' }}>
-                <span className="ok" style={{ color: "var(--acc)", fontWeight: 600 }}>● ONLINE</span> — Philippines (GMT+8) • Remote Worldwide
+                <span className="ok" style={{ color: 'var(--acc)', fontWeight: 600 }}>● ONLINE</span> — Philippines (GMT+8) • Remote Worldwide
               </div>
               <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--dim)' }}>
                 12+ YEARS ENTERPRISE IT, IGAMING &amp; WEB
@@ -301,361 +293,179 @@ export function MinimalHubPage() {
                 }}
               >
                 <span>✉ erzon22@gmail.com</span>
-                <span style={{ fontSize: 10, background: 'var(--acc)', color: 'var(--acc-dk)', padding: '2px 6px', borderRadius: 2, fontWeight: 700 }}>
-                  COPY
-                </span>
+                <span style={{ fontSize: 10, opacity: 0.8 }}>[COPY EMAIL]</span>
               </motion.button>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
                 <motion.a
-                  href="https://wa.me/639165271923"
+                  href="https://t.me/nerzon"
                   target="_blank"
                   rel="noopener noreferrer"
                   onMouseEnter={() => playHover()}
                   onClick={() => playClick()}
                   whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: 6,
-                    background: 'var(--panel)',
-                    border: '1px solid var(--line2)',
-                    borderRadius: 3,
-                    padding: '9px 6px',
-                    fontFamily: 'var(--mono)',
-                    fontSize: 10.5,
-                    letterSpacing: '.06em',
+                    background: 'var(--panel2)',
+                    border: '1px solid var(--line)',
                     color: 'var(--txt)',
+                    borderRadius: 3,
+                    padding: '8px 10px',
+                    fontFamily: 'var(--mono)',
+                    fontSize: 11,
                     textDecoration: 'none',
-                    whiteSpace: 'nowrap',
                   }}
                 >
-                  <span>💬 WhatsApp</span>
+                  <span>✈ TELEGRAM</span>
+                  <span style={{ color: 'var(--dim)', fontSize: 9 }}>↗</span>
                 </motion.a>
 
                 <motion.a
-                  href="https://linkedin.com/in/erzon22"
+                  href="https://linkedin.com/in/johnnerzonpolintan"
                   target="_blank"
                   rel="noopener noreferrer"
                   onMouseEnter={() => playHover()}
                   onClick={() => playClick()}
                   whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: 6,
-                    background: 'var(--panel)',
-                    border: '1px solid var(--line2)',
-                    borderRadius: 3,
-                    padding: '9px 6px',
-                    fontFamily: 'var(--mono)',
-                    fontSize: 10.5,
-                    letterSpacing: '.06em',
+                    background: 'var(--panel2)',
+                    border: '1px solid var(--line)',
                     color: 'var(--txt)',
+                    borderRadius: 3,
+                    padding: '8px 10px',
+                    fontFamily: 'var(--mono)',
+                    fontSize: 11,
                     textDecoration: 'none',
-                    whiteSpace: 'nowrap',
                   }}
                 >
-                  <span>🔗 LinkedIn</span>
-                </motion.a>
-
-                <motion.a
-                  href="https://www.instagram.com/erztagram/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onMouseEnter={() => playHover()}
-                  onClick={() => playClick()}
-                  whileHover={{ scale: 1.02 }}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: 6,
-                    background: 'var(--panel)',
-                    border: '1px solid var(--line2)',
-                    borderRadius: 3,
-                    padding: '9px 6px',
-                    fontFamily: 'var(--mono)',
-                    fontSize: 10.5,
-                    letterSpacing: '.06em',
-                    color: 'var(--txt)',
-                    textDecoration: 'none',
-                    whiteSpace: 'nowrap',
-                  }}
-                >
-                  <span>📸 Instagram</span>
+                  <span>in LINKEDIN</span>
+                  <span style={{ color: 'var(--dim)', fontSize: 9 }}>↗</span>
                 </motion.a>
               </div>
 
-              <motion.a
-                href="https://ko-fi.com/nerzon"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Pang kape please ☕"
-                onMouseEnter={() => playHover()}
-                onClick={() => playClick()}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 8,
-                  background: 'rgba(184, 240, 74, 0.06)',
-                  border: '1px solid var(--acc)',
-                  color: 'var(--acc)',
-                  borderRadius: 3,
-                  padding: '10px 14px',
-                  fontFamily: 'var(--mono)',
-                  fontSize: 11.5,
-                  letterSpacing: '.1em',
-                  textDecoration: 'none',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                }}
-              >
-                <span>☕ BUY ME A COFFEE ↗</span>
-              </motion.a>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+                <motion.a
+                  href="https://ko-fi.com/nerzon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onMouseEnter={() => playHover()}
+                  onClick={() => playClick()}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 6,
+                    background: 'rgba(184, 240, 74, 0.05)',
+                    border: '1px solid rgba(184, 240, 74, 0.3)',
+                    color: 'var(--acc)',
+                    borderRadius: 3,
+                    padding: '8px 10px',
+                    fontFamily: 'var(--mono)',
+                    fontSize: 11,
+                    textDecoration: 'none',
+                  }}
+                >
+                  <span>☕ KO-FI</span>
+                  <span style={{ color: 'var(--acc)', fontSize: 9 }}>↗</span>
+                </motion.a>
 
-              <motion.a
-                href="/assets/documents/John-Nerzon-Polintan-CV-2026.pdf"
-                download
-                onMouseEnter={() => playHover()}
-                onClick={() => playClick()}
-                whileHover={{ scale: 1.02 }}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 8,
-                  background: 'var(--acc)',
-                  border: '1px solid var(--acc)',
-                  color: 'var(--acc-dk)',
-                  fontWeight: 700,
-                  borderRadius: 3,
-                  padding: '11px',
-                  fontFamily: 'var(--mono)',
-                  fontSize: 11.5,
-                  letterSpacing: '.12em',
-                  textDecoration: 'none',
-                }}
-              >
-                <span>DOWNLOAD CV (PDF) ↓</span>
-              </motion.a>
+                <motion.a
+                  href="/assets/documents/John-Nerzon-Polintan-CV-2026.pdf"
+                  download
+                  onMouseEnter={() => playHover()}
+                  onClick={() => playClick()}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 6,
+                    background: 'var(--panel2)',
+                    border: '1px solid var(--line)',
+                    color: 'var(--txt)',
+                    borderRadius: 3,
+                    padding: '8px 10px',
+                    fontFamily: 'var(--mono)',
+                    fontSize: 11,
+                    textDecoration: 'none',
+                  }}
+                >
+                  <span>📄 RESUME / CV</span>
+                  <span style={{ color: 'var(--dim)', fontSize: 9 }}>↓</span>
+                </motion.a>
+              </div>
             </div>
           </TiltCard>
 
-          {/* Bento 3: Core Services with Interactive Pop-up Modal */}
-          <TiltCard className="hub-bento-card bento-services" intensity={2.5}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'var(--mono)', fontSize: 10.5, letterSpacing: '.16em', color: 'var(--acc)' }}>
-                <span className="dot-sm" />
-                SERVICES &amp; ENGAGEMENTS
-              </div>
-              <span className="avail-tag" style={{ padding: '3px 8px', fontSize: 9 }}>
-                <span className="dot" aria-hidden="true" style={{ width: 5, height: 5 }} />
-                CLICK FOR SPECS
-              </span>
-            </div>
-
-            {/* Enriched 6-Row Clickable Service Cards */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, flex: 1 }}>
-              {HUB_SERVICES.map((s) => (
-                <motion.div
-                  key={s.no}
-                  onClick={() => handleOpenService(s)}
-                  onMouseEnter={() => playHover()}
-                  whileHover={{ x: 3, backgroundColor: 'rgba(255, 255, 255, 0.03)' }}
-                  style={{
-                    display: 'block',
-                    background: 'rgba(0,0,0,0.25)',
-                    border: '1px solid var(--line2)',
-                    borderRadius: 3,
-                    padding: '12px 14px',
-                    cursor: 'pointer',
-                    transition: 'border-color 0.2s ease',
-                  }}
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`View details for ${s.title}`}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, flexWrap: 'wrap' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                      <span style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--acc)', letterSpacing: '.14em' }}>
-                        {s.no} //
-                      </span>
-                      <h4 style={{ fontFamily: 'var(--disp)', fontSize: 15, fontWeight: 700, color: 'var(--txt)', margin: 0 }}>
-                        {s.title}
-                      </h4>
-                    </div>
-
-                    <span
-                      style={{
-                        fontFamily: 'var(--mono)',
-                        fontSize: 9,
-                        letterSpacing: '.14em',
-                        padding: '2px 8px',
-                        borderRadius: 2,
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: 5,
-                        color: 'var(--acc)',
-                        backgroundColor: 'rgba(184,240,74,0.08)',
-                        border: '1px solid rgba(184,240,74,0.3)',
-                      }}
-                    >
-                      <span
-                        style={{
-                          width: 5,
-                          height: 5,
-                          borderRadius: '50%',
-                          backgroundColor: 'var(--acc)',
-                        }}
-                      />
-                      {s.status}
-                    </span>
-                  </div>
-
-                  <p style={{ fontSize: 12.5, color: 'var(--mut)', margin: '6px 0 8px', lineHeight: 1.45 }}>
-                    {s.desc}
-                  </p>
-
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, flexWrap: 'wrap' }}>
-                    <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                      {(s.tags || []).map((t) => (
-                        <span
-                          key={t}
-                          style={{
-                            fontFamily: 'var(--mono)',
-                            fontSize: 8.5,
-                            letterSpacing: '.08em',
-                            color: 'var(--dim)',
-                            border: '1px solid var(--line)',
-                            padding: '1px 5px',
-                            borderRadius: 2,
-                          }}
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                      <span style={{ fontFamily: 'var(--mono)', fontSize: 9.5, color: 'var(--dim)', letterSpacing: '.06em' }}>
-                        {s.turnaround.split(' ')[0]} SLA
-                      </span>
-                      <span style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--acc)', fontWeight: 600, letterSpacing: '.1em' }}>
-                        SPECS ↗
-                      </span>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-
-              {/* Custom Scope & Retainer Advisory Banner Card */}
-              <motion.div
-                onMouseEnter={() => playHover()}
-                style={{
-                  marginTop: 2,
-                  background: 'linear-gradient(135deg, rgba(184,240,74,0.04) 0%, rgba(0,0,0,0.35) 100%)',
-                  border: '1px dashed rgba(184,240,74,0.35)',
-                  borderRadius: 3,
-                  padding: '13px 15px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 8,
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 6 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <span style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--acc)', letterSpacing: '.14em', fontWeight: 600 }}>
-                      BESPOKE // SLA
-                    </span>
-                    <h4 style={{ fontFamily: 'var(--disp)', fontSize: 14.5, fontWeight: 700, color: 'var(--txt)', margin: 0 }}>
-                      Custom Scope &amp; Retainer Advisory
-                    </h4>
-                  </div>
-                  <span
-                    style={{
-                      fontFamily: 'var(--mono)',
-                      fontSize: 8.5,
-                      letterSpacing: '.12em',
-                      padding: '2px 7px',
-                      borderRadius: 2,
-                      color: 'var(--acc)',
-                      backgroundColor: 'rgba(184,240,74,0.08)',
-                      border: '1px solid rgba(184,240,74,0.3)',
-                    }}
-                  >
-                    WEEKENDS (GMT+8) + ASYNC
-                  </span>
+          {/* Bento 3: Brief Introduction (Personal Human Dossier) */}
+          <div style={{ gridColumn: 'span 12' }}>
+            <TiltCard className="hub-bento-card" intensity={2}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 8 }}>
+                <div style={{ fontFamily: 'var(--mono)', fontSize: 10.5, letterSpacing: '.18em', color: 'var(--acc)', display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <span className="dot" aria-hidden="true" />
+                  <span>BRIEF INTRODUCTION // HUMAN DOSSIER</span>
                 </div>
+                <span className="mono dim" style={{ fontSize: 9.5 }}>PHILOSOPHY &amp; ETHOS</span>
+              </div>
 
-                <p style={{ fontSize: 12, color: 'var(--mut)', margin: 0, lineHeight: 1.45 }}>
-                  Need a dedicated technical lead, bespoke automation architecture, iGaming API integration, or private sprint SLA? Available for custom contract retainers and project milestone engineering.
+              <h3 style={{ fontFamily: 'var(--disp)', fontSize: 'clamp(22px, 3.2vw, 32px)', fontWeight: 700, margin: '0 0 16px', color: 'var(--txt)', letterSpacing: '-.01em', lineHeight: 1.2 }}>
+                Part-Time Coder.{' '}
+                <span style={{ color: 'var(--acc)' }}>Full-Time Curious Human.</span>
+              </h3>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 14, fontSize: 'clamp(14.5px, 1.8vw, 16px)', color: 'var(--mut)', lineHeight: 1.7, maxWidth: 960 }}>
+                <p style={{ margin: 0 }}>
+                  Dad of three boys, AI enthusiast, hobbyist vibe coder, and an iGaming professional by day.
                 </p>
+                <p style={{ margin: 0 }}>
+                  I build websites, systems, automations, and designs. I know a little bit of everything and just enough to be dangerous (to my own free time).
+                </p>
+                <p style={{ margin: 0 }}>
+                  Not exactly a master of one trade, but a fast learner who can research, adapt, and turn a random idea into something that actually works.
+                </p>
+              </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, flexWrap: 'wrap', paddingTop: 2 }}>
-                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                    {['DEDICATED ADVISORY', 'API PIPELINES', 'SPRINT SLA'].map((t) => (
-                      <span
-                        key={t}
-                        style={{
-                          fontFamily: 'var(--mono)',
-                          fontSize: 8.5,
-                          letterSpacing: '.08em',
-                          color: 'var(--dim)',
-                          border: '1px solid var(--line)',
-                          padding: '1px 5px',
-                          borderRadius: 2,
-                        }}
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
+              <div
+                style={{
+                  marginTop: 18,
+                  background: 'linear-gradient(135deg, rgba(184, 240, 74, 0.07) 0%, rgba(10, 12, 14, 0.5) 100%)',
+                  border: '1px solid rgba(184, 240, 74, 0.35)',
+                  borderRadius: 4,
+                  padding: '14px 20px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 12,
+                  fontFamily: 'var(--mono)',
+                  fontSize: 'clamp(12px, 1.6vw, 13.5px)',
+                  color: 'var(--acc)',
+                  fontWeight: 600,
+                  letterSpacing: '.03em',
+                }}
+              >
+                <span style={{ fontSize: 18 }}>☕</span>
+                <span>Powered by curiosity, caffeine, and an unreasonable number of browser tabs.</span>
+              </div>
+            </TiltCard>
+          </div>
 
-                  <motion.a
-                    href="mailto:erzon22@gmail.com?subject=Inquiry:%20Custom%20Scope%20/%20Retainer%20Advisory"
-                    onMouseEnter={() => playHover()}
-                    onClick={() => playClick()}
-                    whileHover={{ scale: 1.02, x: 2 }}
-                    whileTap={{ scale: 0.98 }}
-                    style={{
-                      fontFamily: 'var(--mono)',
-                      fontSize: 10,
-                      fontWeight: 700,
-                      letterSpacing: '.12em',
-                      color: 'var(--acc-dk)',
-                      backgroundColor: 'var(--acc)',
-                      padding: '5px 11px',
-                      borderRadius: 2,
-                      textDecoration: 'none',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: 4,
-                    }}
-                  >
-                    INQUIRE BESPOKE ➔
-                  </motion.a>
-                </div>
-              </motion.div>
-            </div>
-          </TiltCard>
-
-          {/* Bento 4: Recent Projects Live Tracker */}
-          <TiltCard className="hub-bento-card bento-projects" intensity={2.5}>
-            <RecentProjectsSection />
-          </TiltCard>
-
-          {/* Bento 5: Deep Gateway Portal */}
+          {/* Bento 4: Deep Gateway Portal */}
           <div className="bento-gateways">
             <TiltCard className="hub-bento-card" intensity={2.5}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12, flexWrap: 'wrap', gap: 8 }}>
                 <span style={{ fontFamily: 'var(--mono)', fontSize: 10.5, color: 'var(--acc)', letterSpacing: '.16em' }}>
-                  DEEP PORTFOLIO GATEWAY // 6-SECTION OPS CONSOLE
+                  DEEP PORTFOLIO GATEWAY // 8-SECTION OPS CONSOLE
                 </span>
                 <span className="cmd-k-badge">/console</span>
               </div>
@@ -666,11 +476,21 @@ export function MinimalHubPage() {
                     Launch Full Interactive Ops Console ↗
                   </h3>
                   <p style={{ fontSize: 13.5, color: 'var(--mut)', margin: 0, lineHeight: 1.55 }}>
-                    Dive into the complete operations ecosystem: 6-stage live game release pipeline, 7 role histories with deep metric blueprints, technical capability matrix, and verified certifications.
+                    Dive into the complete operations ecosystem: 6-stage live release pipeline, recent projects &amp; 3D visualizers, service blueprints &amp; SLAs, 12+ years experience blueprints, and verified certifications.
                   </p>
                 </div>
 
-                <div style={{ flexShrink: 0 }}>
+                <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+                  <Link
+                    to="/personality"
+                    onMouseEnter={() => playHover()}
+                    onClick={() => playClick()}
+                    className="btn"
+                    style={{ fontSize: 12, padding: '14px 20px', letterSpacing: '.12em', whiteSpace: 'nowrap', border: '1px solid var(--line)' }}
+                  >
+                    INTJ-A PROFILE ↗
+                  </Link>
+
                   <Link
                     to="/console"
                     onMouseEnter={() => playHover()}
@@ -678,7 +498,7 @@ export function MinimalHubPage() {
                     className="btn fill"
                     style={{ fontSize: 12, padding: '14px 24px', letterSpacing: '.14em', whiteSpace: 'nowrap' }}
                   >
-                    EXPLORE FULL CONSOLE ➔
+                    EXPLORE FULL CONSOLE ↗
                   </Link>
                 </div>
               </div>
@@ -686,12 +506,6 @@ export function MinimalHubPage() {
           </div>
         </div>
       </div>
-
-      {/* Interactive Full Service Details Modal */}
-      <ServiceDetailModal
-        service={selectedService}
-        onClose={() => setSelectedService(null)}
-      />
 
       {/* Email Copy Toast Alert */}
       <AnimatePresence>
@@ -710,3 +524,5 @@ export function MinimalHubPage() {
     </motion.div>
   );
 }
+
+export default MinimalHubPage;
