@@ -599,3 +599,8 @@ nav.main a { white-space: nowrap; }
   nav.main, .hd-actions, .clocks.hd-clocks { display: none !important; }
   .burger { display: flex; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
 }
+
+.console-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+.console-mascot { flex: none; padding: 16px 12px; }
+.console-mascot > span:focus-visible { outline: 2px solid var(--acc); outline-offset: 8px; border-radius: 12px; }
+@media (max-width: 540px) { .console-mascot { width: 84px; height: 108px; padding: 12px 0; } .console-mascot > span { transform: scale(.7); transform-origin: top left; } }

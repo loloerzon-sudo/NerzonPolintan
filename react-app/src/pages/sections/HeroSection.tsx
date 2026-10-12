@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
+import { RobotHead } from 'robot-heads';
 import { useScramble } from '@/hooks/useScramble';
 import { useAudio } from '@/hooks/useAudio';
 import { TiltCard } from '@/components/TiltCard';
@@ -90,8 +91,9 @@ export function HeroSection() {
             }}
           />
 
+          <div className="console-heading">
           <motion.div
-            style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24, flexWrap: 'wrap' }}
+            style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.1, duration: 0.6 }}
@@ -109,6 +111,29 @@ export function HeroSection() {
               OPS CONSOLE // REV 2026.10
             </span>
           </motion.div>
+
+          <div className="console-mascot">
+            <RobotHead
+              role="button"
+              tabIndex={0}
+              aria-label="Play robot hop and spin"
+              onKeyDown={event => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  if (!event.repeat) event.currentTarget.click();
+                }
+              }}
+              shape="hexagon"
+              state="idle"
+              size={120}
+              color="#0a0c0e"
+              trimColor="#b8f04a"
+              screenColor="#00f0ff"
+              interactive
+              paused={reduced}
+            />
+          </div>
+          </div>
 
           <h1 className="name" style={{ position: 'relative', zIndex: 1 }}>
             <motion.span

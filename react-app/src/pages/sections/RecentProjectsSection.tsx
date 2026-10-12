@@ -15,6 +15,15 @@ interface ProjectItem {
 
 const RECENT_PROJECTS: ProjectItem[] = [
   {
+    id: 'p-09',
+    name: 'Nerzon V2: Motion Portfolio',
+    url: 'https://v2.nerzon.online/',
+    displayUrl: 'v2.nerzon.online',
+    desc: 'An experimental personal portfolio exploring cinematic motion, interactive storytelling, and creative web design.',
+    status: 'COMPLETED',
+    tags: ['PERSONAL PORTFOLIO', 'MOTION DESIGN', 'INTERACTIVE WEB'],
+  },
+  {
     id: 'p-01',
     name: 'AerzonWave: 3D Cyber Visualizer',
     url: 'https://aerzonwave.nerzon.online/',
